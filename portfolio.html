@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfolio & Documents — Tong Wu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Noto+Sans+SC:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --blue: #2563EB; --blue-2: #1D4ED8;
+  --blue-soft: #DBEAFE; --blue-softer: #EFF6FF;
+  --ink: #0F172A; --ink-2: #1E293B;
+  --muted: #64748B; --muted-2: #94A3B8;
+  --paper: #FFFFFF; --paper-2: #F8FAFC; --paper-3: #F1F5F9;
+  --line: #E2E8F0; --line-2: #CBD5E1;
+  --green: #10B981; --orange: #F97316;
+  --sans: 'Plus Jakarta Sans', 'Noto Sans SC', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; font-family: var(--sans); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+a { color: inherit; text-decoration: none; }
+
+/* NAV */
+.nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(255,255,255,.9);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; padding: 16px 0; gap: 16px; }
+.brand { font-weight: 800; font-size: 22px; letter-spacing: -.025em; color: var(--blue); }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 600; font-size: 14px; color: var(--muted);
+  background: var(--paper-3); border-radius: 999px;
+  padding: 8px 16px; transition: color .15s, background .15s;
+}
+.back-btn:hover { color: var(--ink); background: var(--line); }
+.back-btn svg { width: 14px; height: 14px; }
+.lang-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--paper-3); border-radius: 999px;
+  padding: 7px 14px; font-weight: 600; font-size: 13px;
+  cursor: pointer; border: none; color: inherit; white-space: nowrap;
+}
+.lang-pill .en, .lang-pill .zh { color: var(--muted-2); transition: color .15s; }
+.lang-pill .sep { color: var(--line-2); }
+body.lang-en .lang-pill .en, body.lang-zh .lang-pill .zh { color: var(--blue); }
+body.lang-en .zh-only, body.lang-zh .en-only { display: none !important; }
+
+/* HERO */
+.page-hero {
+  padding: 64px 0 56px;
+  background: linear-gradient(180deg, var(--blue-softer) 0%, var(--paper) 100%);
+}
+.page-hero .kicker {
+  display: inline-flex; align-items: center; gap: 10px;
+  color: var(--blue); font-weight: 700; font-size: 13px;
+  letter-spacing: .14em; text-transform: uppercase; margin-bottom: 16px;
+}
+.page-hero .kicker::before { content: ""; width: 24px; height: 2px; background: var(--blue); border-radius: 1px; }
+.page-hero h1 {
+  font-size: clamp(32px, 4vw, 52px); font-weight: 800;
+  letter-spacing: -.025em; line-height: 1.1; margin: 0 0 16px;
+}
+.page-hero p { font-size: 17px; color: var(--muted); max-width: 65ch; margin: 0; line-height: 1.65; }
+
+/* SECTION */
+.doc-section { padding: 64px 0; }
+.doc-section.alt { background: var(--paper-2); }
+.sec-title {
+  font-size: 22px; font-weight: 700; color: var(--ink-2);
+  margin: 0 0 32px; display: flex; align-items: center; gap: 14px;
+}
+.sec-title .ico {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--blue-soft); color: var(--blue);
+  display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.sec-title .ico svg { width: 22px; height: 22px; }
+
+/* DOC CARDS */
+.doc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
+.doc-card {
+  background: white; border: 1px solid var(--line);
+  border-radius: 16px; padding: 24px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: box-shadow .2s, border-color .2s, transform .2s;
+}
+.doc-card:hover { box-shadow: 0 8px 24px rgba(15,23,42,.08); border-color: var(--blue-soft); transform: translateY(-2px); }
+.doc-type {
+  font-family: var(--mono); font-size: 11px; font-weight: 600;
+  color: var(--blue); background: var(--blue-soft);
+  padding: 3px 10px; border-radius: 6px; display: inline-block; width: fit-content;
+}
+.doc-type.py { color: #7C3AED; background: #EDE9FE; }
+.doc-type.js { color: #D97706; background: #FEF3C7; }
+.doc-type.html { color: var(--orange); background: rgba(249,115,22,.1); }
+.doc-type.pdf { color: #DC2626; background: #FEE2E2; }
+.doc-title { font-size: 16px; font-weight: 700; color: var(--ink); margin: 0; line-height: 1.35; }
+.doc-desc { font-size: 14px; color: var(--muted); line-height: 1.6; flex: 1; margin: 0; }
+.doc-actions { display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px; }
+.doc-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: 8px; font-size: 13px; font-weight: 600;
+  border: 1.5px solid var(--blue); color: var(--blue);
+  transition: background .15s, color .15s;
+}
+.doc-btn:hover { background: var(--blue-soft); }
+.doc-btn.primary { background: var(--blue); color: white; border-color: var(--blue); }
+.doc-btn.primary:hover { background: var(--blue-2); border-color: var(--blue-2); color: white; }
+.doc-btn svg { width: 13px; height: 13px; flex-shrink: 0; }
+
+/* FOOTER */
+.foot-mini {
+  background: var(--ink); color: white; padding: 40px 0;
+  text-align: center;
+}
+.foot-mini p { margin: 0 0 16px; color: var(--muted-2); font-size: 14px; }
+.foot-mini a {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 11px 22px; border-radius: 10px; font-weight: 600; font-size: 14px;
+  background: var(--blue); color: white; transition: background .15s;
+}
+.foot-mini a:hover { background: var(--blue-2); }
+.foot-mini a svg { width: 14px; height: 14px; }
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 20px; }
+  .doc-grid { grid-template-columns: 1fr; }
+  .page-hero { padding: 40px 0 36px; }
+  .doc-section { padding: 40px 0; }
+}
+</style>
+</head>
+<body class="lang-en">
+
+<nav class="nav">
+  <div class="wrap nav-inner">
+    <a href="/" class="brand">Tong<span style="color:var(--blue)">.</span></a>
+    <div style="display:flex;align-items:center;gap:12px">
+      <a href="/" class="back-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+        <span class="en-only">Back to site</span><span class="zh-only">返回主页</span>
+      </a>
+      <button class="lang-pill" id="lang-toggle" aria-label="Toggle language">
+        <span class="en">EN</span><span class="sep">/</span><span class="zh">中文</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="wrap">
+    <div class="kicker"><span class="en-only">CODE · RESEARCH · CREDENTIALS</span><span class="zh-only">代码 · 研究 · 资质</span></div>
+    <h1><span class="en-only">Portfolio &amp; Documents</span><span class="zh-only">作品集与文档</span></h1>
+    <p>
+      <span class="en-only">Academic research, automation code, certifications, and professional reference letters. PDFs open in a new tab.</span>
+      <span class="zh-only">学术研究、自动化代码、证书与职业推荐信。PDF 在新标签页打开。</span>
+    </p>
+  </div>
+</section>
+
+<!-- SECTION 1: Programming & Code -->
+<section class="doc-section">
+  <div class="wrap">
+    <div class="sec-title">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+      <span class="en-only">Programming &amp; Code</span><span class="zh-only">代码与脚本</span>
+    </div>
+    <div class="doc-grid">
+
+      <div class="doc-card">
+        <span class="doc-type js">user.js</span>
+        <p class="doc-title">PerfectMile Caravan — Auto Expand</p>
+        <p class="doc-desc">
+          <span class="en-only">Tampermonkey userscript for Amazon internal Caravan tool. Auto-expands route panels and streamlines shift prep — cuts preparation time by ~40%.</span>
+          <span class="zh-only">亚马逊 Caravan 内部工具的 Tampermonkey 脚本，自动展开路线面板，简化班前准备，效率提升约 40%。</span>
+        </p>
+        <div class="doc-actions">
+          <a class="doc-btn primary" href="https://github.com/Goldentrii/website/blob/main/PerfectMile%20Caravan%20%E2%80%93%20Auto%20Expand-1.4.user.js" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.13c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a10.95 10.95 0 015.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.79.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <span class="doc-type html">html</span>
+        <p class="doc-title">Amazon Caravan Enhanced Demo</p>
+        <p class="doc-desc">
+          <span class="en-only">Interactive HTML demo showcasing the enhanced Caravan workflow. Demonstrates the UI/UX improvements built with the automation scripts.</span>
+          <span class="zh-only">交互式 HTML 演示，展示增强版 Caravan 工作流的 UI/UX 改进效果。</span>
+        </p>
+        <div class="doc-actions">
+          <a class="doc-btn primary" href="Amazon_Caravan_Enhanced_Demo.html" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            Live Demo
+          </a>
+          <a class="doc-btn" href="https://github.com/Goldentrii/website/blob/main/Amazon_Caravan_Enhanced_Demo.html" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.13c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a10.95 10.95 0 015.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.79.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <span class="doc-type py">py</span>
+        <p class="doc-title">LangChain + Pinecone RAG</p>
+        <p class="doc-desc">
+          <span class="en-only">Python pipeline connecting LangChain with Pinecone vector DB for retrieval-augmented generation. Embeds documents and enables semantic Q&amp;A.</span>
+          <span class="zh-only">将 LangChain 与 Pinecone 向量数据库连接，实现检索增强生成（RAG）。支持文档嵌入与语义问答。</span>
+        </p>
+        <div class="doc-actions">
+          <a class="doc-btn primary" href="https://github.com/Goldentrii/website/blob/main/Langchain%2BPinecone.py" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.13c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a10.95 10.95 0 015.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.79.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            View Code
+          </a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <span class="doc-type py">py</span>
+        <p class="doc-title">LangChain PDF App</p>
+        <p class="doc-desc">
+          <span class="en-only">Conversational PDF reader built with LangChain. Upload a PDF and ask questions — uses OpenAI embeddings + chain-of-thought retrieval.</span>
+          <span class="zh-only">基于 LangChain 构建的对话式 PDF 阅读器。上传 PDF 后可直接提问，使用 OpenAI 嵌入 + 思维链检索。</span>
+        </p>
+        <div class="doc-actions">
+          <a class="doc-btn primary" href="https://github.com/Goldentrii/website/blob/main/Langchain%20PDF%20App.py" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.13c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a10.95 10.95 0 015.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.79.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            View Code
+          </a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <span class="doc-type py">py</span>
+        <p class="doc-title">PDF Reader (PDFreader.py)</p>
+        <p class="doc-desc">
+          <span class="en-only">Lightweight Python script for extracting, parsing, and processing PDF content. Utility used in the larger LangChain RAG pipeline.</span>
+          <span class="zh-only">轻量级 Python 脚本，用于提取、解析和处理 PDF 内容。作为 LangChain RAG 流程的基础工具。</span>
+        </p>
+        <div class="doc-actions">
+          <a class="doc-btn primary" href="https://github.com/Goldentrii/website/blob/main/PDFreader.py" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.13c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a10.95 10.95 0 015.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.79.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>
+            View Code
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2: Academic Research -->
+<section class="doc-section alt">
+  <div class="wrap">
+    <div class="sec-title">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span>
+      <span class="en-only">Academic Research</span><span class="zh-only">学术研究</span>
+    </div>
+    <div class="doc-grid">
+
+      <div class="doc-card">
+        <span class="doc-type pdf">PDF</span>
+        <p class="doc-title">Master's Thesis — UBI in the AI Era</p>
+        <p class="doc-desc">
+          <span class="en-only">Socio-economic impacts of the GPT ecosystem. Analyzes Universal Basic Income policy in the context of AI-driven labor displacement. University of Freiburg, 2023.</span>
+          <span class="zh-only">GPT 生态的社会经济影响。在 AI 驱动劳动力替代背景下分析全民基本收入政策。弗莱堡大学，2023 年。</span>
+        </p>
+        <div class="doc-actions">
+          <a class="doc-btn primary" href="Master's%20Thesis%20_%20Tong_Wu_5163957.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Open PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="doc-card">
+        <span class="doc-type pdf">PDF</span>
+        <p class="doc-title">Big Change? The Rise of the GPT Ecosystem</p>
+        <p class="doc-desc">
+          <span class="en-only">Research paper examining whether GPT-class models represent a paradigm shift. Covers economic, labor, and systemic implications of large language model adoption.</span>
+          <span class="zh-only">研究论文，探讨 GPT 级模型是否代表范式转变。涵盖大语言模型普及的经济、劳动力和系统影响。</span>
+        </p>
+        <div class="doc-actions">
+          <a class="doc-btn primary" href="Big%20change%21%20Not%20big%20enough.%20The%20rise%20of%20the%20GPT%20ecosystem-TongWu%2C%20Final.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            Open PDF
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 3: Certifications -->
+<section class="doc-section">
+  <div class="wrap">
+    <div class="sec-title">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg></span>
+      <span class="en-only">Certifications</span><span class="zh-only">证书</span>
+    </div>
+    <div class="doc-grid">
+
+      <div class="doc-card">
+        <span class="doc-type pdf">PDF</span>
+        <p class="doc-title">
+          <span class="en-only">Professional Certifications Portfolio</span>
+          <span class="zh-only">职业证书合集</span>
+        </p>
+        <p class="doc-desc">
+          <span class="en-only">Complete certifications portfolio including: Six Sigma Green Belt, Data Analytics, Python for Automation, Machine Learning (Coursera), and Business Analysis credentials.</span>
+          <span class="zh-only">完整证书合集，包括：六西格玛绿带、数据分析、Python 自动化、机器学习（Coursera）和商业分析证书。</span>
+        </p>
+        <div class="doc-actions">
+          <a class="doc-btn primary" href="Zertifizierungen.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            View Certificates
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 4: Reference Letters -->
+<section class="doc-section alt">
+  <div class="wrap">
+    <div class="sec-title">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+      <span class="en-only">Professional References</span><span class="zh-only">职业推荐信</span>
+    </div>
+    <div class="doc-grid">
+
+      <div class="doc-card">
+        <span class="doc-type pdf">PDF</span>
+        <p class="doc-title">
+          <span class="en-only">Reference Letters — All</span>
+          <span class="zh-only">推荐信合集</span>
+        </p>
+        <p class="doc-desc">
+          <span class="en-only">Professional reference letters from supervisors and managers across roles at Amazon, Xiaomi, University of Freiburg, and Adecco. Covers operations, research, and supply chain contexts.</span>
+          <span class="zh-only">来自亚马逊、小米、弗莱堡大学和 Adecco 各岗位主管与经理的职业推荐信，涵盖运营、研究和供应链背景。</span>
+        </p>
+        <div class="doc-actions">
+          <a class="doc-btn primary" href="Reference%20Letter%20-%20All.pdf" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            View Letters
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- MINI FOOTER -->
+<div class="foot-mini">
+  <p class="en-only">Back to the main site</p>
+  <p class="zh-only">返回主页</p>
+  <a href="/">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+    <span class="en-only">tongwu.network</span><span class="zh-only">主页</span>
+  </a>
+</div>
+
+<script>
+const btn = document.getElementById('lang-toggle');
+const saved = localStorage.getItem('lang') || 'en';
+document.body.className = 'lang-' + saved;
+btn.addEventListener('click', () => {
+  const next = document.body.classList.contains('lang-en') ? 'zh' : 'en';
+  document.body.className = 'lang-' + next;
+  localStorage.setItem('lang', next);
+});
+</script>
+</body>
+</html>
