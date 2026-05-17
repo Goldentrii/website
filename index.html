@@ -237,6 +237,9 @@ section.sec.alt { background: var(--paper-2); }
 .now-card p { font-size: 14.5px; color: var(--ink-2); line-height: 1.6; margin: 0 0 20px; }
 .now-card .ftr { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); display: flex; gap: 12px; flex-wrap: wrap; }
 .now-card .tag { font-size: 11px; padding: 5px 10px; border-radius: 6px; background: var(--paper-3); color: var(--muted); font-weight: 600; font-family: var(--mono); }
+.now-card .tag.tag-link { color: var(--blue); background: var(--blue-softer); text-decoration: none; }
+.now-card .tag.tag-link:hover { background: var(--blue-soft); }
+.now-card .badge.internal { color: var(--orange); background: rgba(249,115,22,.12); }
 
 /* ============ EXPERIENCE timeline ============ */
 .timeline-wrap { display: grid; grid-template-columns: 200px 1fr; gap: 64px; align-items: start; }
@@ -584,6 +587,7 @@ footer.foot p.lede { font-size: 19px; color: #94A3B8; margin: 0 0 36px; max-widt
         </p>
         <div class="ftr">
           <span class="tag">MCP</span><span class="tag">Node.js</span><span class="tag">TypeScript</span>
+          <a class="tag tag-link" href="https://github.com/NovadaLabs/novada-mcp" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
 
@@ -602,6 +606,7 @@ footer.foot p.lede { font-size: 19px; color: #94A3B8; margin: 0 0 36px; max-widt
         </p>
         <div class="ftr">
           <span class="tag">Memory</span><span class="tag">Vector DB</span><span class="tag">FSM</span>
+          <a class="tag tag-link" href="https://github.com/Goldentrii/AgentRecall" target="_blank" rel="noopener">GitHub ↗</a>
         </div>
       </div>
 
@@ -610,7 +615,7 @@ footer.foot p.lede { font-size: 19px; color: #94A3B8; margin: 0 0 36px; max-widt
           <div class="icon-box">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg>
           </div>
-          <span class="badge">benchmark</span>
+          <span class="badge internal">Internal</span>
         </div>
         <h3>AAM Benchmark</h3>
         <div class="sub">Agent Autonomy Metric · 8.8/10</div>
@@ -774,10 +779,10 @@ footer.foot p.lede { font-size: 19px; color: #94A3B8; margin: 0 0 36px; max-widt
           <span class="zh-only">集成 AI 模型的自动化脚本 —— 亚马逊内部系统的 Tampermonkey 工具，以及一个 LangChain RAG PDF 阅读器。</span>
         </p>
         <div class="links">
-          <a class="link-btn" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>TM Script</a>
+          <a class="link-btn" href="https://github.com/Goldentrii/website/blob/main/PerfectMile%20Caravan%20%E2%80%93%20Auto%20Expand-1.4.user.js" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>TM Script</a>
           <a class="link-btn" href="https://github.com/Goldentrii" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.1.79-.25.79-.56v-2.13c-3.2.7-3.87-1.36-3.87-1.36-.52-1.32-1.27-1.67-1.27-1.67-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.18 1.76 1.18 1.02 1.76 2.69 1.25 3.35.96.1-.74.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.29 1.18-3.1-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a10.95 10.95 0 015.76 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.74.81 1.18 1.84 1.18 3.1 0 4.42-2.69 5.39-5.26 5.68.41.36.78 1.06.78 2.14v3.17c0 .31.2.67.79.56C20.21 21.39 23.5 17.08 23.5 12 23.5 5.65 18.35.5 12 .5z"/></svg>GitHub</a>
-          <a class="link-btn" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Pinecone.py</a>
-          <a class="link-btn" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>PDF App.py</a>
+          <a class="link-btn" href="https://github.com/Goldentrii/website/blob/main/Langchain%2BPinecone.py" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>Pinecone.py</a>
+          <a class="link-btn" href="https://github.com/Goldentrii/website/blob/main/Langchain%20PDF%20App.py" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>PDF App.py</a>
         </div>
       </div>
 
@@ -792,8 +797,8 @@ footer.foot p.lede { font-size: 19px; color: #94A3B8; margin: 0 0 36px; max-widt
           <span class="zh-only">经济学 × 技术交叉研究：AI 时代的 UBI 与 GPT 生态的社会经济影响。</span>
         </p>
         <div class="links">
-          <a class="link-btn" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Master's Thesis</a>
-          <a class="link-btn" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>GPT Ecosystem</a>
+          <a class="link-btn" href="Master's%20Thesis%20_%20Tong_Wu_5163957.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Master's Thesis</a>
+          <a class="link-btn" href="Big%20change%21%20Not%20big%20enough.%20The%20rise%20of%20the%20GPT%20ecosystem-TongWu%2C%20Final.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>GPT Ecosystem</a>
         </div>
       </div>
 
@@ -808,9 +813,16 @@ footer.foot p.lede { font-size: 19px; color: #94A3B8; margin: 0 0 36px; max-widt
           <span class="zh-only">六西格玛、数据分析、Python 自动化、机器学习、商业分析等专业证书。</span>
         </p>
         <div class="links">
-          <a class="link-btn solid" href="#"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View All</a>
+          <a class="link-btn solid" href="Zertifizierungen.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>View Certs</a>
+          <a class="link-btn" href="Reference%20Letter%20-%20All.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>Reference Letters</a>
         </div>
       </div>
+    </div>
+    <div style="margin-top:36px;text-align:center">
+      <a class="btn btn-ghost" href="portfolio.html">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        <span class="en-only">Full documents archive →</span><span class="zh-only">完整文档存档 →</span>
+      </a>
     </div>
   </div>
 </section>
