@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tong Wu · 吴桐 — Full-stack engineer building agent infrastructure</title>
-<meta name="description" content="Tong Wu (吴桐) — full-stack engineer shipping agent infrastructure end-to-end. Creator of AgentRecall (299★) and six npm packages with ~8.8k monthly installs, written solo. Based in Düsseldorf, EU Blue Card.">
+<title>Tong Wu · 吴桐 — Agent infrastructure engineer · AgentRecall (304★)</title>
+<meta name="description" content="Tong Wu (吴桐) — agent infrastructure engineer. Creator of AgentRecall (304★, 6.4k installs/mo), six npm packages built solo. Memory systems, multi-agent orchestration, MCP. Düsseldorf, EU Blue Card.">
 <meta name="author" content="Tong Wu">
 <meta name="theme-color" content="#4F46E5">
 <link rel="canonical" href="https://tongwu.network/">
@@ -25,7 +25,7 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
 
 <!-- Structured data so a recruiter Googling me gets a rich card -->
 <script type="application/ld+json">
@@ -54,6 +54,7 @@
   --green:#047857;
   --serif:'Newsreader','Noto Serif SC',Georgia,'Times New Roman',serif;
   --sans:'Inter','Noto Sans SC',system-ui,-apple-system,sans-serif;
+  --round:'DM Sans','Noto Sans SC',system-ui,sans-serif;
   --mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',monospace;
   --maxw:1120px;
 }
@@ -70,14 +71,21 @@ a{color:inherit;text-decoration:none}
 img{max-width:100%}
 code{font-family:var(--mono);font-size:.88em;background:var(--accent-wash);color:var(--accent-deep);padding:1px 5px;border-radius:5px}
 .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:500;letter-spacing:-.01em;margin:0}
+h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:300;letter-spacing:-.02em;margin:0}
 .serif{font-family:var(--serif)}
 .mono{font-family:var(--mono)}
 
 .eyebrow{
-  font-family:var(--mono); font-size:12.5px; font-weight:500; letter-spacing:.16em;
+  font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.12em;
   text-transform:uppercase; color:var(--accent); display:inline-flex; gap:.5em; align-items:center;
 }
+/* ============ HERO STREAMS (subtle data-flow) ============ */
+.hero{position:relative;isolation:isolate}
+.hero .wrap{position:relative;z-index:1}
+.hero-streams{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;opacity:0.035}
+.stream{position:absolute;top:-100%;width:1px;background:linear-gradient(to bottom,transparent,var(--accent) 40%,var(--accent) 60%,transparent);animation:fall linear infinite}
+@keyframes fall{to{transform:translateY(200vh)}}
+@media(prefers-reduced-motion:reduce){.hero-streams{display:none}}
 .eyebrow::before{content:"";width:22px;height:1px;background:var(--accent-line)}
 
 /* ============ NAV ============ */
@@ -90,7 +98,7 @@ h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:500;letter-spacin
 .brand{font-family:var(--serif);font-size:21px;color:var(--ink);font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
 .brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
 .nav-links{display:flex;align-items:center;gap:26px}
-.nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:color .15s}
+.nav-links a{font-size:14px;color:var(--ink-2);font-weight:500;transition:color .15s}
 .nav-links a:hover,.nav-links a.active{color:var(--ink)}
 .lang-pill{
   font-family:var(--mono);font-size:12.5px;border:1px solid var(--line-2);border-radius:999px;
@@ -103,9 +111,10 @@ body.lang-en .lang-pill .en,body.lang-zh .lang-pill .zh{color:var(--accent);font
 .hero{padding:58px 0 54px}
 .hero .role{margin-bottom:18px}
 .hero h1{
-  font-size:clamp(2rem,4vw,3.15rem); line-height:1.1; letter-spacing:-.02em; color:var(--ink);
-  max-width:24ch;
+  font-size:clamp(1.6rem,3.2vw,2.4rem); line-height:1.3; letter-spacing:-.02em; color:var(--ink);
+  max-width:28ch;
 }
+body.lang-zh .hero h1{font-size:clamp(1.4rem,2.8vw,2rem);line-height:1.45;max-width:22ch}
 .hero h1 .accent{font-style:italic;color:var(--accent)}
 .lead{font-size:clamp(1rem,1.2vw,1.1rem);color:var(--ink-2);max-width:62ch;margin:22px 0 0;line-height:1.6}
 .lead b{color:var(--ink);font-weight:600}
@@ -124,9 +133,10 @@ body.lang-en .lang-pill .en,body.lang-zh .lang-pill .zh{color:var(--accent);font
 .stat{background:var(--card);padding:22px 20px}
 .stat .n{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.3rem);color:var(--ink);font-weight:600;letter-spacing:-.02em;line-height:1}
 .stat .n .star{color:var(--accent);font-size:.7em;vertical-align:.08em}
-.stat .l{font-size:12.5px;color:var(--muted);margin-top:9px;line-height:1.4}
+.stat .l{font-family:var(--round);font-size:12.5px;color:var(--muted);margin-top:9px;line-height:1.4}
 .meta-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.chip{font-family:var(--mono);font-size:12px;color:var(--ink-2);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 12px;display:inline-flex;align-items:center;gap:7px}
+.chip{font-family:var(--round);font-size:12.5px;color:var(--ink-2);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;display:inline-flex;align-items:center;gap:7px}
+.chip svg{width:14px;height:14px;flex-shrink:0}
 .chip .live{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(4,120,135,.14)}
 
 /* ============ SECTION SHELL ============ */
@@ -154,7 +164,7 @@ section{padding:62px 0;border-top:1px solid var(--line)}
 .metric{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);border:1px solid var(--line);border-radius:7px;padding:4px 9px;background:var(--paper)}
 .metric .hl{color:var(--accent);font-weight:600}
 .stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
-.pill{font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
+.pill{font-family:var(--round);font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
 .card .links{display:flex;gap:16px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
 .card .links a{font-size:13.5px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:4px}
 .card .links a:hover{color:var(--accent-deep)}
@@ -261,34 +271,42 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
 
 <!-- ===================== HERO ===================== -->
 <header id="top" class="hero">
+  <div class="hero-streams" id="hero-streams"></div>
   <div class="wrap">
-    <div class="role eyebrow"><span class="en-only">Full-stack engineer · Agent infrastructure</span><span class="zh-only">全栈工程师 · 智能体基础设施</span></div>
+    <div class="meta-chips" style="margin-bottom:18px">
+      <a class="chip" href="https://github.com/Goldentrii" target="_blank" rel="noopener" style="font-weight:600;color:var(--accent)"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub · 304★</a>
+      <a class="chip" href="https://linkedin.com/in/tongwu3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>LinkedIn</a>
+      <a class="chip" href="https://www.npmjs.com/~goldentrii" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="#CB3837"><path d="M0 0v16h16V0H0zm13 13H8V5H5v8H3V3h10v10z"/></svg>npm · 6.4k/mo</a>
+      <a class="chip" href="https://tongwu.network/portfolio.html">
+        <span class="en-only">Thesis · References · Certs</span>
+        <span class="zh-only">论文 · 推荐信 · 证书</span>
+      </a>
+    </div>
+    <div class="role eyebrow"><span class="en-only">Agent infrastructure engineer</span><span class="zh-only">AI Agent 基础设施工程师</span></div>
     <h1>
-      <span class="en-only">I build the tools I wished existed when the work <span class="accent">outpaced</span> the tooling.</span>
-      <span class="zh-only">当工作跑在工具<span class="accent">前面</span>时，我把缺的那块自己写出来。</span>
+      <span class="en-only">Agent memory is a solved problem. I <span class="accent">solved</span> it.</span>
+      <span class="zh-only">经济系毕业，供应链出身，现在在造 AI 的<span class="accent">基础设施</span>。</span>
     </h1>
     <p class="lead">
-      <span class="en-only"><b>Tong Wu · 吴桐.</b> I design, build and ship agent infrastructure end-to-end — from the MCP server and TypeScript SDK down to the retrieval math and the eval harness. <b>299 stars and ~8.8k monthly installs</b> across six npm packages, every line written and maintained solo. Before code, eight years of operations across four countries taught me to enter a new system and ship in it fast. That's still the edge.</span>
-      <span class="zh-only"><b>吴桐 · Tong Wu.</b> 我端到端地设计、构建并交付智能体基础设施 —— 从 MCP 服务、TypeScript SDK，一直到底层的检索算法和评测框架。六个 npm 包、<b>299 个 Star、月均约 8.8k 次安装</b>，每一行都由我独立编写与维护。在写代码之前，八年、四国的运营经历教会我一件事：进入一个全新系统，并立刻在其中交付。这至今仍是我的护城河。</span>
+      <span class="en-only"><b>Tong Wu · 吴桐.</b> I build agent infrastructure — memory systems, multi-agent orchestration, MCP servers. <b>304 stars, 6,444 installs/month</b> across six npm packages, written and maintained solo. I came from supply chain; turns out agents have the <b>same coordination problems</b>.</span>
+      <span class="zh-only"><b>吴桐 · Tong Wu.</b> 我构建 Agent 基础设施 —— 记忆系统、多 Agent 编排、MCP 服务器。六个 npm 包，<b>304 Star、月均 6,444 次安装</b>，每行独立编写。从供应链转型而来——Agent 的协调失败和物流的<b>是同一类问题</b>。</span>
     </p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="https://github.com/Goldentrii/AgentRecall-MCP" target="_blank" rel="noopener"><span class="en-only">See AgentRecall ↗</span><span class="zh-only">看 AgentRecall ↗</span></a>
-      <a class="btn btn-ghost" href="mailto:tong.wu@novada.com"><span class="en-only">Get in touch</span><span class="zh-only">联系我</span></a>
+      <a class="btn btn-primary" href="https://github.com/Goldentrii/AgentRecall-MCP" target="_blank" rel="noopener"><span class="en-only">→ AgentRecall on GitHub</span><span class="zh-only">→ AgentRecall GitHub</span></a>
+      <a class="btn btn-ghost" href="mailto:tongwu0824@gmail.com"><span class="en-only">Get in touch</span><span class="zh-only">联系我</span></a>
     </div>
 
     <div class="stats reveal">
-      <div class="stat"><div class="n">299<span class="star">★</span></div><div class="l"><span class="en-only">GitHub stars on AgentRecall · 52 forks</span><span class="zh-only">AgentRecall 的 GitHub Star · 52 fork</span></div></div>
-      <div class="stat"><div class="n">6</div><div class="l"><span class="en-only">npm packages, shipped &amp; maintained solo</span><span class="zh-only">独立发布并维护的 npm 包</span></div></div>
-      <div class="stat"><div class="n">~8.8k</div><div class="l"><span class="en-only">downloads / month across the stack</span><span class="zh-only">全栈月均下载量</span></div></div>
-      <div class="stat"><div class="n">4</div><div class="l"><span class="en-only">countries · 8 years · 4 languages</span><span class="zh-only">国家 · 八年 · 四语种</span></div></div>
+      <div class="stat"><div class="n" data-target="304">304<span class="star">★</span></div><div class="l"><span class="en-only">GitHub stars · AgentRecall</span><span class="zh-only">GitHub Star · AgentRecall</span></div></div>
+      <div class="stat"><div class="n">6</div><div class="l"><span class="en-only">npm packages, shipped solo</span><span class="zh-only">独立发布的 npm 包</span></div></div>
+      <div class="stat"><div class="n">6.4k</div><div class="l"><span class="en-only">downloads / month</span><span class="zh-only">月下载量</span></div></div>
+      <div class="stat"><div class="n">57</div><div class="l"><span class="en-only">controlled experiments (Plywood)</span><span class="zh-only">对照实验（Plywood）</span></div></div>
     </div>
 
     <div class="meta-chips">
-      <span class="chip"><span class="live"></span><span class="en-only">Available Q1 2026</span><span class="zh-only">2026 一季度可入职</span></span>
-      <span class="chip"><span class="en-only">Düsseldorf · EU Blue Card</span><span class="zh-only">杜塞尔多夫 · 欧盟蓝卡</span></span>
-      <span class="chip">EN · DE · 中文 · 日本語 N4</span>
-      <a class="chip" href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="chip" href="https://linkedin.com/in/tongwu3" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <span class="chip"><span class="live"></span><span class="en-only">Available now</span><span class="zh-only">现在可入职</span></span>
+      <span class="chip"><span class="en-only">Düsseldorf · EU Blue Card · open to relocate</span><span class="zh-only">杜塞尔多夫 · 欧盟蓝卡 · 可 relocate</span></span>
+      <span class="chip">EN (C2) · DE (C1) · 中文 · 日本語</span>
     </div>
   </div>
 </header>
@@ -305,7 +323,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
     <div class="proj-grid">
       <!-- FEATURE: AgentRecall -->
       <article class="card feature reveal">
-        <div class="topline"><span class="tag"><span class="en-only">Flagship</span><span class="zh-only">旗舰</span></span><span class="ver">v3.4.23</span></div>
+        <div class="topline"><span class="tag"><span class="en-only">Flagship</span><span class="zh-only">旗舰</span></span><span class="ver">v3.4.27</span></div>
         <h3>AgentRecall</h3>
         <div class="sub">agent-recall-mcp · -sdk · -cli · -core</div>
         <p class="desc">
@@ -313,9 +331,9 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
           <span class="zh-only">给 AI agent 的是一套学习闭环，而不只是记忆存储。你的每一次纠正 —— <i>"不是那个版本"</i> —— 都会被记成带权重的记录，在后续会话中召回，被确认后自动晋升为跨项目洞察。<b>五层认知记忆模型</b>（Squire 2004、Tulving 1972）、<b>FSRS-lite 衰减 + Modern Hopfield 检索 + RRF 融合</b>，全本地 markdown，零云依赖。一个 monorepo 同时支撑 MCP 服务、TypeScript SDK 与 CLI。</span>
         </p>
         <div class="metrics">
-          <span class="metric"><span class="hl">299★</span> GitHub</span>
+          <span class="metric"><span class="hl">304★</span> GitHub</span>
           <span class="metric"><span class="hl">52</span> forks</span>
-          <span class="metric"><span class="hl">~6.5k</span> installs/mo</span>
+          <span class="metric"><span class="hl">6.4k</span> installs/mo</span>
           <span class="metric"><span class="hl">26K</span> LOC TS</span>
           <span class="metric"><span class="hl">31</span> test suites</span>
         </div>
@@ -332,13 +350,13 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
 
       <!-- novada-mcp -->
       <article class="card reveal">
-        <div class="topline"><span class="tag"><span class="en-only">Web data</span><span class="zh-only">网络数据</span></span><span class="ver">v0.8.0</span></div>
+        <div class="topline"><span class="tag"><span class="en-only">Web data</span><span class="zh-only">网络数据</span></span><span class="ver">v0.8.4</span></div>
         <h3>novada-mcp</h3>
         <div class="sub">one server · all web data</div>
         <p class="desc"><span class="en-only">Search, scrape, crawl, proxy and AI research in a single <code>npx</code> install. <b>13 composable tools</b> where competitors ship one capability each — or 69 tools that bloat the context window. One API key, structured output.</span><span class="zh-only">搜索、抓取、爬取、代理与 AI 研究，一条 <code>npx</code> 命令搞定。<b>13 个可组合工具</b>，而竞品要么只做其中一件、要么塞 69 个工具撑爆上下文。一个 API key，结构化输出。</span></p>
         <div class="metrics">
-          <span class="metric"><span class="hl">~2.2k</span> installs/mo</span>
-          <span class="metric"><span class="hl">13</span> <span class="en-only">tools</span><span class="zh-only">工具</span></span>
+          <span class="metric"><span class="hl">1.2k</span> installs/mo</span>
+          <span class="metric"><span class="hl">40+</span> <span class="en-only">tools</span><span class="zh-only">工具</span></span>
           <span class="metric">195+ <span class="en-only">countries</span><span class="zh-only">国家</span></span>
         </div>
         <div class="stack"><span class="pill">TypeScript</span><span class="pill">MCP</span><span class="pill">Web automation</span></div>
@@ -348,7 +366,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
 
       <!-- proxy4agent -->
       <article class="card reveal">
-        <div class="topline"><span class="tag"><span class="en-only">Infra</span><span class="zh-only">基础设施</span></span><span class="ver">v1.6.2</span></div>
+        <div class="topline"><span class="tag"><span class="en-only">Infra</span><span class="zh-only">基础设施</span></span><span class="ver">v1.8.3</span></div>
         <h3>Proxy4Agent</h3>
         <div class="sub">bestproxy4agents · residential proxy MCP</div>
         <p class="desc"><span class="en-only">Routes an agent's HTTP traffic through 2M+ residential devices to bypass Cloudflare / Akamai / DataDome. <b>Multi-provider adapter layer</b> (Novada, BrightData, Smartproxy, Oxylabs), sticky sessions, city-level geo-targeting. CI + Smithery listed.</span><span class="zh-only">把 agent 的 HTTP 流量经 200 万+ 真实住宅设备转发，绕过 Cloudflare / Akamai / DataDome。<b>多供应商适配层</b>（Novada、BrightData、Smartproxy、Oxylabs），粘性会话，城市级地理定位。已接入 CI 与 Smithery。</span></p>
@@ -363,15 +381,26 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
       </article>
     </div>
 
-    <!-- AAM research card (full width) -->
-    <article class="card reveal" style="margin-top:20px">
-      <div class="topline"><span class="tag warm"><span class="en-only">Research · methodology</span><span class="zh-only">研究 · 方法论</span></span><span class="ver"><span class="en-only">internal</span><span class="zh-only">内部</span></span></div>
-      <h3>AAM — Agent Autonomy Methodology</h3>
-      <div class="sub"><span class="en-only">how I prove an agent actually got better</span><span class="zh-only">我如何证明 agent 真的变强了</span></div>
-      <p class="desc"><span class="en-only">The evaluation discipline behind AgentRecall. Rather than vibes, every release runs a <b>multi-agent eval loop</b> (orchestrator → parallel workers → independent reviewer → verifier), an <b>A/B token-cost comparison</b> (with-memory vs. context-rebuild), and <b>regression suites</b> that pin down hard invariants — e.g. <i>"anything saved must be acknowledged at orientation time, 100% deterministically."</i> The KPI that matters: did the same mistake recur after we warned about it?</span><span class="zh-only">这是 AgentRecall 背后的评测纪律。不靠感觉：每次发布都跑一套<b>多智能体评测闭环</b>（编排者 → 并行 worker → 独立审查 → 验证）、一组<b>A/B token 成本对比</b>（有记忆 vs. 重建上下文），以及锁死硬性不变量的<b>回归套件</b> —— 例如<i>"凡是保存过的，必须在会话定向时被 100% 确定性地确认存在"</i>。唯一重要的 KPI：被警告之后，同样的错误还会复发吗？</span></p>
-      <div class="stack"><span class="pill">Eval design</span><span class="pill">Benchmarks</span><span class="pill">Regression suites</span><span class="pill">Token economics</span></div>
-      <span class="solo"><span class="en-only">Designed solo · runs in the AgentRecall eval/ &amp; benchmark/ harness</span><span class="zh-only">独立设计 · 跑在 AgentRecall 的 eval/ 与 benchmark/ 框架中</span></span>
-    </article>
+    <!-- AAM + Plywood (side by side) -->
+    <div class="proj-grid" style="margin-top:20px">
+      <article class="card reveal">
+        <div class="topline"><span class="tag warm"><span class="en-only">Orchestration</span><span class="zh-only">编排框架</span></span><span class="ver">v0.11.0</span></div>
+        <h3>AAM — Agent Autonomous Mode</h3>
+        <div class="sub"><span class="en-only">multi-agent orchestration with budget control</span><span class="zh-only">带预算控制的多 Agent 自主编排</span></div>
+        <p class="desc"><span class="en-only"><b>FSM state management</b>, hard budget caps, Telegram alerts, Codex sandboxing. Opus orchestrator → parallel Sonnet workers → independent reviewer → verifier. State in files, survives context compression. First live run: <b>33 dispatches, 80+ artifacts</b>.</span><span class="zh-only"><b>FSM 状态管理</b>、预算硬上限、Telegram 告警、Codex 沙箱。Opus 编排 → Sonnet Worker 并行 → 独立 Reviewer → Verifier。状态存文件，穿越 context 压缩。首次实战：<b>33 次派发、80+ 产出物</b>。</span></p>
+        <div class="stack"><span class="pill">TypeScript</span><span class="pill">FSM</span><span class="pill">MCP</span><span class="pill">CLI</span><span class="pill">SDK</span></div>
+        <span class="solo"><span class="en-only">Sole author</span><span class="zh-only">独立作者</span></span>
+      </article>
+
+      <article class="card reveal">
+        <div class="topline"><span class="tag warm"><span class="en-only">Research · internal</span><span class="zh-only">研究 · 内部工具</span></span><span class="ver">v0.5.0</span></div>
+        <h3>Plywood Protocol</h3>
+        <div class="sub"><span class="en-only">NL → pseudocode selective compiler</span><span class="zh-only">自然语言 → 伪代码选择性编译器</span></div>
+        <p class="desc"><span class="en-only">Compiles agent briefs to pseudocode so agents follow <code>if/else</code> and <code>for...of</code> more reliably than numbered steps. <b>57 controlled experiments</b>, effect size d=3.62 (length-controlled). Systematic tasks improve 6–11 points; analytical tasks stay prose. Not open source — internal team protocol, deployed via MCP server + Claude Code hook.</span><span class="zh-only">将 Agent 指令编译为伪代码，使 Agent 遵循 <code>if/else</code> 和 <code>for...of</code> 的可靠性远超编号步骤。<b>57 组对照实验</b>，效应量 d=3.62（长度控制后）。系统性任务提升 6–11 分；分析性任务保持散文。非开源——团队内部协议，通过 MCP Server + Claude Code Hook 部署。</span></p>
+        <div class="stack"><span class="pill">Python</span><span class="pill">MCP</span><span class="pill">RCT design</span><span class="pill">Ablation</span></div>
+        <span class="solo"><span class="en-only">Sole author · 57 experiments · production-deployed</span><span class="zh-only">独立作者 · 57 组实验 · 已部署生产</span></span>
+      </article>
+    </div>
     <p style="font-size:13px;color:var(--muted);margin-top:14px"><span class="en-only">I also build full-stack web apps and automation (this site, internal tooling, Tampermonkey suites) — useful, but not the headline.</span><span class="zh-only">我也做全栈网页应用与自动化（这个网站、内部工具、Tampermonkey 套件）—— 有用，但不是重点。</span></p>
   </div>
 </section>
@@ -382,7 +411,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
     <div class="sec-head reveal">
       <div class="eyebrow"><span class="en-only">The path here</span><span class="zh-only">一路走来</span></div>
       <h2><span class="en-only">A trajectory, not a job hop.</span><span class="zh-only">一条轨迹，不是跳槽履历。</span></h2>
-      <p><span class="en-only">Operations at scale → automation → agent infrastructure. The roles look unrelated; the throughline is the speed at which I absorb a new system and ship in it. Blue dots = engineering.</span><span class="zh-only">大规模运营 → 自动化 → 智能体基础设施。岗位看似无关，串起它们的是「进入新系统、立刻交付」的速度。蓝点代表工程。</span></p>
+      <p><span class="en-only">5+ years across 4 countries: operations at scale → automation → agent infrastructure. The roles look unrelated; the throughline is the speed at which I absorb a new system and ship in it. Blue dots = engineering.</span><span class="zh-only">5 年以上、跨 4 国：大规模运营 → 自动化 → 智能体基础设施。岗位看似无关，串起它们的是「进入新系统、立刻交付」的速度。蓝点代表工程。</span></p>
     </div>
 
     <div class="tl reveal">
@@ -524,7 +553,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
   <div class="wrap contact">
     <div class="eyebrow" style="justify-content:center"><span class="en-only">Let's talk</span><span class="zh-only">聊聊</span></div>
     <h2 style="margin-top:18px"><span class="en-only">Let's build something <span class="accent">real</span>.</span><span class="zh-only">一起做点<span class="accent">真东西</span>。</span></h2>
-    <p><span class="en-only">Open to AI infrastructure, agent-platform, and operations-AI roles. Available Q1 2026 · Düsseldorf-based · EU Blue Card · remote-friendly.</span><span class="zh-only">关注 AI 基础设施 / 智能体平台 / 运营 × AI 类岗位。2026 一季度可入职 · 常驻杜塞 · 持欧盟蓝卡 · 欢迎远程。</span></p>
+    <p><span class="en-only">Open to AI infrastructure, agent platform, and AGI research engineering roles. Available now · Düsseldorf-based · EU Blue Card · open to relocate.</span><span class="zh-only">关注 AI 基础设施 / 智能体平台 / AGI 研究工程类岗位。现在可入职 · 常驻杜塞 · 持欧盟蓝卡 · 可 relocate。</span></p>
     <div class="cta-row">
       <a class="btn btn-primary" href="mailto:tong.wu@novada.com">tong.wu@novada.com</a>
       <a class="btn btn-ghost" href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub ↗</a>
@@ -545,7 +574,9 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
 (function(){
   var body=document.body;
   var btn=document.getElementById('lang-toggle');
-  var saved=localStorage.getItem('tw-lang')||'en';
+  // Support ?lang=zh URL parameter (for DeepSeek application link)
+  var urlLang=new URLSearchParams(window.location.search).get('lang');
+  var saved=urlLang||localStorage.getItem('tw-lang')||'en';
   setLang(saved);
   btn.addEventListener('click',function(){
     setLang(body.classList.contains('lang-en')?'zh':'en');
@@ -572,6 +603,24 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
     spies.forEach(function(a){a.classList.toggle('active',a.dataset.spy===cur);});
   }
   window.addEventListener('scroll',spy,{passive:true});spy();
+
+  // Hero CSS streams — subtle data-flow animation
+  if(!reduce){
+    var container=document.getElementById('hero-streams');
+    if(container){
+      var count=window.innerWidth<620?15:30;
+      for(var i=0;i<count;i++){
+        var s=document.createElement('div');
+        s.className='stream';
+        s.style.left=((i/count)*100+Math.random()*3)+'%';
+        s.style.height=(40+Math.random()*80)+'px';
+        s.style.animationDuration=(10+Math.random()*16)+'s';
+        s.style.animationDelay=(-Math.random()*20)+'s';
+        s.style.opacity=0.3+Math.random()*0.7;
+        container.appendChild(s);
+      }
+    }
+  }
 })();
 </script>
 </body>
