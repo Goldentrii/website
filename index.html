@@ -146,19 +146,18 @@ section{padding:62px 0;border-top:1px solid var(--line)}
 .sec-head p{font-size:1.04rem;color:var(--body);margin:18px 0 0}
 .tint{background:var(--paper-2);border-top:1px solid var(--line)}
 
-/* ============ PROJECTS ============ */
-.proj-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:20px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px;transition:transform .15s,box-shadow .2s,border-color .2s;display:flex;flex-direction:column}
-.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -22px rgba(17,19,26,.3);border-color:var(--line-2)}
-.card.feature{grid-row:span 2;background:linear-gradient(180deg,#fff,#FDFDFF)}
-.card .topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
-.tag{font-family:var(--mono);font-size:11px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-wash);border-radius:6px;padding:4px 9px;font-weight:600}
+/* ============ PROJECTS (uniform card grid) ============ */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;transition:transform .15s,box-shadow .2s,border-color .2s;display:flex;flex-direction:column}
+.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -22px rgba(17,19,26,.3);border-color:var(--accent-line)}
+.card.feature{background:linear-gradient(180deg,#fff,#FDFDFF);border-color:var(--accent-line)}
+.card .topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-wash);border-radius:6px;padding:4px 9px;font-weight:600}
 .tag.warm{color:var(--warm);background:var(--warm-wash)}
-.ver{font-family:var(--mono);font-size:11.5px;color:var(--muted-2)}
-.card h3{font-size:1.5rem;letter-spacing:-.01em;font-family:var(--sans);font-weight:700;color:var(--ink)}
-.card.feature h3{font-size:1.9rem}
-.card .sub{font-family:var(--mono);font-size:12.5px;color:var(--muted);margin-top:5px}
-.card .desc{margin-top:14px;font-size:15px;color:var(--body);flex:1}
+.ver{font-family:var(--mono);font-size:11px;color:var(--muted-2)}
+.card h3{font-size:1.25rem;letter-spacing:-.01em;font-family:var(--sans);font-weight:700;color:var(--ink)}
+.card .sub{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:4px}
+.card .desc{margin-top:12px;font-size:13.5px;line-height:1.55;color:var(--body);flex:1}
 .card .desc b{color:var(--ink);font-weight:600}
 .metrics{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
 .metric{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);border:1px solid var(--line);border-radius:7px;padding:4px 9px;background:var(--paper)}
@@ -237,11 +236,13 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
 
 /* ============ RESPONSIVE ============ */
 @media (max-width:880px){
-  .proj-grid{grid-template-columns:1fr}
-  .card.feature{grid-row:auto}
+  .proj-grid{grid-template-columns:repeat(2,1fr)}
   .skill-grid{grid-template-columns:1fr}
   .hex-card{grid-template-columns:1fr}
   .values{columns:1}
+}
+@media (max-width:620px){
+  .proj-grid{grid-template-columns:1fr}
 }
 @media (max-width:620px){
   body{font-size:16px}
@@ -326,25 +327,17 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
         <div class="topline"><span class="tag"><span class="en-only">Flagship</span><span class="zh-only">旗舰</span></span><span class="ver">v3.4.27</span></div>
         <h3>AgentRecall</h3>
         <div class="sub">agent-recall-mcp · -sdk · -cli · -core</div>
-        <p class="desc">
-          <span class="en-only">A learning loop for AI agents, not just a memory store. Every correction you make — <i>"no, not that version"</i> — is captured as a weighted record, recalled in future sessions, and auto-promoted to a cross-project insight once confirmed. <b>Five cognitive memory layers</b> (Squire 2004, Tulving 1972), <b>FSRS-lite decay + Modern Hopfield retrieval + RRF fusion</b>, all local markdown, zero cloud. One monorepo spanning an MCP server, a TypeScript SDK and a CLI.</span>
-          <span class="zh-only">给 AI agent 的是一套学习闭环，而不只是记忆存储。你的每一次纠正 —— <i>"不是那个版本"</i> —— 都会被记成带权重的记录，在后续会话中召回，被确认后自动晋升为跨项目洞察。<b>五层认知记忆模型</b>（Squire 2004、Tulving 1972）、<b>FSRS-lite 衰减 + Modern Hopfield 检索 + RRF 融合</b>，全本地 markdown，零云依赖。一个 monorepo 同时支撑 MCP 服务、TypeScript SDK 与 CLI。</span>
-        </p>
+        <p class="desc"><span class="en-only">A learning loop for AI agents, not just a memory store. Every correction — <i>"no, not that version"</i> — becomes a weighted record, recalled later, auto-promoted to a cross-project insight. <b>Five cognitive memory layers</b>, FSRS-lite decay + RRF fusion, local markdown, zero cloud.</span><span class="zh-only">给 AI agent 的学习闭环，而非记忆存储。每次纠正 —— <i>"不是那个版本"</i> —— 都成为带权记录，后续召回，自动晋升为跨项目洞察。<b>五层认知记忆</b>、FSRS-lite 衰减 + RRF 融合、本地 markdown、零云。</span></p>
         <div class="metrics">
           <span class="metric"><span class="hl">304★</span> GitHub</span>
-          <span class="metric"><span class="hl">52</span> forks</span>
           <span class="metric"><span class="hl">6.4k</span> installs/mo</span>
-          <span class="metric"><span class="hl">26K</span> LOC TS</span>
-          <span class="metric"><span class="hl">31</span> test suites</span>
+          <span class="metric"><span class="hl">31</span> tests</span>
         </div>
-        <div class="stack">
-          <span class="pill">TypeScript</span><span class="pill">MCP</span><span class="pill">Monorepo</span><span class="pill">Vector retrieval</span><span class="pill">FSM</span><span class="pill">Obsidian-compatible</span>
-        </div>
-        <span class="solo"><span class="en-only">Sole author · architecture, retrieval math, packaging, docs</span><span class="zh-only">独立作者 · 架构、检索算法、打包、文档</span></span>
+        <div class="stack"><span class="pill">TypeScript</span><span class="pill">MCP</span><span class="pill">Monorepo</span><span class="pill">Vector retrieval</span></div>
+        <span class="solo"><span class="en-only">Sole author</span><span class="zh-only">独立作者</span></span>
         <div class="links">
           <a href="https://github.com/Goldentrii/AgentRecall-MCP" target="_blank" rel="noopener">GitHub ↗</a>
           <a href="https://www.npmjs.com/package/agent-recall-mcp" target="_blank" rel="noopener">npm ↗</a>
-          <a href="https://lobehub.com/mcp/goldentrii-agentrecall" target="_blank" rel="noopener">LobeHub ↗</a>
         </div>
       </article>
 
@@ -379,10 +372,7 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
         <span class="solo"><span class="en-only">Sole author</span><span class="zh-only">独立作者</span></span>
         <div class="links"><a href="https://github.com/Goldentrii/proxy4agent" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.npmjs.com/package/bestproxy4agents" target="_blank" rel="noopener">npm ↗</a></div>
       </article>
-    </div>
 
-    <!-- AAM + Plywood (side by side) -->
-    <div class="proj-grid" style="margin-top:20px">
       <article class="card reveal">
         <div class="topline"><span class="tag warm"><span class="en-only">Orchestration</span><span class="zh-only">编排框架</span></span><span class="ver">v0.11.0</span></div>
         <h3>AAM — Agent Autonomous Mode</h3>
@@ -417,12 +407,14 @@ footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font
     <div class="tl reveal">
       <div class="tl-item eng">
         <div class="tl-when">2026 · NOW</div>
-        <div class="tl-role">AI Automation / Architect Engineer <span class="tl-tag code">code</span></div>
+        <div class="tl-role">AI Automation &amp; Infrastructure Engineer <span class="tl-tag code">code</span></div>
         <div class="tl-org">Novada Labs <span class="tl-loc">· Remote / Düsseldorf, DE</span></div>
+        <p style="font-size:14px;color:var(--ink-2);margin:8px 0 0"><span class="en-only">Own the company's agent-facing infrastructure end-to-end — from the MCP product layer to the internal automation that runs the team.</span><span class="zh-only">端到端负责公司面向 Agent 的基础设施 —— 从对外的 MCP 产品层，到驱动团队运转的内部自动化。</span></p>
         <ul class="tl-points">
-          <li><span class="en-only">Shipped <b>6 npm packages</b> for multi-agent infrastructure (AgentRecall mcp/sdk/cli/core, novada-mcp, proxy4agent) — 299★, ~8.8k installs/mo, solo.</span><span class="zh-only">发布 <b>6 个 npm 包</b>（AgentRecall mcp/sdk/cli/core、novada-mcp、proxy4agent）—— 299★、月均约 8.8k 安装，独立完成。</span></li>
-          <li><span class="en-only">Designed <b>AAM</b>, the eval methodology proving agent improvement across planning, recovery and token cost.</span><span class="zh-only">设计 <b>AAM</b> 评测方法论，在规划、恢复与 token 成本维度验证 agent 的提升。</span></li>
-          <li><span class="en-only">Architected a 4-tier FSM agent stack: Opus orchestrator → parallel Sonnet workers → independent reviewer/verifier.</span><span class="zh-only">设计四层 FSM 智能体架构：Opus 编排 → Sonnet worker 并行 → 独立审查/验证。</span></li>
+          <li><span class="en-only"><b>Agent infrastructure:</b> architect, ship &amp; maintain the MCP product stack — 6 npm packages (304★, 6.4k installs/mo), 40+ tools, multi-language SDKs (TS/Python/Go).</span><span class="zh-only"><b>Agent 基础设施：</b>架构、发布并维护 MCP 产品栈 —— 6 个 npm 包（304★、月均 6.4k 安装）、40+ 工具、多语言 SDK（TS/Python/Go）。</span></li>
+          <li><span class="en-only"><b>Automation pipelines:</b> built the daily competitive-intel pipeline (auto-reports to GitHub), n8n workflow nodes, and benchmark harnesses — a 200-URL, 6-dimension eval framework that exposed a competitor's 33% anti-bot failure rate.</span><span class="zh-only"><b>自动化流水线：</b>搭建每日竞品情报流水线（自动报告到 GitHub）、n8n 工作流节点、基准测试框架 —— 200-URL、6 维度评测框架，发现竞品 33% 反爬失败率。</span></li>
+          <li><span class="en-only"><b>Multi-agent orchestration:</b> designed AAM — a 4-tier FSM stack (Opus orchestrator → parallel Sonnet workers → independent reviewer → verifier) with budget caps and overnight autonomous runs.</span><span class="zh-only"><b>多 Agent 编排：</b>设计 AAM —— 四层 FSM 架构（Opus 编排 → Sonnet Worker 并行 → 独立 Reviewer → Verifier），带预算上限与隔夜自主运行。</span></li>
+          <li><span class="en-only"><b>Production infra &amp; integrations:</b> built the EU AI Gateway (Claude API relay, GDPR-compliant, AWS Lightsail), shipped the Claude Plugin Marketplace listing, and completed LangChain / CrewAI integrations.</span><span class="zh-only"><b>生产基础设施与集成：</b>构建 EU AI Gateway（Claude API 中转、GDPR 合规、AWS Lightsail）、发布 Claude Plugin Marketplace 列表、完成 LangChain / CrewAI 集成。</span></li>
         </ul>
       </div>
 
