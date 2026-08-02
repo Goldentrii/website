@@ -1,619 +1,1056 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Tong Wu · 吴桐 — Agent infrastructure engineer · AgentRecall (304★)</title>
-<meta name="description" content="Tong Wu (吴桐) — agent infrastructure engineer. Creator of AgentRecall (304★, 6.4k installs/mo), six npm packages built solo. Memory systems, multi-agent orchestration, MCP. Düsseldorf, EU Blue Card.">
-<meta name="author" content="Tong Wu">
-<meta name="theme-color" content="#4F46E5">
-<link rel="canonical" href="https://tongwu.network/">
-
-<!-- Open Graph -->
-<meta property="og:type" content="profile">
-<meta property="og:title" content="Tong Wu · 吴桐 — Full-stack engineer building agent infrastructure">
-<meta property="og:description" content="Creator of AgentRecall (299★) and six npm packages, ~8.8k installs/mo — designed, built and maintained solo. Agent infrastructure from MCP server to retrieval math.">
-<meta property="og:url" content="https://tongwu.network/">
-<meta property="og:locale" content="en_US">
-<meta property="og:locale:alternate" content="zh_CN">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tong Wu · 吴桐 — Full-stack engineer building agent infrastructure">
-<meta name="twitter:description" content="AgentRecall (299★) · 6 npm packages · ~8.8k installs/mo · written solo.">
-
-<!-- Favicon: 吴 monogram -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%234F46E5'/%3E%3Ctext x='32' y='44' font-size='34' font-family='Georgia,serif' fill='white' text-anchor='middle'%3E吴%3C/text%3E%3C/svg%3E">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>Tong Wu 吴桐 — Co-founder, Novada Labs</title>
+<meta name="description" content="Co-founder at Novada Labs, building AI agent infrastructure. Previously supply-chain and process excellence at Xiaomi, Amazon, and Huawei.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230B3D38'/%3E%3Ctext x='32' y='43' font-family='Georgia,serif' font-size='34' fill='%23F5F2EA' text-anchor='middle'%3E%E5%90%B4%3C/text%3E%3C/svg%3E">
+<script>
+  // Set language before first paint to avoid a flash of the wrong language.
+  (function () {
+    try {
+      var saved = localStorage.getItem('tw-lang');
+      if (saved === 'zh' || saved === 'en') {
+        document.documentElement.setAttribute('data-lang', saved);
+        document.documentElement.setAttribute('lang', saved === 'zh' ? 'zh-CN' : 'en');
+      }
+    } catch (e) {}
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=DM+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;500;600&display=swap" rel="stylesheet">
-
-<!-- Structured data so a recruiter Googling me gets a rich card -->
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Person",
-  "name": "Tong Wu",
-  "alternateName": "吴桐",
-  "jobTitle": "Full-stack engineer — agent infrastructure",
-  "url": "https://tongwu.network",
-  "email": "mailto:tong.wu@novada.com",
-  "address": { "@type": "PostalAddress", "addressLocality": "Düsseldorf", "addressCountry": "DE" },
-  "knowsLanguage": ["en", "de", "zh", "ja"],
-  "sameAs": ["https://github.com/Goldentrii", "https://linkedin.com/in/tongwu3"],
-  "knowsAbout": ["AI agents", "Model Context Protocol", "TypeScript", "Information retrieval", "Supply chain operations"]
-}
-</script>
-
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600;700&family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{
-  --paper:#FBFAF7; --paper-2:#F4F2EC; --card:#FFFFFF;
-  --ink:#11131A; --ink-2:#2E3340; --body:#474D5C; --muted:#7A8194; --muted-2:#9AA0AE;
-  --line:#E8E5DC; --line-2:#D7D3C7;
-  --accent:#4F46E5; --accent-deep:#3730A3; --accent-wash:#EEF0FE; --accent-line:#C7CBF7;
-  --warm:#B45309; --warm-wash:#FBF1E3;
-  --green:#047857;
-  --serif:'Newsreader','Noto Serif SC',Georgia,'Times New Roman',serif;
-  --sans:'Inter','Noto Sans SC',system-ui,-apple-system,sans-serif;
-  --round:'DM Sans','Noto Sans SC',system-ui,sans-serif;
-  --mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',monospace;
-  --maxw:1120px;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0; background:var(--paper); color:var(--body);
-  font-family:var(--sans); font-size:17px; line-height:1.65;
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-}
-body.lang-en .zh-only,body.lang-zh .en-only{display:none!important}
-:lang(zh) .zh-only{line-height:1.8}
-a{color:inherit;text-decoration:none}
-img{max-width:100%}
-code{font-family:var(--mono);font-size:.88em;background:var(--accent-wash);color:var(--accent-deep);padding:1px 5px;border-radius:5px}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-h1,h2,h3{font-family:var(--serif);color:var(--ink);font-weight:300;letter-spacing:-.02em;margin:0}
-.serif{font-family:var(--serif)}
-.mono{font-family:var(--mono)}
+  :root{
+    --ink:#17231F;
+    --ink-soft:#3D4A45;
+    --muted:#79837C;
+    --paper:#F5F2EA;
+    --line:#DCD6C6;
+    --line-soft:#E9E4D7;
 
-.eyebrow{
-  font-family:var(--mono); font-size:11px; font-weight:500; letter-spacing:.12em;
-  text-transform:uppercase; color:var(--accent); display:inline-flex; gap:.5em; align-items:center;
-}
-/* ============ HERO STREAMS (subtle data-flow) ============ */
-.hero{position:relative;isolation:isolate}
-.hero .wrap{position:relative;z-index:1}
-.hero-streams{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;opacity:0.035}
-.stream{position:absolute;top:-100%;width:1px;background:linear-gradient(to bottom,transparent,var(--accent) 40%,var(--accent) 60%,transparent);animation:fall linear infinite}
-@keyframes fall{to{transform:translateY(200vh)}}
-@media(prefers-reduced-motion:reduce){.hero-streams{display:none}}
-.eyebrow::before{content:"";width:22px;height:1px;background:var(--accent-line)}
+    --teal-900:#0B3D38;
+    --teal-800:#0E4A43;
+    --teal-700:#136B60;
+    --teal-500:#1C9384;
+    --teal-300:#7FBBAE;
+    --teal-100:#DCEEE9;
+    --teal-050:#EFF7F4;
 
-/* ============ NAV ============ */
-.nav{
-  position:sticky; top:0; z-index:100;
-  background:rgba(251,250,247,.82); backdrop-filter:saturate(180%) blur(14px);
-  -webkit-backdrop-filter:saturate(180%) blur(14px); border-bottom:1px solid var(--line);
-}
-.nav-in{max-width:var(--maxw);margin:0 auto;padding:14px 28px;display:flex;align-items:center;justify-content:space-between}
-.brand{font-family:var(--serif);font-size:21px;color:var(--ink);font-weight:600;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
-.brand .dot{width:9px;height:9px;border-radius:50%;background:var(--accent)}
-.nav-links{display:flex;align-items:center;gap:26px}
-.nav-links a{font-size:14px;color:var(--ink-2);font-weight:500;transition:color .15s}
-.nav-links a:hover,.nav-links a.active{color:var(--ink)}
-.lang-pill{
-  font-family:var(--mono);font-size:12.5px;border:1px solid var(--line-2);border-radius:999px;
-  padding:6px 12px;cursor:pointer;background:var(--card);color:var(--muted-2);display:inline-flex;gap:6px;align-items:center
-}
-.lang-pill .sep{color:var(--line-2)}
-body.lang-en .lang-pill .en,body.lang-zh .lang-pill .zh{color:var(--accent);font-weight:600}
+    --terracotta:#A85A34;
+    --terracotta-dark:#7C4023;
+    --sand:#F1E7D6;
+    --sand-line:#DED0AF;
 
-/* ============ HERO ============ */
-.hero{padding:58px 0 54px}
-.hero .role{margin-bottom:18px}
-.hero h1{
-  font-size:clamp(1.6rem,3.2vw,2.4rem); line-height:1.3; letter-spacing:-.02em; color:var(--ink);
-  max-width:28ch;
-}
-body.lang-zh .hero h1{font-size:clamp(1.4rem,2.8vw,2rem);line-height:1.45;max-width:22ch}
-.hero h1 .accent{font-style:italic;color:var(--accent)}
-.lead{font-size:clamp(1rem,1.2vw,1.1rem);color:var(--ink-2);max-width:62ch;margin:22px 0 0;line-height:1.6}
-.lead b{color:var(--ink);font-weight:600}
-.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
-.btn{
-  display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;
-  padding:12px 20px;border-radius:11px;border:1px solid transparent;transition:transform .12s,box-shadow .15s,background .15s
-}
-.btn:hover{transform:translateY(-1px)}
-.btn-primary{background:var(--accent);color:#fff;box-shadow:0 6px 18px -6px rgba(79,70,229,.55)}
-.btn-primary:hover{background:var(--accent-deep)}
-.btn-ghost{background:var(--card);color:var(--ink);border:1px solid var(--line-2)}
-.btn-ghost:hover{border-color:var(--accent-line);color:var(--accent)}
-
-.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:36px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
-.stat{background:var(--card);padding:22px 20px}
-.stat .n{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.3rem);color:var(--ink);font-weight:600;letter-spacing:-.02em;line-height:1}
-.stat .n .star{color:var(--accent);font-size:.7em;vertical-align:.08em}
-.stat .l{font-family:var(--round);font-size:12.5px;color:var(--muted);margin-top:9px;line-height:1.4}
-.meta-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
-.chip{font-family:var(--round);font-size:12.5px;color:var(--ink-2);background:var(--card);border:1px solid var(--line);border-radius:999px;padding:6px 14px;display:inline-flex;align-items:center;gap:7px}
-.chip svg{width:14px;height:14px;flex-shrink:0}
-.chip .live{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 0 3px rgba(4,120,135,.14)}
-
-/* ============ SECTION SHELL ============ */
-section{padding:62px 0;border-top:1px solid var(--line)}
-.sec-head{max-width:64ch;margin-bottom:34px}
-.sec-head h2{font-size:clamp(1.7rem,3.4vw,2.5rem);line-height:1.12;margin:16px 0 0}
-.sec-head p{font-size:1.04rem;color:var(--body);margin:18px 0 0}
-.tint{background:var(--paper-2);border-top:1px solid var(--line)}
-
-/* ============ PROJECTS (uniform card grid) ============ */
-.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;transition:transform .15s,box-shadow .2s,border-color .2s;display:flex;flex-direction:column}
-.card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -22px rgba(17,19,26,.3);border-color:var(--accent-line)}
-.card.feature{background:linear-gradient(180deg,#fff,#FDFDFF);border-color:var(--accent-line)}
-.card .topline{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
-.tag{font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--accent);background:var(--accent-wash);border-radius:6px;padding:4px 9px;font-weight:600}
-.tag.warm{color:var(--warm);background:var(--warm-wash)}
-.ver{font-family:var(--mono);font-size:11px;color:var(--muted-2)}
-.card h3{font-size:1.25rem;letter-spacing:-.01em;font-family:var(--sans);font-weight:700;color:var(--ink)}
-.card .sub{font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-top:4px}
-.card .desc{margin-top:12px;font-size:13.5px;line-height:1.55;color:var(--body);flex:1}
-.card .desc b{color:var(--ink);font-weight:600}
-.metrics{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
-.metric{font-family:var(--mono);font-size:11.5px;color:var(--ink-2);border:1px solid var(--line);border-radius:7px;padding:4px 9px;background:var(--paper)}
-.metric .hl{color:var(--accent);font-weight:600}
-.stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:16px}
-.pill{font-family:var(--round);font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:3px 10px}
-.card .links{display:flex;gap:16px;margin-top:20px;padding-top:18px;border-top:1px solid var(--line)}
-.card .links a{font-size:13.5px;font-weight:600;color:var(--accent);display:inline-flex;align-items:center;gap:4px}
-.card .links a:hover{color:var(--accent-deep)}
-.solo{font-family:var(--mono);font-size:11px;color:var(--muted-2);letter-spacing:.03em;text-transform:uppercase;display:inline-flex;align-items:center;gap:6px;margin-top:16px}
-.solo::before{content:"●";color:var(--accent);font-size:8px}
-
-/* ============ TIMELINE ============ */
-.tl{position:relative;margin-top:10px}
-.tl::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--accent-line),var(--line))}
-.tl-item{position:relative;padding:0 0 26px 42px}
-.tl-item::before{content:"";position:absolute;left:1px;top:5px;width:16px;height:16px;border-radius:50%;background:var(--card);border:3px solid var(--line-2)}
-.tl-item.eng::before{border-color:var(--accent)}
-.tl-when{font-family:var(--mono);font-size:12px;color:var(--muted);letter-spacing:.03em}
-.tl-role{font-size:1.18rem;font-weight:700;color:var(--ink);margin:5px 0 2px;font-family:var(--sans)}
-.tl-org{font-size:14px;color:var(--accent);font-weight:600}
-.tl-loc{font-size:13px;color:var(--muted-2);font-weight:400}
-.tl-points{margin:12px 0 0;padding:0;list-style:none}
-.tl-points li{position:relative;padding-left:18px;font-size:14.5px;color:var(--body);margin-bottom:7px}
-.tl-points li::before{content:"–";position:absolute;left:0;color:var(--muted-2)}
-.tl-points li b{color:var(--ink);font-weight:600}
-.tl-tag{display:inline-block;font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;padding:2px 7px;border-radius:5px;margin-left:6px;vertical-align:1px}
-.tl-tag.code{color:var(--accent);background:var(--accent-wash)}
-.tl-tag.ops{color:var(--warm);background:var(--warm-wash)}
-
-/* ============ SKILLS ============ */
-.skill-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.skill-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
-.skill-card .num{font-family:var(--mono);font-size:12px;color:var(--accent);font-weight:600}
-.skill-card h3{font-size:1.2rem;font-family:var(--sans);font-weight:700;color:var(--ink);margin:10px 0 6px}
-.skill-card .note{font-size:13.5px;color:var(--muted);margin-bottom:16px}
-.skill-card .tags{display:flex;flex-wrap:wrap;gap:7px}
-.skill-card .tags span{font-size:12.5px;color:var(--ink-2);background:var(--paper);border:1px solid var(--line);border-radius:7px;padding:4px 9px}
-
-/* ============ OTHER SIDE ============ */
-.other{background:var(--ink);color:#D9DCE4;border:none}
-.other h2{color:#fff}
-.other .eyebrow{color:#B9BEFB}
-.other .eyebrow::before{background:#4b4f63}
-.other .sec-head p{color:#AAB0BE}
-.hex-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:32px;display:grid;grid-template-columns:1.2fr 1fr;gap:32px;align-items:center}
-.hex-card h3{color:#fff;font-family:var(--sans);font-weight:700;font-size:1.3rem}
-.hex-card p{font-size:15px;color:#AAB0BE;margin:14px 0 0}
-.hexes{font-size:40px;letter-spacing:6px;color:#B9BEFB;line-height:1}
-.hex-meta{font-family:var(--mono);font-size:12px;color:#8B91A3;margin-top:14px}
-.hex-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-.hex-tags span{font-size:12px;color:#C7CBF7;border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:4px 11px}
-.values{margin:26px 0 0;padding:0;list-style:none;columns:2;column-gap:40px}
-.values li{font-size:14.5px;color:#AAB0BE;margin-bottom:10px;break-inside:avoid;padding-left:18px;position:relative}
-.values li::before{content:"·";position:absolute;left:2px;color:#B9BEFB;font-weight:700}
-.values li b{color:#E7E9EF;font-weight:600}
-
-/* ============ CONTACT ============ */
-.contact{text-align:center}
-.contact h2{font-size:clamp(2rem,4.5vw,3.2rem);max-width:18ch;margin:0 auto}
-.contact h2 .accent{font-style:italic;color:var(--accent)}
-.contact p{max-width:54ch;margin:22px auto 0;color:var(--body)}
-.contact .cta-row{justify-content:center}
-
-footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted-2);font-size:13px}
-.foot-in{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
-
-/* reveal */
-.reveal{opacity:0;transform:translateY(20px);transition:opacity .7s ease,transform .7s ease}
-.reveal.in{opacity:1;transform:none}
-@media (prefers-reduced-motion:reduce){
-  *{scroll-behavior:auto!important}
-  .reveal{opacity:1;transform:none;transition:none}
-  .btn:hover,.card:hover{transform:none}
-}
-
-/* ============ RESPONSIVE ============ */
-@media (max-width:880px){
-  .proj-grid{grid-template-columns:repeat(2,1fr)}
-  .skill-grid{grid-template-columns:1fr}
-  .hex-card{grid-template-columns:1fr}
-  .values{columns:1}
-}
-@media (max-width:620px){
-  .proj-grid{grid-template-columns:1fr}
-}
-@media (max-width:620px){
-  body{font-size:16px}
-  .nav-links a:not(.lang-pill){display:none}
-  .stats{grid-template-columns:repeat(2,1fr)}
-  .hero{padding:44px 0 40px}
-  section{padding:44px 0}
-}
-</style>
-</head>
-<body class="lang-en">
-
-<!-- ===================== NAV ===================== -->
-<nav class="nav">
-  <div class="nav-in">
-    <a href="#top" class="brand"><span class="dot"></span>Tong<span style="color:var(--muted-2);font-weight:400">·吴桐</span></a>
-    <div class="nav-links">
-      <a href="#build" data-spy="build"><span class="en-only">Building</span><span class="zh-only">在做</span></a>
-      <a href="#path" data-spy="path"><span class="en-only">Path</span><span class="zh-only">轨迹</span></a>
-      <a href="#skills" data-spy="skills"><span class="en-only">Skills</span><span class="zh-only">能力</span></a>
-      <a href="#other" data-spy="other"><span class="en-only">Off-screen</span><span class="zh-only">另一面</span></a>
-      <a href="#contact" data-spy="contact"><span class="en-only">Contact</span><span class="zh-only">联系</span></a>
-      <button class="lang-pill" id="lang-toggle" aria-label="Toggle language / 切换语言"><span class="en">EN</span><span class="sep">/</span><span class="zh">中</span></button>
-    </div>
-  </div>
-</nav>
-
-<!-- ===================== HERO ===================== -->
-<header id="top" class="hero">
-  <div class="hero-streams" id="hero-streams"></div>
-  <div class="wrap">
-    <div class="meta-chips" style="margin-bottom:18px">
-      <a class="chip" href="https://github.com/Goldentrii" target="_blank" rel="noopener" style="font-weight:600;color:var(--accent)"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>GitHub · 304★</a>
-      <a class="chip" href="https://linkedin.com/in/tongwu3" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="currentColor"><path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016l.016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z"/></svg>LinkedIn</a>
-      <a class="chip" href="https://www.npmjs.com/~goldentrii" target="_blank" rel="noopener"><svg viewBox="0 0 16 16" fill="#CB3837"><path d="M0 0v16h16V0H0zm13 13H8V5H5v8H3V3h10v10z"/></svg>npm · 6.4k/mo</a>
-      <a class="chip" href="https://tongwu.network/portfolio.html">
-        <span class="en-only">Thesis · References · Certs</span>
-        <span class="zh-only">论文 · 推荐信 · 证书</span>
-      </a>
-    </div>
-    <div class="role eyebrow"><span class="en-only">Agent infrastructure engineer</span><span class="zh-only">AI Agent 基础设施工程师</span></div>
-    <h1>
-      <span class="en-only">Agent memory is a solved problem. I <span class="accent">solved</span> it.</span>
-      <span class="zh-only">经济系毕业，供应链出身，现在在造 AI 的<span class="accent">基础设施</span>。</span>
-    </h1>
-    <p class="lead">
-      <span class="en-only"><b>Tong Wu · 吴桐.</b> I build agent infrastructure — memory systems, multi-agent orchestration, MCP servers. <b>304 stars, 6,444 installs/month</b> across six npm packages, written and maintained solo. I came from supply chain; turns out agents have the <b>same coordination problems</b>.</span>
-      <span class="zh-only"><b>吴桐 · Tong Wu.</b> 我构建 Agent 基础设施 —— 记忆系统、多 Agent 编排、MCP 服务器。六个 npm 包，<b>304 Star、月均 6,444 次安装</b>，每行独立编写。从供应链转型而来——Agent 的协调失败和物流的<b>是同一类问题</b>。</span>
-    </p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="https://github.com/Goldentrii/AgentRecall-MCP" target="_blank" rel="noopener"><span class="en-only">→ AgentRecall on GitHub</span><span class="zh-only">→ AgentRecall GitHub</span></a>
-      <a class="btn btn-ghost" href="mailto:tongwu0824@gmail.com"><span class="en-only">Get in touch</span><span class="zh-only">联系我</span></a>
-    </div>
-
-    <div class="stats reveal">
-      <div class="stat"><div class="n" data-target="304">304<span class="star">★</span></div><div class="l"><span class="en-only">GitHub stars · AgentRecall</span><span class="zh-only">GitHub Star · AgentRecall</span></div></div>
-      <div class="stat"><div class="n">6</div><div class="l"><span class="en-only">npm packages, shipped solo</span><span class="zh-only">独立发布的 npm 包</span></div></div>
-      <div class="stat"><div class="n">6.4k</div><div class="l"><span class="en-only">downloads / month</span><span class="zh-only">月下载量</span></div></div>
-      <div class="stat"><div class="n">57</div><div class="l"><span class="en-only">controlled experiments (Plywood)</span><span class="zh-only">对照实验（Plywood）</span></div></div>
-    </div>
-
-    <div class="meta-chips">
-      <span class="chip"><span class="live"></span><span class="en-only">Available now</span><span class="zh-only">现在可入职</span></span>
-      <span class="chip"><span class="en-only">Düsseldorf · EU Blue Card · open to relocate</span><span class="zh-only">杜塞尔多夫 · 欧盟蓝卡 · 可 relocate</span></span>
-      <span class="chip">EN (C2) · DE (C1) · 中文 · 日本語</span>
-    </div>
-  </div>
-</header>
-
-<!-- ===================== BUILDING ===================== -->
-<section id="build">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow"><span class="en-only">What I'm shipping</span><span class="zh-only">正在交付</span></div>
-      <h2><span class="en-only">Production agent infrastructure — designed, written and maintained by one person.</span><span class="zh-only">生产级的智能体基础设施 —— 由一个人设计、编写、维护。</span></h2>
-      <p><span class="en-only">Not prototypes. Live npm packages with real users, versioned releases, test suites and benchmarks. Each one is the tool I needed and couldn't buy.</span><span class="zh-only">不是原型。是有真实用户、版本化发布、测试套件与基准的线上 npm 包。每一个，都是我当时需要却买不到的工具。</span></p>
-    </div>
-
-    <div class="proj-grid">
-      <!-- FEATURE: AgentRecall -->
-      <article class="card feature reveal">
-        <div class="topline"><span class="tag"><span class="en-only">Flagship</span><span class="zh-only">旗舰</span></span><span class="ver">v3.4.27</span></div>
-        <h3>AgentRecall</h3>
-        <div class="sub">agent-recall-mcp · -sdk · -cli · -core</div>
-        <p class="desc"><span class="en-only">A learning loop for AI agents, not just a memory store. Every correction — <i>"no, not that version"</i> — becomes a weighted record, recalled later, auto-promoted to a cross-project insight. <b>Five cognitive memory layers</b>, FSRS-lite decay + RRF fusion, local markdown, zero cloud.</span><span class="zh-only">给 AI agent 的学习闭环，而非记忆存储。每次纠正 —— <i>"不是那个版本"</i> —— 都成为带权记录，后续召回，自动晋升为跨项目洞察。<b>五层认知记忆</b>、FSRS-lite 衰减 + RRF 融合、本地 markdown、零云。</span></p>
-        <div class="metrics">
-          <span class="metric"><span class="hl">304★</span> GitHub</span>
-          <span class="metric"><span class="hl">6.4k</span> installs/mo</span>
-          <span class="metric"><span class="hl">31</span> tests</span>
-        </div>
-        <div class="stack"><span class="pill">TypeScript</span><span class="pill">MCP</span><span class="pill">Monorepo</span><span class="pill">Vector retrieval</span></div>
-        <span class="solo"><span class="en-only">Sole author</span><span class="zh-only">独立作者</span></span>
-        <div class="links">
-          <a href="https://github.com/Goldentrii/AgentRecall-MCP" target="_blank" rel="noopener">GitHub ↗</a>
-          <a href="https://www.npmjs.com/package/agent-recall-mcp" target="_blank" rel="noopener">npm ↗</a>
-        </div>
-      </article>
-
-      <!-- novada-mcp -->
-      <article class="card reveal">
-        <div class="topline"><span class="tag"><span class="en-only">Web data</span><span class="zh-only">网络数据</span></span><span class="ver">v0.8.4</span></div>
-        <h3>novada-mcp</h3>
-        <div class="sub">one server · all web data</div>
-        <p class="desc"><span class="en-only">Search, scrape, crawl, proxy and AI research in a single <code>npx</code> install. <b>13 composable tools</b> where competitors ship one capability each — or 69 tools that bloat the context window. One API key, structured output.</span><span class="zh-only">搜索、抓取、爬取、代理与 AI 研究，一条 <code>npx</code> 命令搞定。<b>13 个可组合工具</b>，而竞品要么只做其中一件、要么塞 69 个工具撑爆上下文。一个 API key，结构化输出。</span></p>
-        <div class="metrics">
-          <span class="metric"><span class="hl">1.2k</span> installs/mo</span>
-          <span class="metric"><span class="hl">40+</span> <span class="en-only">tools</span><span class="zh-only">工具</span></span>
-          <span class="metric">195+ <span class="en-only">countries</span><span class="zh-only">国家</span></span>
-        </div>
-        <div class="stack"><span class="pill">TypeScript</span><span class="pill">MCP</span><span class="pill">Web automation</span></div>
-        <span class="solo"><span class="en-only">Sole author</span><span class="zh-only">独立作者</span></span>
-        <div class="links"><a href="https://github.com/Goldentrii/novada-mcp" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.npmjs.com/package/novada-mcp" target="_blank" rel="noopener">npm ↗</a></div>
-      </article>
-
-      <!-- proxy4agent -->
-      <article class="card reveal">
-        <div class="topline"><span class="tag"><span class="en-only">Infra</span><span class="zh-only">基础设施</span></span><span class="ver">v1.8.3</span></div>
-        <h3>Proxy4Agent</h3>
-        <div class="sub">bestproxy4agents · residential proxy MCP</div>
-        <p class="desc"><span class="en-only">Routes an agent's HTTP traffic through 2M+ residential devices to bypass Cloudflare / Akamai / DataDome. <b>Multi-provider adapter layer</b> (Novada, BrightData, Smartproxy, Oxylabs), sticky sessions, city-level geo-targeting. CI + Smithery listed.</span><span class="zh-only">把 agent 的 HTTP 流量经 200 万+ 真实住宅设备转发，绕过 Cloudflare / Akamai / DataDome。<b>多供应商适配层</b>（Novada、BrightData、Smartproxy、Oxylabs），粘性会话，城市级地理定位。已接入 CI 与 Smithery。</span></p>
-        <div class="metrics">
-          <span class="metric"><span class="hl">4</span> <span class="en-only">provider adapters</span><span class="zh-only">供应商适配</span></span>
-          <span class="metric">CI</span>
-          <span class="metric"><span class="en-only">Smithery-listed</span><span class="zh-only">Smithery 收录</span></span>
-        </div>
-        <div class="stack"><span class="pill">Node.js</span><span class="pill">MCP</span><span class="pill">Networking</span></div>
-        <span class="solo"><span class="en-only">Sole author</span><span class="zh-only">独立作者</span></span>
-        <div class="links"><a href="https://github.com/Goldentrii/proxy4agent" target="_blank" rel="noopener">GitHub ↗</a><a href="https://www.npmjs.com/package/bestproxy4agents" target="_blank" rel="noopener">npm ↗</a></div>
-      </article>
-
-      <article class="card reveal">
-        <div class="topline"><span class="tag warm"><span class="en-only">Orchestration</span><span class="zh-only">编排框架</span></span><span class="ver">v0.11.0</span></div>
-        <h3>AAM — Agent Autonomous Mode</h3>
-        <div class="sub"><span class="en-only">multi-agent orchestration with budget control</span><span class="zh-only">带预算控制的多 Agent 自主编排</span></div>
-        <p class="desc"><span class="en-only"><b>FSM state management</b>, hard budget caps, Telegram alerts, Codex sandboxing. Opus orchestrator → parallel Sonnet workers → independent reviewer → verifier. State in files, survives context compression. First live run: <b>33 dispatches, 80+ artifacts</b>.</span><span class="zh-only"><b>FSM 状态管理</b>、预算硬上限、Telegram 告警、Codex 沙箱。Opus 编排 → Sonnet Worker 并行 → 独立 Reviewer → Verifier。状态存文件，穿越 context 压缩。首次实战：<b>33 次派发、80+ 产出物</b>。</span></p>
-        <div class="stack"><span class="pill">TypeScript</span><span class="pill">FSM</span><span class="pill">MCP</span><span class="pill">CLI</span><span class="pill">SDK</span></div>
-        <span class="solo"><span class="en-only">Sole author</span><span class="zh-only">独立作者</span></span>
-      </article>
-
-      <article class="card reveal">
-        <div class="topline"><span class="tag warm"><span class="en-only">Research · internal</span><span class="zh-only">研究 · 内部工具</span></span><span class="ver">v0.5.0</span></div>
-        <h3>Plywood Protocol</h3>
-        <div class="sub"><span class="en-only">NL → pseudocode selective compiler</span><span class="zh-only">自然语言 → 伪代码选择性编译器</span></div>
-        <p class="desc"><span class="en-only">Compiles agent briefs to pseudocode so agents follow <code>if/else</code> and <code>for...of</code> more reliably than numbered steps. <b>57 controlled experiments</b>, effect size d=3.62 (length-controlled). Systematic tasks improve 6–11 points; analytical tasks stay prose. Not open source — internal team protocol, deployed via MCP server + Claude Code hook.</span><span class="zh-only">将 Agent 指令编译为伪代码，使 Agent 遵循 <code>if/else</code> 和 <code>for...of</code> 的可靠性远超编号步骤。<b>57 组对照实验</b>，效应量 d=3.62（长度控制后）。系统性任务提升 6–11 分；分析性任务保持散文。非开源——团队内部协议，通过 MCP Server + Claude Code Hook 部署。</span></p>
-        <div class="stack"><span class="pill">Python</span><span class="pill">MCP</span><span class="pill">RCT design</span><span class="pill">Ablation</span></div>
-        <span class="solo"><span class="en-only">Sole author · 57 experiments · production-deployed</span><span class="zh-only">独立作者 · 57 组实验 · 已部署生产</span></span>
-      </article>
-    </div>
-    <p style="font-size:13px;color:var(--muted);margin-top:14px"><span class="en-only">I also build full-stack web apps and automation (this site, internal tooling, Tampermonkey suites) — useful, but not the headline.</span><span class="zh-only">我也做全栈网页应用与自动化（这个网站、内部工具、Tampermonkey 套件）—— 有用，但不是重点。</span></p>
-  </div>
-</section>
-
-<!-- ===================== PATH ===================== -->
-<section id="path" class="tint">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow"><span class="en-only">The path here</span><span class="zh-only">一路走来</span></div>
-      <h2><span class="en-only">A trajectory, not a job hop.</span><span class="zh-only">一条轨迹，不是跳槽履历。</span></h2>
-      <p><span class="en-only">5+ years across 4 countries: operations at scale → automation → agent infrastructure. The roles look unrelated; the throughline is the speed at which I absorb a new system and ship in it. Blue dots = engineering.</span><span class="zh-only">5 年以上、跨 4 国：大规模运营 → 自动化 → 智能体基础设施。岗位看似无关，串起它们的是「进入新系统、立刻交付」的速度。蓝点代表工程。</span></p>
-    </div>
-
-    <div class="tl reveal">
-      <div class="tl-item eng">
-        <div class="tl-when">2026 · NOW</div>
-        <div class="tl-role">AI Automation &amp; Infrastructure Engineer <span class="tl-tag code">code</span></div>
-        <div class="tl-org">Novada Labs <span class="tl-loc">· Remote / Düsseldorf, DE</span></div>
-        <p style="font-size:14px;color:var(--ink-2);margin:8px 0 0"><span class="en-only">Own the company's agent-facing infrastructure end-to-end — from the MCP product layer to the internal automation that runs the team.</span><span class="zh-only">端到端负责公司面向 Agent 的基础设施 —— 从对外的 MCP 产品层，到驱动团队运转的内部自动化。</span></p>
-        <ul class="tl-points">
-          <li><span class="en-only"><b>Agent infrastructure:</b> architect, ship &amp; maintain the MCP product stack — 6 npm packages (304★, 6.4k installs/mo), 40+ tools, multi-language SDKs (TS/Python/Go).</span><span class="zh-only"><b>Agent 基础设施：</b>架构、发布并维护 MCP 产品栈 —— 6 个 npm 包（304★、月均 6.4k 安装）、40+ 工具、多语言 SDK（TS/Python/Go）。</span></li>
-          <li><span class="en-only"><b>Automation pipelines:</b> built the daily competitive-intel pipeline (auto-reports to GitHub), n8n workflow nodes, and benchmark harnesses — a 200-URL, 6-dimension eval framework that exposed a competitor's 33% anti-bot failure rate.</span><span class="zh-only"><b>自动化流水线：</b>搭建每日竞品情报流水线（自动报告到 GitHub）、n8n 工作流节点、基准测试框架 —— 200-URL、6 维度评测框架，发现竞品 33% 反爬失败率。</span></li>
-          <li><span class="en-only"><b>Multi-agent orchestration:</b> designed AAM — a 4-tier FSM stack (Opus orchestrator → parallel Sonnet workers → independent reviewer → verifier) with budget caps and overnight autonomous runs.</span><span class="zh-only"><b>多 Agent 编排：</b>设计 AAM —— 四层 FSM 架构（Opus 编排 → Sonnet Worker 并行 → 独立 Reviewer → Verifier），带预算上限与隔夜自主运行。</span></li>
-          <li><span class="en-only"><b>Production infra &amp; integrations:</b> built the EU AI Gateway (Claude API relay, GDPR-compliant, AWS Lightsail), shipped the Claude Plugin Marketplace listing, and completed LangChain / CrewAI integrations.</span><span class="zh-only"><b>生产基础设施与集成：</b>构建 EU AI Gateway（Claude API 中转、GDPR 合规、AWS Lightsail）、发布 Claude Plugin Marketplace 列表、完成 LangChain / CrewAI 集成。</span></li>
-        </ul>
-      </div>
-
-      <div class="tl-item eng">
-        <div class="tl-when">Sep 2025 — Jan 2026 · 5 mos</div>
-        <div class="tl-role">Station Process Excellence Manager <span class="tl-tag ops">ops</span><span class="tl-tag code">automation</span></div>
-        <div class="tl-org">Amazon <span class="tl-loc">· Nutzen, DE · On-site</span></div>
-        <ul class="tl-points">
-          <li><span class="en-only">Built a <b>Tampermonkey automation suite</b> that cut shift-prep time by <b>40%</b> — where the engineering instinct first met operations at scale.</span><span class="zh-only">自研 <b>Tampermonkey 自动化套件</b>，班前准备时间减少 <b>40%</b> —— 工程直觉第一次撞上大规模运营。</span></li>
-          <li><span class="en-only">Owned last-mile delivery &amp; station ops at 100% safety/quality compliance; drove Six Sigma / Kaizen across stations.</span><span class="zh-only">主导末端配送与站点运营，100% 安全/质量合规；跨站推行六西格玛 / Kaizen。</span></li>
-        </ul>
-      </div>
-
-      <div class="tl-item ops">
-        <div class="tl-when">Jun 2024 — Aug 2025 · 1 yr 3 mos</div>
-        <div class="tl-role">Supply Chain Manager — Delivery <span class="tl-tag ops">ops</span></div>
-        <div class="tl-org">Xiaomi Deutschland <span class="tl-loc">· Germany · On-site</span></div>
-        <ul class="tl-points">
-          <li><span class="en-only">End-to-end fulfillment &amp; logistics for B2B/B2C omnichannel key accounts (DE &amp; NL) — ≈<b>350k units/year</b>, in 3 languages.</span><span class="zh-only">B2B/B2C 全渠道核心客户的端到端履约与物流（德/荷）—— 年发货 ≈<b>35 万件</b>，三语协作。</span></li>
-        </ul>
-      </div>
-
-      <div class="tl-item ops">
-        <div class="tl-when">Dec 2023 — Jun 2024 · 7 mos</div>
-        <div class="tl-role">EU Certification Specialist <span class="tl-tag ops">compliance</span></div>
-        <div class="tl-org">Adecco <span class="tl-loc">· Düsseldorf, DE · On-site</span></div>
-        <ul class="tl-points">
-          <li><span class="en-only">Owned regulatory workstreams across consumer-electronics lines; coordinated labs, notified bodies &amp; product teams in 3 languages.</span><span class="zh-only">主导消费电子产品线的法规合规工作流；三语协调测试机构、公告机构与产品团队。</span></li>
-        </ul>
-      </div>
-
-      <div class="tl-item eng">
-        <div class="tl-when">Oct 2022 — Feb 2024 · selective role</div>
-        <div class="tl-role">Tutor &amp; Research Assistant <span class="tl-tag code">Python · Z-tree</span></div>
-        <div class="tl-org">University of Freiburg <span class="tl-loc">· Freiburg, DE</span></div>
-        <ul class="tl-points">
-          <li><span class="en-only">Selected to tutor <b>3 required courses</b> — Advanced Macroeconomics I &amp; II, Economic Policy, Finance. Led tutorials, graded, mentored.</span><span class="zh-only">被选拔担任 <b>3 门必修课</b>助教 —— 高级宏观 I/II、经济政策、金融。带辅导课、阅卷、辅导学弟妹。</span></li>
-          <li><span class="en-only">Research assistant in applied econometrics &amp; AI-labor research (Z-tree, data analysis).</span><span class="zh-only">应用计量经济学与 AI 劳动市场研究助理（Z-tree、数据分析）。</span></li>
-        </ul>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-when">2020 — 2023 · Education</div>
-        <div class="tl-role">M.Sc. Economics &amp; Finance (VWL)</div>
-        <div class="tl-org">University of Freiburg <span class="tl-loc">· Grade 3.49 / 4</span></div>
-        <ul class="tl-points">
-          <li><span class="en-only"><b>Speaker</b> at the 2023 Faculty of Economics graduation — Outstanding Student Representative.</span><span class="zh-only">2023 经济学院毕业典礼<b>发言人</b> —— 优秀学生代表。</span></li>
-          <li><span class="en-only">Thesis: <i>UBI in the AI Era — socio-economic impacts of the GPT ecosystem.</i> Econometrics, applied finance &amp; ML.</span><span class="zh-only">硕士论文：《AI 时代的全民基本收入 —— GPT 生态的社会经济影响》。计量、应用金融与机器学习。</span></li>
-        </ul>
-      </div>
-
-      <div class="tl-item">
-        <div class="tl-when">2014 — 2018 · Education</div>
-        <div class="tl-role">B.A. Business</div>
-        <div class="tl-org">Jishou University <span class="tl-loc">· Jishou, CN</span></div>
-        <ul class="tl-points">
-          <li><span class="en-only">Vice President, 13th Student Union · Head of Discipline Inspection, 12th Student Union.</span><span class="zh-only">第十三届学生会副主席 · 第十二届学生会纪检部部长。</span></li>
-        </ul>
-      </div>
-    </div>
-
-    <p style="margin-top:18px"><a class="btn btn-ghost" href="https://tongwu.network/portfolio.html"><span class="en-only">Papers, certs &amp; references →</span><span class="zh-only">论文 · 证书 · 推荐信 →</span></a></p>
-  </div>
-</section>
-
-<!-- ===================== SKILLS ===================== -->
-<section id="skills">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow"><span class="en-only">What I do well</span><span class="zh-only">我擅长的</span></div>
-      <h2><span class="en-only">Engineering at the core, operations as the moat.</span><span class="zh-only">工程是内核，运营是护城河。</span></h2>
-      <p><span class="en-only">The combination is rare: someone who can write the agent stack <i>and</i> has run physical operations at Amazon scale. I know what the automation is actually for.</span><span class="zh-only">这个组合很少见：既能亲手写出整套智能体栈，又真的在亚马逊量级跑过实体运营。我清楚自动化到底是为了什么。</span></p>
-    </div>
-    <div class="skill-grid">
-      <div class="skill-card reveal">
-        <div class="num">01</div>
-        <h3><span class="en-only">AI &amp; Agent Engineering</span><span class="zh-only">AI 与智能体工程</span></h3>
-        <div class="note"><span class="en-only">The core. Proven by 6 shipped packages.</span><span class="zh-only">内核。由 6 个已发布的包背书。</span></div>
-        <div class="tags"><span>TypeScript</span><span>Node.js</span><span>MCP servers</span><span>SDK / CLI design</span><span>Multi-agent orchestration</span><span>RAG / Vector DB</span><span>FSM agents</span><span>Prompt engineering</span><span>LangChain</span><span>Python</span></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="num">02</div>
-        <h3><span class="en-only">Strategic Operations &amp; Supply Chain</span><span class="zh-only">战略运营与供应链</span></h3>
-        <div class="note"><span class="en-only">The moat. Amazon &amp; Xiaomi, at real scale.</span><span class="zh-only">护城河。亚马逊与小米，真实量级。</span></div>
-        <div class="tags"><span>Last-mile logistics</span><span>S&amp;OP / demand planning</span><span>DSP management</span><span>Six Sigma Green Belt</span><span>Omnichannel ops</span><span>SAP / ERP</span></div>
-      </div>
-      <div class="skill-card reveal">
-        <div class="num">03</div>
-        <h3><span class="en-only">Data Intelligence &amp; Analytics</span><span class="zh-only">数据智能与分析</span></h3>
-        <div class="note"><span class="en-only">The connective tissue.</span><span class="zh-only">连接组织的部分。</span></div>
-        <div class="tags"><span>SQL / Pandas</span><span>Econometrics</span><span>Time-series forecasting</span><span>A/B testing</span><span>Power BI / Tableau</span><span>R</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== OTHER SIDE ===================== -->
-<section id="other" class="other">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <div class="eyebrow"><span class="en-only">Off-screen</span><span class="zh-only">另一面</span></div>
-      <h2><span class="en-only">What I do when I'm not shipping.</span><span class="zh-only">不写代码的时候，我在做什么。</span></h2>
-      <p><span class="en-only">I read the I Ching the way some people read systems-design docs — both train you to see structure under noise.</span><span class="zh-only">我读《易经》，方式像别人读系统设计文档 —— 都是在训练「看穿表象、识别结构」。</span></p>
-    </div>
-    <div class="hex-card reveal">
-      <div>
-        <h3><span class="en-only">I Ching · BaZi · Eastern systems thinking</span><span class="zh-only">易经 · 八字 · 东方系统思维</span></h3>
-        <p><span class="en-only">A 3,000-year-old binary state machine for decision-making under uncertainty — surprisingly close to how a well-designed FSM agent reasons about the world.</span><span class="zh-only">三千年前的二进制状态机，用于不确定性下的决策 —— 和一个设计良好的 FSM 智能体推理世界的方式惊人地接近。</span></p>
-        <div class="hex-tags"><span><span class="en-only">Strategy</span><span class="zh-only">策略</span></span><span><span class="en-only">Cycles</span><span class="zh-only">循环</span></span><span><span class="en-only">State machines</span><span class="zh-only">状态机</span></span><span><span class="en-only">Pattern recognition</span><span class="zh-only">模式识别</span></span></div>
-      </div>
-      <div style="text-align:center">
-        <div class="hexes">䷀ ䷁ ䷂ ䷃ ䷄</div>
-        <div class="hex-meta"><span class="en-only">64 hexagrams · 4096 transitions</span><span class="zh-only">64 卦 · 4096 种转换</span></div>
-      </div>
-    </div>
-    <ul class="values reveal">
-      <li><span class="en-only"><b>Reading:</b> systems thinking, classical Chinese, behavioral econ.</span><span class="zh-only"><b>阅读：</b>系统思考、古典中文、行为经济学。</span></li>
-      <li><span class="en-only"><b>Languages:</b> studying Japanese (N4) for fun.</span><span class="zh-only"><b>语言：</b>业余学日语（N4）。</span></li>
-      <li><span class="en-only"><b>Tea ceremony &amp; calligraphy</b> — slow, deliberate practice.</span><span class="zh-only"><b>茶道与书法</b> —— 慢节奏、刻意练习。</span></li>
-      <li><span class="en-only"><b>Long-distance hiking</b> in the Black Forest.</span><span class="zh-only">在<b>黑森林</b>徒步长途。</span></li>
-      <li><span class="en-only"><b>Values:</b> deliberate &gt; clever · craft &gt; volume · long-term &gt; flashy.</span><span class="zh-only"><b>价值观：</b>刻意 &gt; 聪明 · 工艺 &gt; 数量 · 长期 &gt; 浮华。</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ===================== CONTACT ===================== -->
-<section id="contact">
-  <div class="wrap contact">
-    <div class="eyebrow" style="justify-content:center"><span class="en-only">Let's talk</span><span class="zh-only">聊聊</span></div>
-    <h2 style="margin-top:18px"><span class="en-only">Let's build something <span class="accent">real</span>.</span><span class="zh-only">一起做点<span class="accent">真东西</span>。</span></h2>
-    <p><span class="en-only">Open to AI infrastructure, agent platform, and AGI research engineering roles. Available now · Düsseldorf-based · EU Blue Card · open to relocate.</span><span class="zh-only">关注 AI 基础设施 / 智能体平台 / AGI 研究工程类岗位。现在可入职 · 常驻杜塞 · 持欧盟蓝卡 · 可 relocate。</span></p>
-    <div class="cta-row">
-      <a class="btn btn-primary" href="mailto:tong.wu@novada.com">tong.wu@novada.com</a>
-      <a class="btn btn-ghost" href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub ↗</a>
-      <a class="btn btn-ghost" href="https://linkedin.com/in/tongwu3" target="_blank" rel="noopener">LinkedIn ↗</a>
-      <a class="btn btn-ghost" href="tel:+491742575793">+49 174 257 5793</a>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="wrap foot-in">
-    <span>© 2026 Tong Wu · 吴桐 · Düsseldorf, DE</span>
-    <span class="mono"><span class="en-only">Designed &amp; built solo — static, no framework.</span><span class="zh-only">独立设计与构建 —— 纯静态、无框架。</span></span>
-  </div>
-</footer>
-
-<script>
-(function(){
-  var body=document.body;
-  var btn=document.getElementById('lang-toggle');
-  // Support ?lang=zh URL parameter (for DeepSeek application link)
-  var urlLang=new URLSearchParams(window.location.search).get('lang');
-  var saved=urlLang||localStorage.getItem('tw-lang')||'en';
-  setLang(saved);
-  btn.addEventListener('click',function(){
-    setLang(body.classList.contains('lang-en')?'zh':'en');
-  });
-  function setLang(l){
-    body.classList.remove('lang-en','lang-zh');
-    body.classList.add('lang-'+l);
-    document.documentElement.lang=(l==='zh')?'zh-CN':'en';
-    localStorage.setItem('tw-lang',l);
+    --gutter:96px;
+    --gutter-sm:40px;
+    --edge:40px;
   }
 
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var rev=document.querySelectorAll('.reveal');
-  if(reduce||!('IntersectionObserver'in window)){rev.forEach(function(e){e.classList.add('in')});}
-  else{
-    var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});},{threshold:.12});
-    rev.forEach(function(e){io.observe(e);});
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
   }
-  var spies=[].slice.call(document.querySelectorAll('.nav-links a[data-spy]'));
-  var secs=spies.map(function(a){return document.getElementById(a.dataset.spy);}).filter(Boolean);
-  function spy(){
-    var y=window.scrollY+140,cur=null;
-    secs.forEach(function(s){if(s.offsetTop<=y)cur=s.id;});
-    spies.forEach(function(a){a.classList.toggle('active',a.dataset.spy===cur);});
-  }
-  window.addEventListener('scroll',spy,{passive:true});spy();
+  html[data-lang="zh"] body{ font-family:'Inter','Noto Sans SC',-apple-system,sans-serif; }
+  img,svg{ display:block; max-width:100%; }
 
-  // Hero CSS streams — subtle data-flow animation
-  if(!reduce){
-    var container=document.getElementById('hero-streams');
-    if(container){
-      var count=window.innerWidth<620?15:30;
-      for(var i=0;i<count;i++){
-        var s=document.createElement('div');
-        s.className='stream';
-        s.style.left=((i/count)*100+Math.random()*3)+'%';
-        s.style.height=(40+Math.random()*80)+'px';
-        s.style.animationDuration=(10+Math.random()*16)+'s';
-        s.style.animationDelay=(-Math.random()*20)+'s';
-        s.style.opacity=0.3+Math.random()*0.7;
-        container.appendChild(s);
-      }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *,*::before,*::after{
+      animation-duration:0.001ms !important; animation-iteration-count:1 !important;
+      transition-duration:0.001ms !important; scroll-behavior:auto !important;
     }
   }
-})();
+
+  /* ---------- i18n visibility ---------- */
+  html[data-lang="en"] .zh{ display:none; }
+  html[data-lang="zh"] .en{ display:none; }
+  .zh{ font-family:'Inter','Noto Sans SC',sans-serif; }
+
+  /* ---------- layout helpers ---------- */
+  .wrap{
+    max-width:1180px; margin:0 auto; width:100%;
+    padding:0 var(--edge) 0 calc(var(--edge) + var(--gutter));
+    display:flex; flex-direction:column; flex:1 1 auto;
+  }
+  @media (max-width:760px){
+    .wrap{ padding:0 var(--edge-sm,22px) 0 calc(22px + var(--gutter-sm)); }
+  }
+
+  h1,h2,h3,h4{ font-family:'Fraunces','Noto Serif SC',Georgia,serif; margin:0; }
+  html[data-lang="zh"] h1, html[data-lang="zh"] h2, html[data-lang="zh"] h3, html[data-lang="zh"] h4{
+    font-family:'Noto Serif SC','Fraunces',serif;
+  }
+
+  a{ color:inherit; }
+
+  /* ================= SIDE RAIL NAV (persistent, jump-anywhere) ================= */
+  .rail{
+    position:fixed; left:22px; top:50%; transform:translateY(-50%);
+    z-index:80; display:flex; flex-direction:column; padding:10px 0;
+  }
+  .rail-spine{
+    position:absolute; left:5px; top:2px; bottom:2px; width:2px; border-radius:2px;
+    background:linear-gradient(180deg, var(--teal-700), var(--teal-300) 45%, var(--sand-line) 65%, var(--terracotta) 100%);
+    opacity:.55;
+  }
+  .rail-item{
+    position:relative; display:flex; align-items:center; gap:10px;
+    padding:8px 10px 8px 0; text-decoration:none; z-index:1;
+  }
+  .rail-dot{
+    width:11px; height:11px; border-radius:50%; flex:none;
+    background:var(--paper); border:2px solid var(--teal-700);
+  }
+  @media (prefers-reduced-motion: no-preference){
+    .rail-dot{ transition:background .2s ease, box-shadow .2s ease, transform .2s ease; }
+    .rail-label{ transition:color .15s ease; }
+  }
+  .rail-item:hover .rail-dot, .rail-item:focus-visible .rail-dot{ background:var(--teal-500); }
+  .rail-item.active .rail-dot{ background:var(--teal-800); box-shadow:0 0 0 4px var(--teal-100); transform:scale(1.2); }
+  .rail-label{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:600;
+    letter-spacing:.04em; text-transform:uppercase; color:var(--muted); white-space:nowrap;
+  }
+  .rail-item:hover .rail-label, .rail-item:focus-visible .rail-label{ color:var(--teal-700); }
+  .rail-item.active .rail-label{ color:var(--teal-900); font-weight:700; }
+  .rail-item:focus-visible{ outline:2px solid var(--teal-500); outline-offset:4px; border-radius:4px; }
+  @media (max-width:760px){
+    .rail{ left:8px; }
+    .rail-label{ display:none; }
+  }
+
+  /* ---------- language toggle (fixed, top-right, coexists with rail) ---------- */
+  .lang-toggle{
+    position:fixed; top:18px; right:18px; z-index:80;
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:700; letter-spacing:.03em;
+    background:rgba(245,242,234,.9); backdrop-filter:blur(4px); -webkit-backdrop-filter:blur(4px);
+    color:var(--teal-800); border:1px solid var(--line); border-radius:20px;
+    padding:8px 14px; cursor:pointer;
+  }
+  @media (prefers-reduced-motion: no-preference){ .lang-toggle{ transition:border-color .15s ease, background .15s ease; } }
+  .lang-toggle:hover{ border-color:var(--teal-500); background:var(--teal-050); }
+
+  /* ================= FLOW / RIVER (the water-flow thread, top to bottom of page) ================= */
+  .flow{ position:relative; }
+  .river{
+    position:absolute; left:16px; top:0; bottom:0; width:44px; z-index:2;
+    opacity:.6; pointer-events:none;
+  }
+  @media (max-width:760px){ .river{ display:none; } }
+
+  section, footer#contact{
+    position:relative; z-index:1;
+    min-height:92vh; display:flex; flex-direction:column;
+    padding:11vh 0 5vh;
+  }
+  section::before, footer#contact::before{
+    content:''; position:absolute; z-index:-1; top:0; right:0; bottom:0;
+    left:var(--gutter); background:var(--wash, transparent);
+  }
+  @media (max-width:760px){
+    section::before, footer#contact::before{ left:var(--gutter-sm); }
+  }
+
+  #hero{ --wash: transparent; }
+  #about{ --wash: linear-gradient(180deg,#EFF7F4 0%, var(--paper) 62%); }
+  #building{ --wash: linear-gradient(180deg,#E3F1EC 0%, var(--paper) 68%); }
+  #path{ --wash: linear-gradient(180deg,#F6EFDF 0%, var(--paper) 68%); }
+  #skills{ --wash: linear-gradient(180deg,#EDEFEC 0%, var(--paper) 68%); }
+  #offscreen{ --wash: linear-gradient(160deg,#F4E5D6 0%, #F8EEE2 100%); }
+  #contact{ --wash: linear-gradient(180deg,#E5F1EC 0%, var(--paper) 55%); }
+
+  /* wave dividers between sections */
+  .divider{ position:relative; z-index:1; height:54px; margin-top:-2px; background:var(--paper); }
+  .divider svg{ width:100%; height:100%; display:block; }
+  @media (max-width:760px){ .divider{ height:34px; } }
+
+  /* "keep going" affordance, bottom of every section */
+  .continue{
+    margin-top:auto; align-self:flex-start;
+    display:flex; align-items:center; gap:9px; padding-top:36px;
+    text-decoration:none; color:var(--muted); font-size:12.5px; font-weight:600;
+    letter-spacing:.05em; text-transform:uppercase; font-family:'IBM Plex Mono',monospace;
+  }
+  .continue .chev{
+    width:9px; height:9px; border:solid currentColor; border-width:0 2px 2px 0;
+    transform:rotate(45deg); display:inline-block;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .continue{ transition:color .15s ease; }
+    .continue .chev-wrap{ animation:bob 2.2s ease-in-out infinite; }
+  }
+  @keyframes bob{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(4px);} }
+  .continue:hover{ color:var(--teal-700); }
+  .continue .chev-wrap{ display:inline-flex; }
+
+  /* ================= reveal-on-scroll (motion-gated) ================= */
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{ opacity:0; transform:translateY(12px); transition:opacity .55s ease, transform .55s ease; }
+    .reveal.in-view{ opacity:1; transform:translateY(0); }
+  }
+
+  /* ================= REAL LINKS — unmistakably clickable ================= */
+  .link-live{
+    position:relative; display:inline-flex; align-items:baseline; gap:7px;
+    color:var(--teal-800); font-weight:700; text-decoration:none; cursor:pointer;
+    background-image:linear-gradient(var(--teal-500),var(--teal-500));
+    background-repeat:no-repeat; background-position:0 100%; background-size:100% 2px;
+    padding-bottom:1px;
+  }
+  .link-live::before{
+    content:''; width:6px; height:6px; border-radius:50%; background:var(--teal-500); flex:none; align-self:center;
+  }
+  .link-live .arrow{ font-size:.82em; display:inline-block; }
+  @media (prefers-reduced-motion: no-preference){
+    .link-live{ transition:color .15s ease, background-size .2s ease; }
+    .link-live .arrow{ transition:transform .2s ease; }
+  }
+  .link-live:hover, .link-live:focus-visible{ color:var(--teal-900); background-size:100% 3px; }
+  .link-live:hover .arrow, .link-live:focus-visible .arrow{ transform:translate(3px,-3px); }
+  .link-live:focus-visible{ outline:2px solid var(--teal-500); outline-offset:5px; border-radius:2px; }
+  .link-primary{ font-size:1.3em; }
+  .link-primary::before{ width:8px; height:8px; }
+
+  .claim{ color:var(--ink-soft); font-weight:600; }
+  .tag-nolink{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:700;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-left:9px;
+    white-space:nowrap;
+  }
+  .tag-nolink::before{ content:'· '; }
+
+  /* ================= disclosure (progressive reveal) ================= */
+  details.disclose{ margin-top:20px; }
+  details.disclose > summary{
+    cursor:pointer; list-style:none; display:inline-flex; align-items:center; gap:9px;
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:700;
+    letter-spacing:.05em; text-transform:uppercase; color:var(--teal-700); user-select:none;
+  }
+  details.disclose > summary::-webkit-details-marker{ display:none; }
+  details.disclose > summary::marker{ content:''; }
+  details.disclose > summary:hover{ color:var(--teal-900); }
+  details.disclose > summary:focus-visible{ outline:2px solid var(--teal-500); outline-offset:4px; border-radius:3px; }
+  .chev-icon{
+    display:inline-block; width:7px; height:7px; border:solid currentColor; border-width:0 2px 2px 0;
+    transform:rotate(45deg);
+  }
+  @media (prefers-reduced-motion:no-preference){ .chev-icon{ transition:transform .2s ease; } }
+  details.disclose[open] > summary .chev-icon{ transform:rotate(-135deg); }
+  .disclose-body{ padding-top:16px; }
+  @media (prefers-reduced-motion: no-preference){
+    details.disclose[open] .disclose-body{ animation:discloseIn .38s ease both; }
+  }
+  @keyframes discloseIn{ from{ opacity:0; transform:translateY(-8px); } to{ opacity:1; transform:translateY(0); } }
+
+  /* ================= HERO ================= */
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:700;
+    letter-spacing:.08em; text-transform:uppercase; color:var(--teal-700); margin:0 0 22px;
+  }
+  .eyebrow::before{ content:''; width:8px; height:8px; border-radius:50%; background:var(--teal-500); }
+
+  .hero-name{
+    font-size:clamp(18px, 1.8vw, 23px); line-height:1.3; font-weight:600;
+    letter-spacing:-0.01em; margin:0 0 10px; max-width:26ch; color:var(--ink-soft);
+  }
+  html[data-lang="zh"] .hero-name{ font-weight:700; letter-spacing:0; font-size:clamp(17px,1.7vw,21px); }
+  .hero-name .cn{ color:var(--teal-700); font-style:italic; }
+  html[data-lang="zh"] .hero-name .cn{ font-style:normal; }
+
+  .hero-h1{
+    font-family:'Fraunces','Noto Serif SC',serif; font-style:italic; font-weight:500;
+    font-size:clamp(28px,4.4vw,48px); line-height:1.22; max-width:22ch; margin:0 0 22px; color:var(--ink);
+  }
+  html[data-lang="zh"] .hero-h1{ font-style:normal; font-weight:600; }
+
+  /* ---------- capability chunks (chip row — square, not pill; personalized mark, not generic tag) ---------- */
+  .cap-row{ display:flex; flex-wrap:wrap; gap:9px 10px; margin:0 0 40px; max-width:800px; }
+  .cap{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700;
+    letter-spacing:.03em; text-transform:uppercase; color:var(--teal-800);
+    border:1.5px solid var(--teal-300); border-radius:0; padding:7px 14px 7px 12px;
+    background:var(--teal-050); white-space:nowrap;
+  }
+  .cap::before{ content:''; width:6px; height:6px; background:var(--teal-500); flex:none; }
+  .cap-lead{
+    background:var(--teal-800); color:var(--paper); border-color:var(--teal-800); font-size:12.5px;
+  }
+  .cap-lead::before{ background:var(--paper); }
+
+  .hero-sub{ font-size:16.5px; color:var(--ink-soft); max-width:56ch; margin:0 0 8px; line-height:1.65; }
+  .hero-loc{ font-size:13.5px; color:var(--muted); max-width:56ch; margin:0 0 34px; }
+  .hero-loc strong{ color:var(--ink-soft); font-weight:700; }
+
+  .cta-row{ display:flex; flex-wrap:wrap; align-items:baseline; gap:26px; margin-bottom:44px; }
+
+  .stat-strip{ display:flex; flex-wrap:wrap; gap:0; max-width:820px; }
+  .stat{ padding:2px 26px 2px 0; margin-right:26px; border-right:1px solid var(--line); }
+  .stat:last-child{ border-right:none; margin-right:0; padding-right:0; }
+  .stat-num{
+    font-family:'IBM Plex Mono',monospace; font-weight:700; font-variant-numeric:tabular-nums lining-nums;
+    font-size:clamp(24px,2.8vw,32px); color:var(--teal-900); display:block; letter-spacing:-.01em;
+  }
+  .stat-label{
+    font-size:11px; letter-spacing:.04em; text-transform:uppercase; color:var(--muted);
+    font-weight:600; margin-top:6px; max-width:17ch; line-height:1.4; display:block;
+  }
+
+  /* ================= ABOUT ================= */
+  .section-tag{
+    font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.08em;
+    text-transform:uppercase; color:var(--teal-700); margin:0 0 12px; display:block;
+  }
+  .section-h{ font-size:clamp(30px,4vw,46px); margin:0 0 30px; font-weight:600; max-width:16ch; }
+  html[data-lang="zh"] .section-h{ font-weight:700; }
+
+  .about-row{ display:grid; grid-template-columns:1.35fr .65fr; gap:60px; align-items:start; }
+  @media (max-width:880px){ .about-row{ grid-template-columns:1fr; } }
+  .about-lead{ font-size:19px; line-height:1.7; color:var(--ink-soft); max-width:62ch; margin:0; }
+  .about-long p{ font-size:15.5px; line-height:1.75; color:var(--ink-soft); max-width:66ch; margin:0; }
+
+  .facts{ margin:0; padding:0; list-style:none; align-self:start; }
+  .facts li{
+    display:flex; justify-content:space-between; gap:16px; font-size:13.5px;
+    padding:11px 0; border-top:1px solid var(--line);
+  }
+  .facts li:first-child{ border-top:none; padding-top:0; }
+  .facts li span:first-child{ color:var(--muted); font-weight:600; }
+  .facts li span:last-child{ font-family:'IBM Plex Mono',monospace; font-weight:700; color:var(--teal-800); text-align:right; }
+
+  /* ---------- domain table (visualization, not prose) ---------- */
+  .domain-table{ width:100%; border-collapse:collapse; margin:36px 0 0; }
+  .domain-table th{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--muted); text-align:left; padding:0 20px 10px 0; border-bottom:1px solid var(--line);
+  }
+  .domain-table td{ padding:18px 20px 18px 0; border-bottom:1px solid var(--line); vertical-align:top; font-size:14.5px; color:var(--ink-soft); line-height:1.5; }
+  .domain-table tr:last-child td{ border-bottom:none; }
+  .domain-table .dcol{ font-weight:700; color:var(--ink); font-size:15px; }
+  .domain-table .wcol{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; color:var(--teal-700); font-weight:600; white-space:nowrap; }
+  @media (max-width:640px){
+    .domain-table thead{ display:none; }
+    .domain-table, .domain-table tbody, .domain-table tr, .domain-table td{ display:block; width:100%; }
+    .domain-table tr{ padding:18px 0; border-bottom:1px solid var(--line); }
+    .domain-table td{ border-bottom:none; padding:3px 0; }
+  }
+
+  /* ================= BUILDING (no cards — flowing rows, scale contrast) ================= */
+  .products{ margin-top:8px; }
+  .product{ border-top:1px solid var(--line); padding:34px 0; }
+  .product:first-child{ border-top:none; padding-top:0; }
+
+  .product-head{ display:flex; align-items:baseline; gap:16px; flex-wrap:wrap; margin-bottom:10px; }
+  .product-badge{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px; font-weight:700; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--teal-700); border-bottom:1px solid var(--teal-300); padding-bottom:2px;
+  }
+  .product-name{ font-size:clamp(26px,3.2vw,42px); font-weight:600; margin:0; line-height:1.06; }
+  .product.flagship .product-name{ font-size:clamp(34px,5vw,64px); }
+  .product-name.claim{ font-family:'Fraunces','Noto Serif SC',serif; }
+  a.product-name{ font-family:'Fraunces','Noto Serif SC',serif; }
+
+  .product-tag{ font-size:16px; color:var(--ink-soft); max-width:62ch; margin:8px 0 0; line-height:1.55; }
+  .product.flagship .product-tag{ font-size:18px; }
+
+  .product-stats{ display:flex; flex-wrap:wrap; gap:22px; margin-top:16px; }
+  .pstat{ display:flex; align-items:baseline; gap:7px; }
+  .pstat b{
+    font-family:'IBM Plex Mono',monospace; font-size:19px; color:var(--teal-900); font-variant-numeric:tabular-nums;
+  }
+  .pstat span{ font-size:11.5px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); font-weight:600; }
+
+  .product-detail{ font-size:14.5px; color:var(--ink-soft); line-height:1.65; max-width:64ch; margin:12px 0 0; }
+  .product-flow{ display:flex; flex-wrap:wrap; gap:6px 10px; margin-top:12px; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; color:var(--teal-800); }
+  .product-flow .arrow{ color:var(--muted); }
+
+  .personal-note{ font-size:14px; color:var(--muted); margin-top:26px; padding-top:22px; border-top:1px dashed var(--line); }
+  .personal-note b{ color:var(--ink-soft); }
+
+  /* ================= PATH (timeline woven onto the river) ================= */
+  .timeline{ list-style:none; margin:0; padding:0; position:relative; }
+  .timeline::before{ content:''; position:absolute; left:6px; top:6px; bottom:6px; width:2px; background:var(--sand-line); }
+  .t-item{ position:relative; padding:0 0 34px 36px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-dot{ position:absolute; left:0; top:5px; width:14px; height:14px; border-radius:50%; background:var(--paper); border:2.5px solid var(--teal-700); }
+  .t-item.now .t-dot{ background:var(--teal-700); box-shadow:0 0 0 4px var(--teal-100); }
+  .t-head{ display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:4px; }
+  .t-when{ font-family:'IBM Plex Mono',monospace; font-size:12.5px; font-weight:700; color:var(--teal-700); }
+  .t-dur{ font-family:'IBM Plex Mono',monospace; font-size:11px; font-weight:600; color:var(--muted); margin-left:7px; }
+  .t-dur::before{ content:'· '; }
+  .now-flag{
+    font-family:'IBM Plex Mono',monospace; font-size:10px; font-weight:700; letter-spacing:.06em;
+    background:var(--teal-800); color:var(--paper); padding:2px 7px; border-radius:3px; text-transform:uppercase;
+  }
+  .emp-type{
+    font-family:'IBM Plex Mono',monospace; font-size:9.5px; font-weight:700; letter-spacing:.05em;
+    text-transform:uppercase; padding:2px 7px; border:1px solid var(--line); color:var(--muted); border-radius:0;
+  }
+  .emp-type.full{ border-color:var(--teal-300); color:var(--teal-800); background:var(--teal-050); }
+  .t-item h3{ font-size:18.5px; font-weight:600; margin:0 0 2px; }
+  .t-where{ font-size:13.5px; color:var(--muted); font-weight:500; }
+  .t-item p{ margin:9px 0 0; font-size:14.5px; line-height:1.6; color:var(--ink-soft); max-width:66ch; }
+  .t-bullets{ list-style:none; margin:12px 0 0; padding:0; }
+  .t-bullets li{ position:relative; padding-left:16px; font-size:14px; line-height:1.62; color:var(--ink-soft); margin-bottom:8px; max-width:64ch; }
+  .t-bullets li:last-child{ margin-bottom:0; }
+  .t-bullets li::before{ content:''; position:absolute; left:0; top:7px; width:6px; height:6px; background:var(--teal-500); }
+  .t-bullets li b{ color:var(--ink); font-weight:700; }
+  .t-kpis{ margin-top:10px; font-family:'IBM Plex Mono',monospace; font-size:12px; color:var(--terracotta-dark); font-weight:600; }
+  .t-kpis .sep{ color:var(--muted); margin:0 6px; }
+
+  #more-path{ margin-top:8px; }
+  #more-path .disclose-body{ padding-top:6px; }
+
+  /* ================= SKILLS ================= */
+  .skills-grid{ display:grid; grid-template-columns:1.1fr 1fr; gap:44px 64px; }
+  @media (max-width:880px){ .skills-grid{ grid-template-columns:1fr; } }
+  .skill-group h3{
+    font-family:'IBM Plex Mono',monospace; font-size:12.5px; text-transform:uppercase; letter-spacing:.06em;
+    font-weight:700; color:var(--muted); margin:0 0 14px;
+  }
+  .flow-list{ font-size:15.5px; line-height:2.1; color:var(--ink-soft); margin:0; }
+  .flow-list .tick{ font-weight:600; color:var(--ink); }
+  .flow-list .tick::after{ content:' · '; color:var(--line); }
+  .flow-list .tick:last-child::after{ content:''; }
+
+  .certs p{ font-size:14.5px; color:var(--ink-soft); line-height:1.9; margin:0; }
+  .certs .claim{ font-weight:600; }
+
+  .lang-line{ margin-top:26px; font-size:14.5px; color:var(--ink-soft); }
+  .lang-line b{ font-family:'IBM Plex Mono',monospace; color:var(--teal-800); }
+
+  /* ================= OFF-SCREEN ================= */
+  #offscreen .section-tag{ color:var(--terracotta-dark); }
+  .off-frame{
+    font-family:'Fraunces','Noto Serif SC',serif; font-style:italic; font-weight:500;
+    font-size:clamp(22px,2.6vw,30px); color:var(--terracotta-dark); max-width:52ch; margin:0 0 40px;
+  }
+  html[data-lang="zh"] .off-frame{ font-style:normal; }
+  .off-list{ display:flex; flex-wrap:wrap; gap:34px 44px; }
+  .off-item{ display:flex; align-items:baseline; gap:10px; }
+  .off-item .cn{ font-family:'Noto Serif SC',serif; font-size:26px; color:var(--terracotta-dark); }
+  .off-item .en{ font-size:13.5px; color:#7A6A55; font-weight:600; }
+
+  /* ================= CONTACT ================= */
+  #contact .section-tag{ color:var(--teal-700); }
+  .contact-hero{
+    font-family:'Inter',sans-serif; font-size:17px; font-weight:600;
+    line-height:1.4; margin:0 0 32px; word-break:break-word;
+  }
+  .contact-hero a{ text-decoration:none; }
+  .contact-hero .link-live{ font-weight:700; }
+
+  .contact-grid{ display:grid; grid-template-columns:repeat(3,auto); gap:36px 60px; margin-bottom:40px; }
+  @media (max-width:760px){ .contact-grid{ grid-template-columns:1fr 1fr; } }
+  .c-item .k{ font-family:'IBM Plex Mono',monospace; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--muted); font-weight:700; display:block; margin-bottom:8px; }
+  .c-item .v{ font-size:15px; font-weight:600; }
+
+  .status-line{
+    font-size:14px; color:var(--ink-soft); border-top:1px solid var(--line); padding-top:24px; max-width:64ch;
+  }
+  .status-line .dot{ display:inline-block; width:7px; height:7px; border-radius:50%; background:var(--teal-500); margin-right:8px; }
+
+  .foot-meta{
+    margin-top:56px; display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px;
+    font-size:12px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px;
+  }
+  .foot-meta .link-live{ font-size:1em; }
+</style>
+</head>
+<body>
+
+<!-- ============ persistent side-rail: jump to any section ============ -->
+<nav class="rail" aria-label="Section navigation">
+  <div class="rail-spine" aria-hidden="true"></div>
+  <a class="rail-item" data-section="hero" href="#hero" aria-label="Hero"><span class="rail-dot"></span><span class="rail-label"><span class="en">Hero</span><span class="zh">首页</span></span></a>
+  <a class="rail-item" data-section="about" href="#about" aria-label="About"><span class="rail-dot"></span><span class="rail-label"><span class="en">About</span><span class="zh">关于</span></span></a>
+  <a class="rail-item" data-section="building" href="#building" aria-label="Building"><span class="rail-dot"></span><span class="rail-label"><span class="en">Building</span><span class="zh">构建</span></span></a>
+  <a class="rail-item" data-section="path" href="#path" aria-label="Experience"><span class="rail-dot"></span><span class="rail-label"><span class="en">Experience</span><span class="zh">经历</span></span></a>
+  <a class="rail-item" data-section="skills" href="#skills" aria-label="Skills"><span class="rail-dot"></span><span class="rail-label"><span class="en">Skills</span><span class="zh">技能</span></span></a>
+  <a class="rail-item" data-section="offscreen" href="#offscreen" aria-label="Off-screen"><span class="rail-dot"></span><span class="rail-label"><span class="en">Off-screen</span><span class="zh">屏幕之外</span></span></a>
+  <a class="rail-item" data-section="contact" href="#contact" aria-label="Contact"><span class="rail-dot"></span><span class="rail-label"><span class="en">Contact</span><span class="zh">联系</span></span></a>
+</nav>
+
+<button class="lang-toggle" id="langToggle" type="button" aria-label="Switch language">中文</button>
+
+<div class="flow" id="flow">
+
+  <!-- the water-flow thread: one continuous line running top-to-bottom of the whole page -->
+  <svg class="river" preserveAspectRatio="none" viewBox="0 0 120 2200" aria-hidden="true" focusable="false">
+    <defs>
+      <linearGradient id="riverGrad" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"  stop-color="#136B60"/>
+        <stop offset="18%" stop-color="#1C9384"/>
+        <stop offset="38%" stop-color="#1C9384"/>
+        <stop offset="55%" stop-color="#8FBBA8"/>
+        <stop offset="70%" stop-color="#C9A870"/>
+        <stop offset="85%" stop-color="#C07A45"/>
+        <stop offset="100%" stop-color="#136B60"/>
+      </linearGradient>
+    </defs>
+    <path d="M62,0
+             C10,55 114,110 62,165
+             C10,220 114,275 62,330
+             C10,385 114,440 62,495
+             C10,550 114,605 62,660
+             C10,715 114,770 62,825
+             C10,880 114,935 62,990
+             C10,1045 114,1100 62,1155
+             C10,1210 114,1265 62,1320
+             C10,1375 114,1430 62,1485
+             C10,1540 114,1595 62,1650
+             C10,1705 114,1760 62,1815
+             C10,1870 114,1925 62,1980
+             C10,2035 114,2090 62,2145
+             C34,2175 90,2185 62,2200"
+          fill="none" stroke="url(#riverGrad)" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+
+  <main>
+
+    <!-- ============ 1. HERO ============ -->
+    <section id="hero">
+      <div class="wrap">
+        <p class="eyebrow"><span class="en">Co-founder — Novada Labs</span><span class="zh">Novada Labs 联合创始人</span></p>
+        <h1 class="hero-name">Tong Wu <span class="cn">吴桐</span></h1>
+        <p class="hero-h1">
+          <span class="en">AI automation and agentic systems. Supply chain, logistics, and process excellence. I ship both, end to end.</span>
+          <span class="zh">AI 自动化与智能体系统。供应链、物流与流程卓越。两个领域，我都能端到端交付。</span>
+        </p>
+        <p class="hero-sub">
+          <span class="en">Co-founder, Novada Labs. Previously: supply-chain &amp; process excellence at Xiaomi, Amazon, Huawei. Econ/Finance → Supply Chain → AI, in that order.</span>
+          <span class="zh">Novada Labs 联合创始人。此前历经小米、亚马逊、华为的供应链与流程管理。从经济金融，到供应链，再到 AI 系统。</span>
+        </p>
+        <p class="hero-loc">
+          <strong>Düsseldorf, Germany</strong> · <span class="en">EU Blue Card holder — open to select conversations, not actively job-hunting.</span><span class="zh">欧盟蓝卡持有者——欢迎有价值的交流，目前并非主动求职。</span>
+        </p>
+
+        <div class="cap-row reveal">
+          <span class="cap cap-lead"><span class="en">Project Management</span><span class="zh">项目管理</span></span>
+          <span class="cap"><span class="en">AI Automation</span><span class="zh">AI 自动化</span></span>
+          <span class="cap"><span class="en">Supply Chain</span><span class="zh">供应链</span></span>
+          <span class="cap"><span class="en">Logistics</span><span class="zh">物流</span></span>
+          <span class="cap"><span class="en">Last-Mile Delivery</span><span class="zh">末端配送</span></span>
+          <span class="cap"><span class="en">Process Excellence</span><span class="zh">流程卓越</span></span>
+          <span class="cap"><span class="en">Multilingual · CN/EN/DE</span><span class="zh">多语言 · 中/英/德</span></span>
+          <span class="cap"><span class="en">EU Work Authorization</span><span class="zh">欧盟工作许可</span></span>
+          <span class="cap"><span class="en">Team Leadership · 100+ FTE</span><span class="zh">团队管理 · 100+ 人</span></span>
+          <span class="cap"><span class="en">Cross-Border · 4 Countries</span><span class="zh">跨国经历 · 4 国</span></span>
+        </div>
+
+        <div class="cta-row reveal">
+          <a class="link-live link-primary" href="mailto:tongwu0824@gmail.com"><span class="en">Email me</span><span class="zh">给我发邮件</span><span class="arrow">↗</span></a>
+          <a class="link-live" href="https://linkedin.com/in/tongwu3" target="_blank" rel="noopener">LinkedIn<span class="arrow">↗</span></a>
+          <a class="link-live" href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub<span class="arrow">↗</span></a>
+        </div>
+
+        <div class="stat-strip reveal">
+          <div class="stat">
+            <span class="stat-num">310★</span>
+            <span class="stat-label"><span class="en">GitHub stars · AgentRecall</span><span class="zh">GitHub 星标 · AgentRecall</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">6,400+</span>
+            <span class="stat-label"><span class="en">installs / month</span><span class="zh">月安装量</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">6</span>
+            <span class="stat-label"><span class="en">published npm / PyPI packages</span><span class="zh">已发布的 npm / PyPI 包</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">3</span>
+            <span class="stat-label"><span class="en">languages spoken</span><span class="zh">掌握语言数</span></span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">4</span>
+            <span class="stat-label"><span class="en">countries lived / worked in</span><span class="zh">生活/工作过的国家数</span></span>
+          </div>
+        </div>
+
+        <a class="continue" href="#about">
+          <span class="en">Keep going</span><span class="zh">继续往下看</span>
+          <span class="chev-wrap"><span class="chev"></span></span>
+        </a>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,34 C220,60 380,4 600,32 C820,60 980,4 1200,32 L1200,60 L0,60 Z" fill="#DCEEE9"/></svg></div>
+
+    <!-- ============ 2. ABOUT ============ -->
+    <section id="about">
+      <div class="wrap">
+        <span class="section-tag">01 <span class="en">— About</span><span class="zh">— 关于</span></span>
+        <h2 class="section-h"><span class="en">The cross-domain throughline</span><span class="zh">跨领域的那条主线</span></h2>
+
+        <div class="about-row">
+          <div>
+            <p class="about-lead reveal">
+              <span class="en">My path doesn't run in a straight line, and that's the point. Economics &amp; Finance with a computational core, then supply-chain and process-excellence roles at Huawei, Xiaomi and Amazon, now co-founding Novada Labs to ship AI agent infrastructure. Every domain shift kept the same instinct: measure it, fix the root cause, then automate it.</span>
+              <span class="zh">我的路径不是直线，这正是重点。从带有计算内核的经济金融出发，到华为、小米、亚马逊的供应链与流程卓越工作，再到联合创办 Novada Labs、打造 AI Agent 基础设施。每一次跨界都保留了同一个本能：先量化，再找根因，然后自动化。</span>
+            </p>
+
+            <details class="disclose">
+              <summary><span class="chev-icon"></span><span class="en">Read the longer version</span><span class="zh">阅读完整版本（英文）</span></summary>
+              <div class="disclose-body about-long">
+                <p>I hold an M.Sc. in Economics &amp; Finance from the University of Freiburg — though the coursework leaned informatics: computational economics, machine learning, and programming, alongside econometrics and time-series analysis. I also taught and ran behavioral/game-theoretic experiments there as a research assistant. From there I moved into operations: EU compliance work at Huawei, an enterprise KPI-and-delivery platform at Xiaomi (~€110M/yr fulfilment, 99.5% on-time), and process-excellence work at an Amazon delivery station (16 carrier accounts, 100+ KPIs, structured RCA). Today I co-found Novada Labs, where I design and ship the agent infrastructure — memory systems, orchestration frameworks, MCP servers — that other builders use to take AI from proof-of-concept to something that survives contact with a real business process. My first retrieval build was a seminar project at Freiburg — a LangChain + Pinecone RAG assistant (2023) — with <span class="claim">no public repo on file</span>.</p>
+              </div>
+            </details>
+          </div>
+
+          <ul class="facts reveal">
+            <li><span class="en">Education</span><span class="zh">教育</span><span>M.Sc. Econ, Finance &amp; Computing</span></li>
+            <li><span class="en">Languages</span><span class="zh">语言</span><span>CN · EN · DE</span></li>
+            <li><span class="en">Now building</span><span class="zh">现在在做</span><span>Novada Labs</span></li>
+            <li><span class="en">Based in</span><span class="zh">常驻</span><span>Düsseldorf, DE</span></li>
+          </ul>
+        </div>
+
+        <table class="domain-table reveal">
+          <thead><tr>
+            <th><span class="en">Domain</span><span class="zh">领域</span></th>
+            <th><span class="en">Where</span><span class="zh">在哪</span></th>
+            <th><span class="en">Focus</span><span class="zh">重点</span></th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td class="dcol"><span class="en">Econ, Finance &amp; Computing</span><span class="zh">经济金融与计算</span></td>
+              <td class="wcol">Freiburg (M.Sc.)</td>
+              <td><span class="en">Computational economics, machine learning, programming — the technical seed of everything after.</span><span class="zh">计算经济学、机器学习、编程——后来一切的技术起点。</span></td>
+            </tr>
+            <tr>
+              <td class="dcol"><span class="en">Process Excellence</span><span class="zh">流程卓越</span></td>
+              <td class="wcol">Huawei → Amazon</td>
+              <td><span class="en">ISO compliance, then KPI &amp; root-cause analysis at delivery-station scale.</span><span class="zh">从 ISO 合规，到配送站规模的 KPI 与根因分析。</span></td>
+            </tr>
+            <tr>
+              <td class="dcol"><span class="en">Supply Chain &amp; Logistics</span><span class="zh">供应链与物流</span></td>
+              <td class="wcol">Xiaomi</td>
+              <td><span class="en">Enterprise KPI &amp; exception-management platform; ~€110M/yr fulfilment at 99.5% on-time.</span><span class="zh">企业级 KPI/异常管理平台；~€110M/年履约额，准时率 99.5%。</span></td>
+            </tr>
+            <tr>
+              <td class="dcol"><span class="en">AI &amp; Agent Systems</span><span class="zh">AI 与智能体系统</span></td>
+              <td class="wcol"><span class="en">Novada Labs (now)</span><span class="zh">Novada Labs（现在）</span></td>
+              <td><span class="en">AgentRecall, AAM, Plywood, Novada MCP — production, not demos.</span><span class="zh">AgentRecall、AAM、Plywood、Novada MCP——是生产系统，不是演示。</span></td>
+            </tr>
+          </tbody>
+        </table>
+
+        <a class="continue" href="#building">
+          <span class="en">Keep going</span><span class="zh">继续往下看</span>
+          <span class="chev-wrap"><span class="chev"></span></span>
+        </a>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C240,2 420,58 600,30 C780,2 960,58 1200,30 L1200,60 L0,60 Z" fill="#CBE6DE"/></svg></div>
+
+    <!-- ============ 3. BUILDING ============ -->
+    <section id="building">
+      <div class="wrap">
+        <span class="section-tag">02 <span class="en">— Building</span><span class="zh">— 在构建</span></span>
+        <h2 class="section-h"><span class="en">Products shipped at Novada Labs</span><span class="zh">Novada Labs 已发布的产品</span></h2>
+
+        <div class="products">
+
+          <!-- AgentRecall — flagship, linked -->
+          <article class="product flagship reveal">
+            <div class="product-head">
+              <span class="product-badge"><span class="en">Flagship</span><span class="zh">旗舰产品</span></span>
+            </div>
+            <h3 class="product-name"><a class="link-live" href="https://github.com/Goldentrii/AgentRecall-X" target="_blank" rel="noopener">AgentRecall<span class="arrow">↗</span></a></h3>
+            <p class="product-tag">
+              <span class="en">Persistent memory for AI agents — so corrections actually stick.</span>
+              <span class="zh">为 AI Agent 打造的持久记忆系统——让纠正真正被记住。</span>
+            </p>
+            <div class="product-stats">
+              <div class="pstat"><b>310★</b><span><span class="en">GitHub</span><span class="zh">GitHub 星标</span></span></div>
+              <div class="pstat"><b>6,400+</b><span><span class="en">installs / mo</span><span class="zh">月安装量</span></span></div>
+            </div>
+          </article>
+
+          <!-- AAM — no link -->
+          <article class="product reveal">
+            <div class="product-head">
+              <span class="product-badge"><span class="en">Framework</span><span class="zh">框架</span></span>
+            </div>
+            <h3 class="product-name claim">AAM <span style="font-weight:400;color:var(--muted);font-size:.55em;">(Agent Autonomous Mode)</span><span class="tag-nolink"><span class="en">no public link</span><span class="zh">无公开链接</span></span></h3>
+            <p class="product-tag">
+              <span class="en">Orchestration for autonomous agent teams — with a reviewer that isn't the author.</span>
+              <span class="zh">多智能体编排框架——审阅者永远不是执行者本人。</span>
+            </p>
+            <div class="product-flow">
+              <span><span class="en">Orchestrator</span><span class="zh">编排者</span></span><span class="arrow">→</span>
+              <span><span class="en">Parallel workers</span><span class="zh">并行执行者</span></span><span class="arrow">→</span>
+              <span><span class="en">Independent reviewer</span><span class="zh">独立审阅者</span></span><span class="arrow">→</span>
+              <span><span class="en">Verifier</span><span class="zh">验证者</span></span>
+            </div>
+          </article>
+
+          <!-- Plywood — no link -->
+          <article class="product reveal">
+            <div class="product-head">
+              <span class="product-badge"><span class="en">Compiler</span><span class="zh">编译器</span></span>
+            </div>
+            <h3 class="product-name claim">Plywood Protocol<span class="tag-nolink"><span class="en">no public link</span><span class="zh">无公开链接</span></span></h3>
+            <p class="product-tag">
+              <span class="en">Turns plain-language instructions into executable SOPs — validated, not just claimed.</span>
+              <span class="zh">把自然语言指令编译成可执行的标准作业流程——经过盲测验证，不是自吹。</span>
+            </p>
+            <div class="product-stats">
+              <div class="pstat"><b><span class="en">Blinded RCT</span><span class="zh">盲测 RCT</span></b><span><span class="en">validated via</span><span class="zh">验证方式</span></span></div>
+            </div>
+          </article>
+
+          <!-- Novada MCP — linked to npm -->
+          <article class="product reveal">
+            <div class="product-head">
+              <span class="product-badge"><span class="en">MCP server</span><span class="zh">MCP 服务器</span></span>
+            </div>
+            <h3 class="product-name"><a class="link-live" href="https://www.npmjs.com/package/novada-mcp" target="_blank" rel="noopener">Novada MCP<span class="arrow">↗</span></a></h3>
+            <p class="product-tag">
+              <span class="en">40+ tools across 13 platforms — the integration layer AI agents actually need.</span>
+              <span class="zh">40+ 工具、覆盖 13 个平台的 MCP 服务器——AI Agent 真正需要的集成层。</span>
+            </p>
+            <div class="product-stats">
+              <div class="pstat"><b>40+</b><span><span class="en">tools</span><span class="zh">工具</span></span></div>
+              <div class="pstat"><b>13</b><span><span class="en">platforms</span><span class="zh">平台</span></span></div>
+              <div class="pstat"><b>v0.9.33</b><span><span class="en">on npm</span><span class="zh">npm 版本</span></span></div>
+            </div>
+          </article>
+
+          <!-- Novada Proxy MCP — linked to GitHub -->
+          <article class="product reveal">
+            <div class="product-head">
+              <span class="product-badge"><span class="en">MCP server</span><span class="zh">MCP 服务器</span></span>
+            </div>
+            <h3 class="product-name"><a class="link-live" href="https://github.com/NovadaLabs/novada-proxy" target="_blank" rel="noopener">Novada Proxy MCP<span class="arrow">↗</span></a></h3>
+            <p class="product-tag">
+              <span class="en">Reliable web access for agents, backed by 464 automated tests.</span>
+              <span class="zh">为 Agent 提供稳定的网络访问能力，464 个自动化测试兜底。</span>
+            </p>
+            <div class="product-stats">
+              <div class="pstat"><b>464</b><span><span class="en">automated tests</span><span class="zh">自动化测试</span></span></div>
+            </div>
+          </article>
+
+          <details class="disclose" id="building-more">
+            <summary><span class="chev-icon"></span><span class="en">Show full project detail</span><span class="zh">展开完整项目说明</span></summary>
+            <div class="disclose-body">
+              <p class="product-detail"><span class="en">AgentRecall —</span><span class="zh">AgentRecall —</span> <span class="en">correction-first memory system for AI agents, built on embeddings, vector retrieval, and RRF (reciprocal rank fusion).</span><span class="zh">面向 AI Agent 的纠正优先记忆系统，基于向量嵌入、检索与 RRF（倒数排序融合）。</span></p>
+              <p class="product-detail"><span class="en">AAM —</span><span class="zh">AAM —</span> <span class="en">guardrails and human-in-the-loop checkpoints run alongside every step of the orchestrator → workers → reviewer → verifier chain shown above.</span><span class="zh">在上方“编排者→执行者→审阅者→验证者”链条的每一步中，都配有护栏与人工检查点。</span></p>
+              <p class="personal-note">
+                <b><span class="en">Personal / exploratory —</span><span class="zh">个人 / 探索项目 —</span></b>
+                <span class="en">TchinTalk (栖音), a local-first macOS dictation app exploring on-device speech + AI. Not a Novada product.</span>
+                <span class="zh">TchinTalk（栖音），一个探索本地优先听写体验的 macOS 个人项目——不属于 Novada 产品线。</span>
+              </p>
+            </div>
+          </details>
+        </div>
+
+        <a class="continue" href="#path">
+          <span class="en">Keep going</span><span class="zh">继续往下看</span>
+          <span class="chev-wrap"><span class="chev"></span></span>
+        </a>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,32 C260,60 440,4 600,30 C760,56 940,4 1200,32 L1200,60 L0,60 Z" fill="#F6EFDF"/></svg></div>
+
+    <!-- ============ 4. PATH ============ -->
+    <section id="path">
+      <div class="wrap">
+        <span class="section-tag">03 <span class="en">— Professional Experience</span><span class="zh">— 工作经历</span></span>
+        <h2 class="section-h"><span class="en">Econ/Finance → Supply Chain → AI</span><span class="zh">经济金融 → 供应链 → AI</span></h2>
+
+        <ol class="timeline reveal">
+          <li class="t-item now">
+            <div class="t-dot"></div>
+            <div class="t-head">
+              <span class="t-when">Mar 2026 — <span class="en">Present</span><span class="zh">至今</span><span class="t-dur">5 <span class="en">mos</span><span class="zh">个月</span></span></span>
+              <span class="now-flag"><span class="en">Now</span><span class="zh">现在</span></span>
+              <span class="emp-type full"><span class="en">Full-Time</span><span class="zh">全职</span></span>
+            </div>
+            <h3><span class="en">Co-founder &amp; AI Automation/Infrastructure Engineer</span><span class="zh">联合创始人 &amp; AI 自动化/基础设施工程师</span></h3>
+            <span class="t-where">Novada Labs, Frankfurt / Remote</span>
+            <ul class="t-bullets">
+              <li><b><span class="en">Ships production AI systems:</span><span class="zh">交付生产级 AI 系统：</span></b> <span class="en">AgentRecall (correction-first agent memory), AAM (multi-agent orchestration — orchestrator → workers → independent reviewer → verifier), and Plywood (NL-to-pseudocode workflow compiler, validated via a blinded RCT).</span><span class="zh">AgentRecall（纠正优先的智能体记忆系统）、AAM（多智能体编排——编排者→执行者→独立审阅者→验证者）、Plywood（自然语言转伪代码工作流编译器，经盲测 RCT 验证）。</span></li>
+              <li><b><span class="en">Integration layer:</span><span class="zh">集成层：</span></b> <span class="en">built 6 published production packages, including Novada MCP (40+ tools, 13 platforms) and Novada Proxy MCP (464 automated tests); owns TypeScript/Python code, tests, CI/CD and release end to end.</span><span class="zh">发布了 6 个生产级软件包，包括 Novada MCP（40+ 工具，13 个平台）与 Novada Proxy MCP（464 个自动化测试）；端到端负责代码、测试、CI/CD 与发布。</span></li>
+              <li><b><span class="en">Runs the business, not just the code:</span><span class="zh">不只写代码，也管理业务：</span></b> <span class="en">owns technology-department processes end-to-end — engineering, vendor/procurement, stakeholder communication — as sole technical point of contact for a fast-moving startup.</span><span class="zh">端到端负责技术部门运作——工程、供应商/采购、干系人沟通——是这家快速发展初创公司唯一的技术负责人。</span></li>
+            </ul>
+          </li>
+
+          <li class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-head"><span class="t-when">Sep 2025 – Jan 2026<span class="t-dur">5 <span class="en">mos</span><span class="zh">个月</span></span></span><span class="emp-type full"><span class="en">Full-Time</span><span class="zh">全职</span></span></div>
+            <h3><span class="en">Process Excellence Manager</span><span class="zh">流程卓越经理</span></h3>
+            <span class="t-where">Amazon, Hamburg (DHH2)</span>
+            <div class="t-kpis">100+ <span class="en">metrics</span><span class="zh">指标</span><span class="sep">·</span>16 <span class="en">carrier accounts</span><span class="zh">承运商账户</span><span class="sep">·</span>99.5% <span class="en">quality</span><span class="zh">质量</span><span class="sep">·</span>100% <span class="en">safety compliance</span><span class="zh">安全合规</span></div>
+            <ul class="t-bullets">
+              <li><b><span class="en">In-station operations:</span><span class="zh">站内运营：</span></b> <span class="en">standardized in-station workflows (receiving, sortation, route planning, loading) across 16 delivery-carrier accounts, via 100+ OTR/UTR metrics.</span><span class="zh">在 16 个配送承运商账户上，标准化了站内作业流程（收货、分拣、路线规划、装车），依托 100+ 项 OTR/UTR 指标。</span></li>
+              <li><b><span class="en">Root-cause analysis:</span><span class="zh">根因分析：</span></b> <span class="en">led structured RCA (Lean/5S) with corrective-action plans for underperforming carriers — sustaining 99.5% delivery quality and 100% safety compliance.</span><span class="zh">主导结构化根因分析（精益/5S），为表现不佳的承运商制定纠正措施——维持 99.5% 配送质量与 100% 安全合规。</span></li>
+              <li><b><span class="en">Change management:</span><span class="zh">变革管理：</span></b> <span class="en">directed 100+ L1–L3 associates; built training materials, ran train-the-trainer workshops and monthly audits; shipped an internal AI-assisted reporting tool that saved the team 6+ hrs/week.</span><span class="zh">管理 100+ 名 L1–L3 员工；编写培训材料，开展"培训讲师"工作坊与月度审计；搭建了内部 AI 辅助报表工具，为团队每周节省 6+ 小时。</span></li>
+            </ul>
+          </li>
+
+          <li class="t-item">
+            <div class="t-dot"></div>
+            <div class="t-head"><span class="t-when">Jun 2024 – Aug 2025<span class="t-dur">1 <span class="en">yr</span><span class="zh">年</span> 3 <span class="en">mos</span><span class="zh">个月</span></span></span><span class="emp-type full"><span class="en">Full-Time</span><span class="zh">全职</span></span></div>
+            <h3><span class="en">Supply Chain Delivery Manager</span><span class="zh">供应链交付经理</span></h3>
+            <span class="t-where">Xiaomi Technology, Düsseldorf</span>
+            <div class="t-kpis">~€110M<span class="en">/yr fulfilment</span><span class="zh">/年履约额</span><span class="sep">·</span>99.5% <span class="en">on-time</span><span class="zh">准时率</span></div>
+            <ul class="t-bullets">
+              <li><b><span class="en">Built the platform:</span><span class="zh">搭建平台：</span></b> <span class="en">independently scoped requirements for, designed and deployed a company-wide KPI-tracking &amp; exception-management platform — automated dashboards, real-time damage/delay alerts, escalation SOPs, carrier SLA frameworks.</span><span class="zh">独立梳理需求，设计并部署了公司级 KPI 跟踪与异常管理平台——自动化仪表盘、实时破损/延误告警、升级流程、承运商 SLA 框架。</span></li>
+              <li><b><span class="en">Ran it at scale:</span><span class="zh">规模化运营：</span></b> <span class="en">end-to-end B2B/B2C fulfilment (~320k units/yr, ~€110M) for DE &amp; NL at 99.5% on-time; standardized last-mile 3PL workflows via SAP/CRM/GDP.</span><span class="zh">为德国与荷兰运营端到端 B2B/B2C 履约（约 32 万件/年，约 1.1 亿欧元），准时率 99.5%；通过 SAP/CRM/GDP 标准化末端 3PL 流程。</span></li>
+              <li><b><span class="en">Cross-functional planning:</span><span class="zh">跨部门规划：</span></b> <span class="en">led CPFR demand planning, S&amp;OP and 12-month rolling supply plans; aligned Sales, GTM and 3PL partners.</span><span class="zh">主导 CPFR 需求计划、S&amp;OP 与 12 个月滚动供应计划；协调销售、市场推广与第三方物流伙伴。</span></li>
+            </ul>
+          </li>
+        </ol>
+
+        <details class="disclose" id="more-path">
+            <summary><span class="chev-icon"></span><span class="en">Show full timeline (10 roles)</span><span class="zh">展开完整履历（共 10 段）</span></summary>
+            <div class="disclose-body">
+              <ol class="timeline" style="margin-top:2px;">
+                <li class="t-item">
+                  <div class="t-dot"></div>
+                  <div class="t-head"><span class="t-when">Dec 2023 – Jun 2024<span class="t-dur">7 <span class="en">mos</span><span class="zh">个月</span></span></span><span class="emp-type full"><span class="en">Full-Time</span><span class="zh">全职</span></span></div>
+                  <h3><span class="en">EU Certification / Quality Specialist</span><span class="zh">欧盟认证/质量专员</span></h3>
+                  <span class="t-where">Huawei, Düsseldorf</span>
+                  <p><span class="en">Managed ISO 9001/14001/45001 compliance across labs, notified bodies and product teams, in three languages.</span><span class="zh">以三种语言管理实验室、公告机构与产品团队之间的 ISO 9001/14001/45001 合规工作。</span></p>
+                </li>
+                <li class="t-item">
+                  <div class="t-dot"></div>
+                  <div class="t-head"><span class="t-when">Oct 2022 – Feb 2024<span class="t-dur">1 <span class="en">yr</span><span class="zh">年</span> 5 <span class="en">mos</span><span class="zh">个月</span></span></span></div>
+                  <h3><span class="en">Graduate Teaching &amp; Research Assistant</span><span class="zh">研究生助教/研究助理</span></h3>
+                  <span class="t-where">University of Freiburg</span>
+                  <p><span class="en">Taught Finance/Macroeconomics; ran behavioral/game-theoretic experiments at FRIBIS.</span><span class="zh">教授金融/宏观经济学；在 FRIBIS 开展行为与博弈论实验。</span></p>
+                </li>
+                <li class="t-item">
+                  <div class="t-dot"></div>
+                  <div class="t-head"><span class="t-when">Oct 2020 – Nov 2023</span></div>
+                  <h3><span class="en">M.Sc. Economics and Finance</span><span class="zh">经济与金融学硕士</span></h3>
+                  <span class="t-where">University of Freiburg</span>
+                  <p><span class="en">Computational Economics, Machine Learning and programming-heavy coursework (Econometrics, Time-Series Analysis) — more informatics than a typical finance degree. Seminar: LangChain + Pinecone RAG assistant (2023) — his first retrieval build <span class="claim">(no public repo on file)</span>. Outstanding Student Representative, commencement speaker.</span><span class="zh">计算经济学、机器学习与编程比重很高的课程（计量经济学、时间序列分析）——比典型的金融学位更偏计算机方向。研讨课项目：LangChain + Pinecone RAG 助手（2023）——他的第一个检索系统<span class="claim">（无公开代码库）</span>。优秀学生代表，毕业致辞代表。</span></p>
+                </li>
+                <li class="t-item">
+                  <div class="t-dot"></div>
+                  <div class="t-head"><span class="t-when">Jul 2021 – Oct 2021<span class="t-dur">4 <span class="en">mos</span><span class="zh">个月</span></span></span><span class="emp-type"><span class="en">Internship</span><span class="zh">实习</span></span></div>
+                  <h3><span class="en">Business Intern</span><span class="zh">商务实习生</span></h3>
+                  <span class="t-where">SEG Automotive, China</span>
+                  <p><span class="en">Supported procurement processes in SAP; supplier risk management and safety audits in an automotive supply chain.</span><span class="zh">在 SAP 系统中支持采购流程；在汽车供应链中开展供应商风险管理与安全审计。</span></p>
+                </li>
+                <li class="t-item">
+                  <div class="t-dot"></div>
+                  <div class="t-head"><span class="t-when">Nov 2018 – Mar 2020<span class="t-dur">1 <span class="en">yr</span><span class="zh">年</span> 5 <span class="en">mos</span><span class="zh">个月</span></span></span><span class="emp-type full"><span class="en">Full-Time</span><span class="zh">全职</span></span></div>
+                  <h3><span class="en">Project Management Specialist</span><span class="zh">项目管理专员</span></h3>
+                  <span class="t-where">Arshine Pharmaceutical Co., Ltd, Changsha, China</span>
+                  <p><span class="en">Managed end-to-end export projects: overseas B2B client development, third-party international logistics, documentation and cross-border customs clearance.</span><span class="zh">管理端到端出口项目：海外 B2B 客户开发、第三方国际物流、单证处理与跨境清关。</span></p>
+                </li>
+                <li class="t-item">
+                  <div class="t-dot"></div>
+                  <div class="t-head"><span class="t-when">Jun 2018 – Sep 2018<span class="t-dur">4 <span class="en">mos</span><span class="zh">个月</span></span></span><span class="emp-type"><span class="en">Internship</span><span class="zh">实习</span></span></div>
+                  <h3><span class="en">Business Intern</span><span class="zh">商务实习生</span></h3>
+                  <span class="t-where">Harris Teeter, USA</span>
+                  <p><span class="en">Supported retail logistics and sales operations in a high-volume US retail environment.</span><span class="zh">在高流量的美国零售环境中支持零售物流与销售运营。</span></p>
+                </li>
+                <li class="t-item">
+                  <div class="t-dot"></div>
+                  <div class="t-head"><span class="t-when">Sep 2014 – Jun 2018</span></div>
+                  <h3><span class="en">B.A. Business English (International Trade &amp; Business)</span><span class="zh">商务英语学士（国际贸易与商务）</span></h3>
+                  <span class="t-where">Jishou University, China</span>
+                  <p><span class="en">Foundation in international trade &amp; economics.</span><span class="zh">国际贸易与经济学基础。</span></p>
+                </li>
+              </ol>
+            </div>
+          </details>
+
+        <a class="continue" href="#skills">
+          <span class="en">Keep going</span><span class="zh">继续往下看</span>
+          <span class="chev-wrap"><span class="chev"></span></span>
+        </a>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C220,4 400,58 600,32 C800,4 980,58 1200,30 L1200,60 L0,60 Z" fill="#E3E8E6"/></svg></div>
+
+    <!-- ============ 5. SKILLS ============ -->
+    <section id="skills">
+      <div class="wrap">
+        <span class="section-tag">04 <span class="en">— Skills</span><span class="zh">— 技能</span></span>
+        <h2 class="section-h"><span class="en">What the numbers above are built on</span><span class="zh">上面这些数字的地基</span></h2>
+
+        <div class="skills-grid reveal">
+          <div class="skill-group">
+            <h3><span class="en">AI &amp; Agent Engineering</span><span class="zh">AI 与智能体工程</span></h3>
+            <p class="flow-list">
+              <span class="tick">RAG (embeddings, vector retrieval, RRF)</span><span class="tick"><span class="en">Multi-agent orchestration</span><span class="zh">多智能体编排</span></span><span class="tick">MCP (server/client)</span><span class="tick"><span class="en">LLM integration</span><span class="zh">LLM 集成</span> (Claude API, OpenAI)</span><span class="tick"><span class="en">Evals &amp; benchmarking</span><span class="zh">评测与基准测试</span></span><span class="tick"><span class="en">Guardrails / quality measurement</span><span class="zh">护栏机制/质量度量</span></span><span class="tick">Python</span><span class="tick">TypeScript</span><span class="tick">PostgreSQL</span><span class="tick">Docker / CI-CD</span>
+            </p>
+          </div>
+
+          <div class="skill-group">
+            <h3><span class="en">Process &amp; Operations Excellence</span><span class="zh">流程与运营卓越</span></h3>
+            <p class="flow-list">
+              <span class="tick">Lean</span><span class="tick"><span class="en">Six Sigma</span><span class="zh">六西格玛</span> (Green Belt)</span><span class="tick"><span class="en">Root-cause analysis</span><span class="zh">根因分析</span></span><span class="tick"><span class="en">KPI design &amp; monitoring</span><span class="zh">KPI 设计与监控</span></span><span class="tick"><span class="en">Requirements engineering</span><span class="zh">需求工程</span></span><span class="tick"><span class="en">Enterprise / key-account management</span><span class="zh">企业/大客户管理</span></span><span class="tick">ISO 9001 / 14001 / 45001</span>
+            </p>
+          </div>
+
+          <div class="skill-group certs">
+            <h3><span class="en">Certifications</span><span class="zh">认证</span><span class="tag-nolink"><span class="en">no verified badge links</span><span class="zh">无认证徽章链接</span></span></h3>
+            <p><span class="claim">Six Sigma Green Belt · Certified Business Analysis Professional (CBAP) · Google Data Analytics · Google IT Automation with Python</span></p>
+          </div>
+
+          <div class="skill-group">
+            <h3><span class="en">Languages</span><span class="zh">语言</span></h3>
+            <p class="lang-line">
+              中文 — <b><span class="en">Native</span><span class="zh">母语</span></b> &nbsp;·&nbsp; English — <b>C2</b> &nbsp;·&nbsp; Deutsch — <b>C1</b>
+            </p>
+          </div>
+        </div>
+
+        <a class="continue" href="#offscreen">
+          <span class="en">Keep going</span><span class="zh">继续往下看</span>
+          <span class="chev-wrap"><span class="chev"></span></span>
+        </a>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,32 C240,60 420,4 600,30 C780,56 960,4 1200,32 L1200,60 L0,60 Z" fill="#E9D2BC"/></svg></div>
+
+    <!-- ============ 6. OFF-SCREEN ============ -->
+    <section id="offscreen">
+      <div class="wrap">
+        <span class="section-tag">05 <span class="en">— Off-screen</span><span class="zh">— 屏幕之外</span></span>
+        <p class="off-frame reveal">
+          <span class="en">What I read, brew, and practice when I'm not shipping.</span>
+          <span class="zh">不写代码的时候，我在读、在泡茶、在写字。</span>
+        </p>
+        <div class="off-list reveal">
+          <div class="off-item"><span class="cn">易经</span><span class="en">I Ching study</span><span class="zh">— 易经研习</span></div>
+          <div class="off-item"><span class="cn">茶道</span><span class="en">Tea ceremony</span><span class="zh">— 茶道</span></div>
+          <div class="off-item"><span class="cn">书法</span><span class="en">Calligraphy</span><span class="zh">— 书法</span></div>
+          <div class="off-item"><span class="cn">徒步</span><span class="en">Hiking</span><span class="zh">— 徒步</span></div>
+          <div class="off-item"><span class="cn">日本語</span><span class="en">Learning Japanese</span><span class="zh">— 学习日语</span></div>
+        </div>
+
+        <a class="continue" href="#contact">
+          <span class="en">Keep going</span><span class="zh">继续往下看</span>
+          <span class="chev-wrap"><span class="chev"></span></span>
+        </a>
+      </div>
+    </section>
+
+    <div class="divider" aria-hidden="true"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 C220,58 400,2 600,30 C800,58 980,2 1200,30 L1200,60 L0,60 Z" fill="#CFE3DE"/></svg></div>
+
+  </main>
+
+  <!-- ============ 7. CONTACT ============ -->
+  <footer id="contact">
+    <div class="wrap">
+      <span class="section-tag">06 <span class="en">— Contact</span><span class="zh">— 联系</span></span>
+
+      <p class="contact-hero reveal">
+        <a class="link-live" href="mailto:tongwu0824@gmail.com">tongwu0824@gmail.com<span class="arrow">↗</span></a>
+      </p>
+
+      <div class="contact-grid reveal">
+        <div class="c-item">
+          <span class="k">LinkedIn</span>
+          <span class="v"><a class="link-live" href="https://linkedin.com/in/tongwu3" target="_blank" rel="noopener">linkedin.com/in/tongwu3<span class="arrow">↗</span></a></span>
+        </div>
+        <div class="c-item">
+          <span class="k">GitHub</span>
+          <span class="v"><a class="link-live" href="https://github.com/Goldentrii" target="_blank" rel="noopener">github.com/Goldentrii<span class="arrow">↗</span></a></span>
+        </div>
+        <div class="c-item">
+          <span class="k"><span class="en">Location</span><span class="zh">所在地</span></span>
+          <span class="v">Düsseldorf, NRW, Germany</span>
+        </div>
+      </div>
+
+      <p class="status-line">
+        <span class="dot"></span><span class="en">EU Blue Card holder · open to interesting conversations, not actively job-hunting.</span><span class="zh">欧盟蓝卡持有者 · 欢迎有价值的交流，目前并非主动求职。</span>
+      </p>
+
+      <div class="foot-meta">
+        <span>© 2026 Tong Wu 吴桐</span>
+        <span><span class="en">Design 06 — Water Flow Synthesis</span><span class="zh">设计方案 06 —— 水流合成</span></span>
+        <a class="link-live" href="https://github.com/Goldentrii/website" target="_blank" rel="noopener"><span class="en">This site's source</span><span class="zh">本站源码</span><span class="arrow">↗</span></a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var root = document.documentElement;
+    var toggle = document.getElementById('langToggle');
+    var STORAGE_KEY = 'tw-lang';
+
+    function applyLang(lang){
+      root.setAttribute('data-lang', lang);
+      root.setAttribute('lang', lang === 'zh' ? 'zh-CN' : 'en');
+      toggle.textContent = lang === 'en' ? '中文' : 'EN';
+      toggle.setAttribute('aria-label', lang === 'en' ? 'Switch to Chinese' : 'Switch to English');
+    }
+
+    var saved = 'en';
+    try { saved = localStorage.getItem(STORAGE_KEY) || 'en'; } catch(e){}
+    applyLang(saved);
+
+    toggle.addEventListener('click', function(){
+      var current = root.getAttribute('data-lang');
+      var next = current === 'en' ? 'zh' : 'en';
+      applyLang(next);
+      try { localStorage.setItem(STORAGE_KEY, next); } catch(e){}
+    });
+
+    // ---- side-rail: highlight current section as visitor scrolls ----
+    var railItems = Array.prototype.slice.call(document.querySelectorAll('.rail-item'));
+    var sections = railItems.map(function(item){
+      return document.getElementById(item.getAttribute('data-section'));
+    });
+
+    function setActive(id){
+      railItems.forEach(function(item){
+        item.classList.toggle('active', item.getAttribute('data-section') === id);
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) { setActive(entry.target.id); }
+        });
+      }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+      sections.forEach(function(s){ if (s) io.observe(s); });
+    }
+
+    // ---- scroll reveal, gated by prefers-reduced-motion ----
+    var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var revealEls = document.querySelectorAll('.reveal');
+    if (reduceMotion || !('IntersectionObserver' in window)) {
+      revealEls.forEach(function(el){ el.classList.add('in-view'); });
+    } else {
+      var ioReveal = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if (entry.isIntersecting) {
+            entry.target.classList.add('in-view');
+            ioReveal.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function(el){ ioReveal.observe(el); });
+    }
+  })();
 </script>
+
 </body>
 </html>
