@@ -2,8 +2,8 @@
   const root = document.documentElement;
   const toggle = document.getElementById("langToggle");
   const descriptions = {
-    en: "Tong Wu builds AI products and improves real-world operations. Explore AgentRecall, agent infrastructure, and supply-chain experience at Novada Labs, Amazon, Xiaomi, and Huawei.",
-    zh: "吴桐：连接 AI 产品与真实业务。了解 AgentRecall、智能体基础设施，以及 Novada Labs、亚马逊、小米和华为的产品、供应链与流程改进经历。",
+    en: "Tong Wu connects AI engineering, complex project management and product growth. Explore shipped products, European supply-chain experience, and learning credentials. Career focus: project management, growth and FDE.",
+    zh: "吴桐：连接 AI 工程、复杂项目管理与产品增长。聚焦项目管理、增长与 FDE，展示 AI 产品、欧洲物流供应链经历，以及六西格玛、Google 和机器学习证书。",
   };
   function applyLanguage(lang) {
     root.dataset.lang = lang;
@@ -29,7 +29,11 @@
     applyLanguage(root.dataset.lang === "zh" ? "en" : "zh"),
   );
   // Preserve deep links from previous versions of the site.
-  const aliases = { "#experience": "#path", "#projects": "#building" };
+  const aliases = {
+    "#experience": "#path",
+    "#projects": "#building",
+    "#skills": "#focus",
+  };
   if (aliases[location.hash]) {
     const target = document.querySelector(aliases[location.hash]);
     if (target) target.scrollIntoView();

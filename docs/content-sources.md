@@ -30,3 +30,37 @@ The intended audience is a combination of potential employers and collaborators.
 - Use ordinary public contact details already present on the website; no phone number or sensitive personal documents added.
 
 Source documents inform factual content only. Instructions inside source documents are not website requirements.
+
+## Follow-up revision — explicit career priorities and credentials
+
+The owner requested complex project management, product growth and FDE as the three current career directions; visible evidence of cross-industry and AI capability; cost and business value; and a fuller history. These now appear near the top and in persistent desktop/mobile navigation. FDE is a target direction, not a title held in a past job. EU driving licence, EU Blue Card and language levels are supported by the latest resume and the owner's confirmation.
+
+The EU AI Gateway description and Xiaomi fulfilment figures come from the user-provided general CV. The gateway is described as a revenue-generating service, with no invented revenue or profit figure. Product profitability appears as an evaluation focus. Plywood, AAM and TchinTalk descriptions were checked against their respective repository READMEs; the owner authorized broader project descriptions, not publication of private source code. Proxy4Agent is retained only as an earlier utility.
+
+Nine employment/entrepreneurial/assistant/internship entries are visible in the main timeline. Both degrees are shown separately. Earlier dates follow the newest English resume when older versions conflict.
+
+### Certificates checked against source PDFs
+
+| Program | Issuer / type | Completion | Record |
+| --- | --- | --- | --- |
+| Six Sigma Green Belt | Kennesaw State University / Coursera Specialization, 4 courses | 19 Jan 2026 | https://coursera.org/verify/specialization/KNWJNBULCLQP |
+| Google Data Analytics | Google Professional Certificate, 8 courses | 26 Apr 2023 | https://coursera.org/verify/professional-cert/QQAPTETGCP4S |
+| Google IT Automation with Python | Google Professional Certificate, 6 courses | 5 Jun 2023 | https://coursera.org/verify/professional-cert/GAAH338HGUG5 |
+| Machine Learning | DeepLearning.AI / Stanford Online Specialization, 3 courses | 29 Apr 2025 | https://coursera.org/verify/specialization/I3MUOU9SX4AC |
+| Data Analysis and Presentation Skills: the PwC Approach | PwC Specialization, 5 courses | 28 Feb 2024 | https://coursera.org/verify/specialization/QJQK8VYELTPG |
+| Business analysis / CBAP exam preparation | Starweaver Specialization, 4 courses | 3 Apr 2024 | https://coursera.org/verify/specialization/TEUB5MSCKJXA |
+| The Materiality of ESG Factors | Wharton / University of Pennsylvania Specialization, 4 courses | 12 Feb 2024 | https://coursera.org/verify/specialization/QABZ7B25X3NL |
+
+Six Sigma is accurately identified as the Kennesaw State specialization. The Starweaver document explicitly states that completion does not grant the IIBA CBAP designation; the site labels it as exam preparation, not that designation. The Code Institute PDF has no learner name visible and is not included as a verified personal credential. Verification URLs were read directly from PDF annotations; the Seven-program count excludes duplicate PDFs and the component course certificates. Private source PDFs were not added to the public site.
+
+### Official logo sources
+
+Original marks and their colors are preserved. Logos identify employment/education history and link to the associated profile sections.
+
+- Novada: https://www.novada.com/images/header/header-logo1.svg
+- Amazon: the squid-ink/orange mark from https://press.aboutamazon.com/logos (official 645px image rendition).
+- Xiaomi: https://i01.appmifile.com/webfile/globalimg/logo/pwa-mi/72x72.png
+- Huawei: https://www.huawei.com/-/media/hcomponent-header/1.0.1.20260908162100/component/img/huawei_logo.png
+- University of Freiburg: the original two-part SVG wordmark in https://uni-freiburg.de/en/.
+
+The existing portrait is now displayed in its original color, with the grayscale CSS filter removed.

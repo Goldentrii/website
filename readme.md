@@ -17,7 +17,9 @@ Open `http://127.0.0.1:8765`. No build step or package installation is required.
 - `assets/site.js`: language preference and legacy anchor aliases. Content and native disclosures remain usable without JavaScript.
 - `assets/fonts.css`, `assets/fonts/`: self-hosted Google Fonts and their SIL Open Font Licenses.
 - `assets/agentrecall-dashboard.png`: preview from the public AgentRecall repository; its example figures are not portfolio performance claims.
-- `assets/tong-wu.jpg`: portrait.
+- `assets/tong-wu.jpg`: original color portrait.
+- `assets/logos/`: organization logos sourced from their official websites.
+- The homepage highlights project management, product growth and FDE, followed by the expanded project catalogue, nine career entries, two degrees and seven certificate records.
 - `assets/social-card.png`: social sharing image.
 - `docs/content-sources.md`: content provenance and editorial decisions.
 
