@@ -8,7 +8,7 @@ The intended audience is a combination of potential employers and collaborators.
 
 | Content | Source / editorial treatment |
 | --- | --- |
-| Current title and recent role dates | User-provided September 2026 English resume. The current Novada Labs role is “AI Automation & Product Manager.” |
+| Current title and recent role dates | User-provided September 2026 English resume. The current Novada Labs role is “AI Automation & GTM Manager” (owner-directed, 25 Sep 2026; previously “AI Automation & Product Manager”). |
 | Amazon reporting tool and 6+ hours/week | User-provided general English CV source. Historical self-reported outcome; not a live measurement or a claim about the reconstructed demo. |
 | Earlier experience | Latest English resume, which supersedes conflicting dates in older CV variants and the previous homepage. |
 | Education and languages | Latest English resume; degree retained as Economics and Finance. |
@@ -75,3 +75,12 @@ The existing portrait is now displayed in its original color, with the grayscale
 - Adecco logo: Wikimedia Commons `Adecco_Logo.svg` (red box wordmark) as `assets/logos/adecco.svg`; the "The Adecco Group" mark is kept as `adecco-group.svg` but unused.
 - University of Freiburg: the two-part wordmark (`freiburg-university.svg` + `freiburg-name.svg`) stacked, as on the official site.
 - Credits: design and code by Claude (Claude Code), direction and content by Tong Wu.
+
+## Content pass — 25 September 2026 (tone: chill, curious)
+
+- Owner-directed title: Novada Labs "AI Automation & GTM Manager" (replaces "AI Automation & Product Manager").
+- Hero states the owner's wording: deep understanding of data analysis, process excellence and AI; contact links (email, LinkedIn, GitHub) moved to the top of the page.
+- All performance metrics removed at the owner's request (revenue, on-time delivery, hours saved, 0→1 counters). Loot and levels describe what was built, not how much.
+- Quest log split into jobs (full-time & part-time; Freiburg tagged part-time, self-employed tagged freelance) and internships.
+- Hobbies: tea dropped (not an interest); calligraphy, I Ching (易经) and BaZi (八字) shown instead.
+- Character class changed from "Operations × AI Builder" to "Data Analysis × Supply Chain" (owner: strength is data analysis, not "AI builder"; lean toward supply-chain analytics). Special moves use skill-tree wording plus the owner-stated core strength, data analysis. S&OP is not claimed — no source for it.

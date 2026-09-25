@@ -464,6 +464,31 @@ h2 em {
   max-width: 52ch;
   margin-bottom: 30px;
 }
+.hero-links {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: -12px 0 28px;
+  font-size: 0.82rem;
+  text-transform: none;
+}
+.hero-links a {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 2px solid var(--ink);
+  border-radius: 99px;
+  background: #fffdf7;
+  color: var(--ink);
+  text-decoration: none;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.hero-links a:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -569,28 +594,6 @@ h2 em {
   border-top: 2px dashed var(--line);
   color: var(--muted);
   font-size: 0.68rem;
-}
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 64px;
-}
-.stat {
-  border-top: 2px solid var(--ink);
-  padding-top: 14px;
-}
-.stat strong {
-  display: block;
-  font: 700 clamp(1.8rem, 3.6vw, 2.6rem) / 1 var(--sans);
-  letter-spacing: -0.03em;
-  color: var(--accent);
-  margin-bottom: 6px;
-}
-.stat span {
-  color: var(--muted);
-  font-size: 0.95rem;
 }
 
 /* ── World map ── */
@@ -973,7 +976,18 @@ details p {
   background: var(--paper);
   border: 3px solid var(--ink);
 }
-.quest:first-child::before {
+.q-group {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  margin: 0 0 14px;
+}
+.timeline + .q-group {
+  margin-top: 36px;
+}
+.timeline-jobs .quest:first-child::before {
   background: var(--orange);
 }
 .q-logo {
@@ -1146,7 +1160,7 @@ details p {
 }
 .side-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
 }
 .side-item {
@@ -1156,6 +1170,9 @@ details p {
   align-items: center;
   justify-content: center;
   gap: 8px;
+  min-width: 0;
+  padding: 8px;
+  text-align: center;
   font-weight: 600;
 }
 .side-item:nth-child(2) {
@@ -1167,6 +1184,7 @@ details p {
 .side-glyph {
   font: 400 3rem/1 "Songti SC", "SimSun", "Noto Serif CJK SC", serif;
   color: var(--accent);
+  white-space: nowrap;
 }
 
 /* ── Save point ── */
@@ -1197,7 +1215,8 @@ details p {
   margin-bottom: 18px;
 }
 .save-card h2 {
-  max-width: 16ch;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  max-width: 20ch;
   margin-inline: auto;
 }
 .save-card h2 em {
@@ -1459,10 +1478,6 @@ details p {
   .sheet {
     transform: none;
   }
-  .stats {
-    grid-template-columns: 1fr 1fr;
-    gap: 24px 16px;
-  }
   section {
     padding: 72px 0;
   }
@@ -1534,7 +1549,7 @@ details p {
     font-size: 1rem;
   }
   .quest {
-    grid-template-columns: 56px 1fr;
+    grid-template-columns: 56px minmax(0, 1fr);
     gap: 6px 12px;
     padding: 12px 14px;
   }

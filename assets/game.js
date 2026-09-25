@@ -61,12 +61,12 @@
     const ZONE_LINES = {
       player: "That’s Tong. Scroll down — every section is a level.",
       map: "Five levels so far. Each one unlocks as you reach it.",
-      loot: "Loot! Things Tong actually shipped. Open one to inspect it.",
-      quests: "The full quest log. Short on purpose — details live on LinkedIn.",
+      loot: "Loot! Small things Tong built. Open one to inspect it.",
+      quests: "The quest log: jobs first, internships below. Details live on LinkedIn.",
       skills: "Economics first, code later. Honestly, a good order.",
       achievements: "Click any badge to verify it. No trust required.",
-      side: "Side quests. Even builders need slow hobbies.",
-      save: "You finished the game! One quest left: say hi. 👋",
+      side: "Side quests: calligraphy, the I Ching, BaZi. Curiosity, offline.",
+      save: "You made it! One quest left: say hi. 👋",
     };
     const CHATTER = [
       "I’m Claude. I wrote every line of this page.",
@@ -229,7 +229,7 @@
     };
 
     // ── Reveal-on-scroll for cards ──
-    const revealables = $$(".level-card, .item, .quest, .edu-card, .badge, .side-item, .stat");
+    const revealables = $$(".level-card, .item, .quest, .edu-card, .badge, .side-item");
     if (!reduceMotion) revealables.forEach((el) => el.setAttribute("data-reveal", ""));
 
     if ("IntersectionObserver" in window) {
@@ -322,7 +322,7 @@
       void guide.offsetWidth;
       guide.classList.add("dance");
       toast("+30 lives", " cheat code accepted");
-      say("You found the secret. Tong owes you a tea. 🍵", 6000);
+      say("You found the secret. Tong owes you a BaZi reading. ☯", 6000);
       confetti();
     });
 
