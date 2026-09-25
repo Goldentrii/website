@@ -1,25 +1,22 @@
 <!doctype html>
-<html lang="en" data-lang="en">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="color-scheme" content="light" />
     <meta name="theme-color" content="#f4f2eb" />
-    <title>Tong Wu — AI Products &amp; Operations</title>
+    <title>Tong Wu — Operations × AI Builder</title>
     <meta
       name="description"
-      content="Tong Wu connects AI engineering, complex project management and product growth. Explore shipped products, European supply-chain experience, and verified learning credentials. Career focus: project management, growth and FDE."
+      content="Tong Wu fixes how work flows, then builds the tools that keep it fixed. Supply-chain and process-excellence experience at Xiaomi and Amazon; now building AI products at Novada Labs. Played as a small game, built by Claude Code."
     />
     <link rel="canonical" href="https://tongwu.network/" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tongwu.network/" />
-    <meta
-      property="og:title"
-      content="Tong Wu — AI Products &amp; Operations"
-    />
+    <meta property="og:title" content="Tong Wu — Operations × AI Builder" />
     <meta
       property="og:description"
-      content="Tong Wu connects AI engineering, complex project management and product growth. Explore shipped products, European supply-chain experience, and verified learning credentials. Career focus: project management, growth and FDE."
+      content="Supply chains at Xiaomi, process excellence at Amazon, AI products at Novada Labs. A career, played as a game."
     />
     <meta
       property="og:image"
@@ -27,24 +24,15 @@
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="Tong Wu — Turning complexity into working systems. AI products × real-world operations."
-    />
+    <meta property="og:image:alt" content="Tong Wu — Operations × AI Builder" />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="assets/fonts.css" />
-    <link rel="stylesheet" href="assets/site.css" />
+    <link rel="stylesheet" href="assets/game.css" />
     <script>
-      try {
-        const l = localStorage.getItem("tw-lang");
-        if (l === "zh") {
-          document.documentElement.dataset.lang = l;
-          document.documentElement.lang = "zh-CN";
-        }
-      } catch {}
+      document.documentElement.classList.add("js");
     </script>
-    <script src="assets/site.js" defer></script>
+    <script src="assets/game.js" defer onerror="document.documentElement.classList.remove('js')"></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -55,10 +43,10 @@
         "image": "https://tongwu.network/assets/tong-wu.jpg",
         "jobTitle": "AI Automation & Product Manager",
         "worksFor": { "@type": "Organization", "name": "Novada Labs" },
-        "alumniOf": {
-          "@type": "CollegeOrUniversity",
-          "name": "University of Freiburg"
-        },
+        "alumniOf": [
+          { "@type": "CollegeOrUniversity", "name": "University of Freiburg" },
+          { "@type": "CollegeOrUniversity", "name": "Jishou University" }
+        ],
         "knowsLanguage": ["Chinese", "English", "German"],
         "sameAs": [
           "https://github.com/Goldentrii",
@@ -68,1992 +56,689 @@
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#main"
-      ><span class="en" lang="en">Skip to content</span
-      ><span class="zh" lang="zh-CN">跳至正文</span></a
-    >
-    <header class="site-header">
-      <a href="#hero" class="wordmark" aria-label="Tong Wu, home"
-        >tong wu<span class="wordmark-dot">.</span>
-        <span class="wordmark-cn">吴桐</span></a
-      >
-      <nav aria-label="Main navigation">
-        <a class="nav-link" href="#focus"
-          ><span class="en" lang="en">Focus</span
-          ><span class="zh" lang="zh-CN">求职方向</span
-          ><span aria-hidden="true">↗</span></a
-        ><a class="nav-link" href="#building"
-          ><span class="en" lang="en">Work</span
-          ><span class="zh" lang="zh-CN">项目</span
-          ><span aria-hidden="true">↗</span></a
-        ><a class="nav-link" href="#path"
-          ><span class="en" lang="en">Experience</span
-          ><span class="zh" lang="zh-CN">经历</span
-          ><span aria-hidden="true">↗</span></a
-        ><a class="nav-link" href="#credentials"
-          ><span class="en" lang="en">Credentials</span
-          ><span class="zh" lang="zh-CN">证书</span
-          ><span aria-hidden="true">↗</span></a
-        >
-      </nav>
-      <div class="header-actions">
-        <button
-          id="langToggle"
-          class="language"
-          type="button"
-          aria-label="Switch to Chinese"
-        >
-          <span class="en">中文</span><span class="zh">EN</span></button
-        ><a class="nav-contact" href="#contact"
-          ><span class="en" lang="en">Let’s talk</span
-          ><span class="zh" lang="zh-CN">聊一聊</span
-          ><span aria-hidden="true">↗</span></a
-        >
-      </div>
-    </header>
-    <main id="main">
-      <section class="hero wrap" id="hero">
-        <div class="hero-topline">
-          <p class="eyebrow">
-            <span class="status-dot"></span
-            ><span class="en" lang="en"
-              >AI products × real-world operations</span
-            ><span class="zh" lang="zh-CN">AI 产品 × 真实业务</span>
-          </p>
-          <p class="location">
-            Düsseldorf, DE <span aria-hidden="true">↘</span>
-          </p>
+    <!-- Sprite: the guide character, reused everywhere via <use>. -->
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="clawd" viewBox="0 0 26 22" shape-rendering="crispEdges">
+        <rect class="c-body" x="4" y="3" width="18" height="11" />
+        <rect class="c-body c-arm-l" x="0" y="7" width="4" height="4" />
+        <rect class="c-body c-arm-r" x="22" y="7" width="4" height="4" />
+        <g class="c-eyes">
+          <rect x="8" y="6" width="2" height="4" />
+          <rect x="16" y="6" width="2" height="4" />
+        </g>
+        <g class="c-legs">
+          <rect class="c-body" x="5" y="14" width="2" height="5" />
+          <rect class="c-body" x="9" y="14" width="2" height="5" />
+          <rect class="c-body" x="15" y="14" width="2" height="5" />
+          <rect class="c-body" x="19" y="14" width="2" height="5" />
+        </g>
+      </symbol>
+    </svg>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Intro dialog. Opened by JS only; without JS the page is a plain CV. -->
+    <dialog class="boot" id="boot" aria-labelledby="bootTitle">
+      <div class="boot-card">
+        <div class="boot-top">
+          <span class="pill">tongwu.network</span>
+          <span class="pill pill-ghost">v2026.09 · single player</span>
         </div>
-        <div class="hero-grid">
-          <div class="hero-copy">
-            <h1>
-              <span class="en" lang="en"
-                >Turning<br />complexity into<br /><em
-                  >working systems.</em
-                ></span
-              ><span class="zh" lang="zh-CN"
-                >把复杂问题，<br />变成真正<br /><em>运转的系统。</em></span
-              >
-            </h1>
-            <p class="hero-description">
-              <span class="en" lang="en"
-                >I’m Tong Wu. I connect AI engineering, complex project delivery
-                and product growth—with hands-on experience in European
-                logistics and supply chains.</span
-              ><span class="zh" lang="zh-CN"
-                >我是吴桐。我把 AI
-                工程、复杂项目交付与产品增长连接起来，也有欧洲物流与供应链的一线经验。</span
-              >
+        <svg class="boot-clawd bob" aria-hidden="true"><use href="#clawd" /></svg>
+        <p class="boot-hello mono">&gt; hello, visitor_</p>
+        <h2 id="bootTitle" class="boot-title">
+          Hi, I’m Claude. Tong asked me to build this website, so I made it
+          <em>a game.</em>
+        </h2>
+        <p class="boot-copy">
+          It’s about someone who keeps turning messy operations into systems
+          that run. Five levels, some loot, a few achievements. About two
+          minutes.
+        </p>
+        <div class="boot-actions">
+          <button class="btn btn-primary" id="startGame" type="button" autofocus>
+            ▶ Start the game
+          </button>
+          <button class="btn btn-ghost" id="skipGame" type="button">
+            Skip — just the CV
+          </button>
+        </div>
+        <p class="boot-hint mono">press <kbd>Enter</kbd> to start · <kbd>Esc</kbd> to skip</p>
+      </div>
+    </dialog>
+
+    <!-- HUD -->
+    <header class="hud">
+      <a href="#player" class="wordmark" aria-label="Tong Wu, back to start"
+        >tong wu<span class="dot">.</span></a
+      >
+      <div class="hud-xp" aria-hidden="true">
+        <span class="mono hud-lv" id="hudLevel">LV 0</span>
+        <span class="xp-track"><span class="xp-fill" id="xpFill"></span></span>
+        <span class="mono hud-trophy">★ <span id="trophyCount">0</span>/<span id="trophyTotal">8</span></span>
+      </div>
+      <nav class="hud-nav" aria-label="Main navigation">
+        <a href="#map">Levels</a>
+        <a href="#loot">Work</a>
+        <a href="#quests">Experience</a>
+        <a href="#achievements">Credentials</a>
+        <a href="#save" class="hud-cta">Say hi ↗</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- ─────────────── PLAYER ─────────────── -->
+      <section class="player" id="player" data-zone="player">
+        <div class="wrap player-grid">
+          <div class="player-copy">
+            <p class="eyebrow mono">
+              <span class="blink">●</span> player 1 · Düsseldorf, DE
             </p>
-            <div class="career-intent">
-              <p class="eyebrow">
-                <span class="en" lang="en">Current career focus</span
-                ><span class="zh" lang="zh-CN">当前求职方向</span>
-              </p>
-              <p>
-                <span class="en" lang="en"
-                  >Complex project management <span>·</span> Product growth
-                  <span>·</span> FDE</span
-                ><span class="zh" lang="zh-CN"
-                  >复杂项目管理 <span>·</span> 产品增长 <span>·</span> FDE</span
-                >
-              </p>
+            <h1 class="hero-title">
+              I fix how work flows — <em>then build the tools</em> that keep
+              it fixed.
+            </h1>
+            <p class="lede">
+              I’m Tong Wu. I ran supply-chain delivery at Xiaomi and process
+              excellence at Amazon. Now I build AI products at Novada Labs.
+              Economist by training, builder by habit.
+            </p>
+            <div class="hero-actions">
+              <a class="btn btn-primary" href="#map">Press start ↓</a>
+              <a class="btn btn-ghost" href="#quests">Skip to experience</a>
             </div>
-            <div class="hero-cta">
-              <a class="button button-dark" href="#building"
-                ><span class="en" lang="en">Explore my work</span
-                ><span class="zh" lang="zh-CN">看看我的项目</span
-                ><span aria-hidden="true">↗</span></a
-              ><a class="text-link" href="#path"
-                ><span class="en" lang="en">My experience</span
-                ><span class="zh" lang="zh-CN">了解我的经历</span
-                ><span aria-hidden="true">↗</span></a
-              >
-            </div>
-            <div class="hero-profile">
+          </div>
+
+          <aside class="sheet sticker" aria-label="Character sheet">
+            <div class="sheet-head">
               <img
+                class="sheet-photo"
                 src="assets/tong-wu.jpg"
-                width="64"
-                height="64"
                 alt="Tong Wu"
-                fetchpriority="high"
+                width="120"
+                height="120"
               />
               <div>
-                <strong>Tong Wu <span>吴桐</span></strong>
-                <p>
-                  <span class="en" lang="en"
-                    >AI Automation &amp; Product Manager · Novada Labs</span
-                  ><span class="zh" lang="zh-CN"
-                    >AI 自动化与产品经理 · Novada Labs</span
-                  >
+                <p class="mono sheet-label">character</p>
+                <p class="sheet-name">Tong Wu</p>
+                <p class="sheet-class">Operations × AI Builder</p>
+                <p class="mono sheet-now">
+                  AI Automation &amp; Product Manager · Novada Labs
                 </p>
               </div>
             </div>
-          </div>
-          <div class="hero-side">
-            <div class="hero-art" aria-hidden="true">
-              <div class="art-grid"></div>
-              <svg class="system-art" viewbox="0 0 500 520" fill="none">
-                <g class="art-orbit" stroke="currentColor" stroke-width="1.2">
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="50"
-                    ry="195"
-                    transform="rotate(-38 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="60"
-                    ry="195"
-                    transform="rotate(-35 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="70"
-                    ry="195"
-                    transform="rotate(-32 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="80"
-                    ry="195"
-                    transform="rotate(-29 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="90"
-                    ry="195"
-                    transform="rotate(-26 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="100"
-                    ry="195"
-                    transform="rotate(-23 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="110"
-                    ry="195"
-                    transform="rotate(-20 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="120"
-                    ry="195"
-                    transform="rotate(-17 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="130"
-                    ry="195"
-                    transform="rotate(-14 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="140"
-                    ry="195"
-                    transform="rotate(-11 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="150"
-                    ry="195"
-                    transform="rotate(-8 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="160"
-                    ry="195"
-                    transform="rotate(-5 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="170"
-                    ry="195"
-                    transform="rotate(-2 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="180"
-                    ry="195"
-                    transform="rotate(1 252 256)"
-                  ></ellipse>
-                  <ellipse
-                    cx="252"
-                    cy="256"
-                    rx="190"
-                    ry="195"
-                    transform="rotate(4 252 256)"
-                  ></ellipse>
-                </g>
-                <path
-                  d="M38 408H455M67 64V455"
-                  stroke="currentColor"
-                  stroke-opacity=".25"
-                ></path>
-                <circle cx="252" cy="256" r="10" fill="currentColor"></circle>
-                <circle cx="422" cy="124" r="7" fill="currentColor"></circle>
-                <circle
-                  cx="96"
-                  cy="329"
-                  r="6"
-                  fill="currentColor"
-                ></circle></svg
-              ><span class="art-label art-top">01 — CONNECT THE DOTS</span
-              ><span class="art-coordinate">51° N / 06° E</span
-              ><span class="art-bottom"
-                >HUMAN CONTEXT.<br />ENGINEERED SYSTEMS.</span
-              ><span class="art-cross">+</span>
+
+            <div class="sheet-block">
+              <p class="mono sheet-label">languages</p>
+              <ul class="langs">
+                <li>
+                  <span class="lang-name">中文 Chinese</span>
+                  <span class="bar"><span style="--v: 100%"></span></span>
+                  <span class="mono lang-lv">Native</span>
+                </li>
+                <li>
+                  <span class="lang-name">English</span>
+                  <span class="bar"><span style="--v: 95%"></span></span>
+                  <span class="mono lang-lv">C2</span>
+                </li>
+                <li>
+                  <span class="lang-name">Deutsch</span>
+                  <span class="bar"><span style="--v: 80%"></span></span>
+                  <span class="mono lang-lv">C1</span>
+                </li>
+              </ul>
             </div>
-            <div class="hero-credentials">
-              <a href="#credentials" class="mini-credential"
-                ><span class="mini-sigma" aria-hidden="true">6σ</span
-                ><span
-                  ><strong>Six Sigma Green Belt</strong
-                  ><small
-                    ><span class="en" lang="en"
-                      >Kennesaw State · Specialization</span
-                    ><span class="zh" lang="zh-CN"
-                      >肯尼索州立大学 · 专项课程</span
-                    ></small
-                  ></span
-                ><span aria-hidden="true">↗</span></a
-              >
-              <div class="practical-profile">
-                <p>
-                  <strong>中文 · English · Deutsch</strong
-                  ><span
-                    ><span class="en" lang="en">Native · C2 · C1</span
-                    ><span class="zh" lang="zh-CN">母语 · C2 · C1</span></span
-                  >
-                </p>
-                <p>
-                  <strong
-                    ><span class="en" lang="en">EU driving licence</span
-                    ><span class="zh" lang="zh-CN">欧盟驾照</span></strong
-                  ><span
-                    ><span class="en" lang="en"
-                      >EU Blue Card · Based in Germany</span
-                    ><span class="zh" lang="zh-CN"
-                      >欧盟蓝卡 · 常驻德国</span
-                    ></span
-                  >
-                </p>
-              </div>
+
+            <div class="sheet-block">
+              <p class="mono sheet-label">special moves</p>
+              <ul class="chips">
+                <li>Root-cause analysis</li>
+                <li>KPI systems</li>
+                <li>AI automation</li>
+                <li>0 → 1 products</li>
+                <li>Cross-cultural delivery</li>
+              </ul>
             </div>
+
+            <p class="mono sheet-foot">EU Blue Card · EU driving licence</p>
+          </aside>
+        </div>
+
+        <div class="wrap stats">
+          <div class="stat">
+            <strong>€110M</strong>
+            <span>yearly fulfilment run at Xiaomi</span>
           </div>
-        </div>
-        <div class="quick-proof" aria-label="Profile highlights">
-          <a href="#path"
-            ><span class="proof-number">01 /</span>
-            <h2>
-              <span class="en" lang="en">Across industries</span
-              ><span class="zh" lang="zh-CN">跨领域</span>
-            </h2>
-            <p>
-              <span class="en" lang="en"
-                >Economics → supply chains → AI products</span
-              ><span class="zh" lang="zh-CN">经济金融 → 供应链 → AI 产品</span>
-            </p>
-            <span class="proof-arrow" aria-hidden="true">↗</span></a
-          ><a href="#building"
-            ><span class="proof-number">02 /</span>
-            <h2>
-              <span class="en" lang="en">AI, built &amp; shipped</span
-              ><span class="zh" lang="zh-CN">AI 实战能力</span>
-            </h2>
-            <p>
-              <span class="en" lang="en"
-                >Agent memory, orchestration &amp; working products</span
-              ><span class="zh" lang="zh-CN"
-                >智能体记忆、多智能体编排与产品交付</span
-              >
-            </p>
-            <span class="proof-arrow" aria-hidden="true">↗</span></a
-          ><a href="#impact"
-            ><span class="proof-number">03 /</span>
-            <h2>
-              <span class="en" lang="en">Cost savings &amp; growth</span
-              ><span class="zh" lang="zh-CN">降本与增收</span>
-            </h2>
-            <p>
-              <span class="en" lang="en"
-                >6+ hours saved weekly; product revenue ownership</span
-              ><span class="zh" lang="zh-CN"
-                >每周节省 6+ 小时，负责产品收入增长</span
-              >
-            </p>
-            <span class="proof-arrow" aria-hidden="true">↗</span></a
-          ><a href="#credentials"
-            ><span class="proof-number">04 /</span>
-            <h2>
-              <span class="en" lang="en">Evidence of learning</span
-              ><span class="zh" lang="zh-CN">证书与专业积累</span>
-            </h2>
-            <p>
-              <span class="en" lang="en"
-                >Six Sigma · Google · Machine Learning</span
-              ><span class="zh" lang="zh-CN">六西格玛 · Google · 机器学习</span>
-            </p>
-            <span class="proof-arrow" aria-hidden="true">↗</span></a
-          >
-        </div>
-        <div class="company-strip">
-          <span class="eyebrow"
-            ><span class="en" lang="en">Experience &amp; education</span
-            ><span class="zh" lang="zh-CN">工作与教育经历</span></span
-          >
-          <div class="brand-list">
-            <a
-              class="brand brand-novada"
-              href="#role-novada"
-              aria-label="Novada Labs"
-              ><img
-                src="assets/logos/novada.svg"
-                alt="Novada Labs"
-                loading="lazy"
-                width="140"
-                height="46" /></a
-            ><a
-              class="brand brand-amazon"
-              href="#role-amazon"
-              aria-label="Amazon"
-              ><img
-                src="assets/logos/amazon.png"
-                alt="Amazon"
-                loading="lazy"
-                width="140"
-                height="46" /></a
-            ><a
-              class="brand brand-xiaomi"
-              href="#role-xiaomi"
-              aria-label="Xiaomi"
-              ><img
-                src="assets/logos/xiaomi.png"
-                alt="Xiaomi"
-                loading="lazy"
-                width="140"
-                height="46"
-              /><span>Xiaomi</span></a
-            ><a
-              class="brand brand-huawei"
-              href="#role-huawei"
-              aria-label="Huawei"
-              ><img
-                src="assets/logos/huawei.png"
-                alt="Huawei"
-                loading="lazy"
-                width="140"
-                height="46" /></a
-            ><a
-              class="brand brand-freiburg"
-              href="#education"
-              aria-label="University of Freiburg"
-              ><img
-                src="assets/logos/freiburg-university.svg"
-                alt="Universität"
-                width="140"
-                height="28"
-                loading="lazy" /><img
-                src="assets/logos/freiburg-name.svg"
-                alt="Freiburg"
-                width="111"
-                height="28"
-                loading="lazy"
-            /></a>
+          <div class="stat">
+            <strong>99.5%</strong>
+            <span>on-time delivery</span>
+          </div>
+          <div class="stat">
+            <strong>6+ hrs</strong>
+            <span>a week saved by a tool I built at Amazon</span>
+          </div>
+          <div class="stat">
+            <strong>0 → 1</strong>
+            <span>AI product, from idea to revenue</span>
           </div>
         </div>
       </section>
-      <section class="fit-section wrap" id="focus">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">
-              01 / <span class="en" lang="en">Career focus</span
-              ><span class="zh" lang="zh-CN">求职方向</span>
+
+      <!-- ─────────────── WORLD MAP ─────────────── -->
+      <section class="map" id="map" data-zone="map">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="mono sec-kicker">world map · 5 levels</p>
+            <h2>Each level taught <em>one thing.</em></h2>
+            <p class="sec-sub">
+              Economics, compliance, supply chains, process excellence, AI.
+              Different jobs, same move: understand the system, then make it
+              run better.
             </p>
-            <h2>
-              <span class="en" lang="en"
-                >Complexity is<br />where I add value.</span
-              ><span class="zh" lang="zh-CN"
-                >越是复杂的问题，<br />越能发挥我的优势。</span
-              >
-            </h2>
-          </div>
-          <p class="section-intro">
-            <span class="en" lang="en"
-              >I’m focusing on three directions. Logistics, supply chains and
-              process excellence remain the domain experience I bring to
-              each.</span
-            ><span class="zh" lang="zh-CN"
-              >目前重点关注三个方向。物流、供应链与流程卓越，是我在这些方向上可迁移的业务积累。</span
-            >
-          </p>
-        </div>
-        <div class="fit-grid">
-          <article class="fit-card">
-            <span class="fit-number">01 /</span>
-            <h3>
-              <span class="en" lang="en">Complex project management</span
-              ><span class="zh" lang="zh-CN">复杂项目管理</span>
-            </h3>
-            <p>
-              <span class="en" lang="en"
-                >Bring structure to ambiguous, cross-functional work. Align
-                scope, dependencies, resources, cost and stakeholders—and stay
-                accountable through delivery.</span
-              ><span class="zh" lang="zh-CN"
-                >为模糊、跨职能的工作建立结构，协调范围、依赖、资源、成本和干系人，并对最终交付负责。</span
-              >
-            </p>
-            <span class="fit-role"
-              ><span class="en" lang="en">Project / Program Management</span
-              ><span class="zh" lang="zh-CN">项目管理 · 项目群管理</span></span
-            >
-          </article>
-          <article class="fit-card">
-            <span class="fit-number">02 /</span>
-            <h3>
-              <span class="en" lang="en">Product growth</span
-              ><span class="zh" lang="zh-CN">产品增长</span>
-            </h3>
-            <p>
-              <span class="en" lang="en"
-                >Connect product decisions with acquisition, activation,
-                retention and revenue. Weigh delivery cost and profitability
-                alongside growth, using data and user feedback to set
-                priorities.</span
-              ><span class="zh" lang="zh-CN"
-                >把产品决策与获客、激活、留存及收入连接起来，同时考虑交付成本与盈利能力。用数据和用户反馈决定优先级，让增长落到实际业务回报上。</span
-              >
-            </p>
-            <span class="fit-role"
-              ><span class="en" lang="en">Growth Product Manager</span
-              ><span class="zh" lang="zh-CN">增长产品经理</span></span
-            >
-          </article>
-          <article class="fit-card">
-            <span class="fit-number">03 /</span>
-            <h3>
-              <span class="en" lang="en">Forward Deployed Engineer</span
-              ><span class="zh" lang="zh-CN">前线部署工程师 · FDE</span>
-            </h3>
-            <p>
-              <span class="en" lang="en"
-                >Work close to customers: understand the process, prototype an
-                AI solution, integrate it into real systems, and support
-                adoption. Bridge business context and engineering
-                execution.</span
-              ><span class="zh" lang="zh-CN"
-                >贴近客户，理解流程，构建 AI
-                原型并接入真实系统，推动团队采用。在业务现场连接需求与工程执行。</span
-              >
-            </p>
-            <span class="fit-role"
-              ><span class="en" lang="en">FDE · Applied AI Solutions</span
-              ><span class="zh" lang="zh-CN"
-                >FDE · 应用型 AI 解决方案</span
-              ></span
-            >
-          </article>
+          </header>
+
+          <ol class="levels">
+            <li class="level" data-level="1">
+              <div class="level-node" aria-hidden="true"><span>1</span></div>
+              <article class="level-card sticker">
+                <div class="level-top">
+                  <span class="logo-uf level-logo-uf" role="img" aria-label="University of Freiburg"><img src="assets/logos/freiburg-university.svg" alt="" width="70" height="14" /><img src="assets/logos/freiburg-name.svg" alt="" width="56" height="14" /></span>
+                  <span class="mono level-years">2020 — 2024</span>
+                </div>
+                <p class="mono level-world">world 1 · the economist</p>
+                <h3>Learned to question assumptions.</h3>
+                <p>
+                  M.Sc. Economics &amp; Finance at the University of Freiburg,
+                  then taught macroeconomics and finance as a graduate
+                  assistant.
+                </p>
+                <p class="loot"><span>loot</span> Commencement speaker</p>
+              </article>
+            </li>
+
+            <li class="level" data-level="2">
+              <div class="level-node" aria-hidden="true"><span>2</span></div>
+              <article class="level-card sticker">
+                <div class="level-top">
+                  <img src="assets/logos/adecco.svg" alt="Adecco" class="level-logo level-logo-adecco" width="63" height="34" />
+                  <span class="mono level-years">2023 — 2024</span>
+                </div>
+                <p class="mono level-world">world 2 · the certifier</p>
+                <h3>Learned how rules become processes.</h3>
+                <p>
+                  Certification and audit readiness across Western Europe —
+                  ISO 9001, 14001 and 45001.
+                </p>
+                <p class="loot"><span>loot</span> Audit-ready, in three languages</p>
+              </article>
+            </li>
+
+            <li class="level" data-level="3">
+              <div class="level-node" aria-hidden="true"><span>3</span></div>
+              <article class="level-card sticker">
+                <div class="level-top">
+                  <img src="assets/logos/xiaomi.png" alt="Xiaomi" class="level-logo" width="44" height="44" />
+                  <span class="mono level-years">2024 — 2025</span>
+                </div>
+                <p class="mono level-world">world 3 · the supply chain</p>
+                <h3>Learned how products actually reach people.</h3>
+                <p>
+                  Ran end-to-end delivery for Germany and the Benelux, and
+                  built the company-wide KPI and exception platform.
+                </p>
+                <p class="loot"><span>loot</span> 99.5% on-time delivery</p>
+              </article>
+            </li>
+
+            <li class="level" data-level="4">
+              <div class="level-node" aria-hidden="true"><span>4</span></div>
+              <article class="level-card sticker">
+                <div class="level-top">
+                  <img src="assets/logos/amazon.png" alt="Amazon" class="level-logo level-logo-wide" width="88" height="30" />
+                  <span class="mono level-years">2025 — 2026</span>
+                </div>
+                <p class="mono level-world">world 4 · the process fixer</p>
+                <h3>Learned to measure everything, then automate it.</h3>
+                <p>
+                  Process excellence at a last-mile delivery station: KPIs,
+                  root causes, fixes that stick.
+                </p>
+                <p class="loot"><span>loot</span> 6+ hours a week, automated</p>
+              </article>
+            </li>
+
+            <li class="level level-now" data-level="5">
+              <div class="level-node" aria-hidden="true"><span>5</span></div>
+              <article class="level-card sticker">
+                <div class="level-top">
+                  <img src="assets/logos/novada.svg" alt="Novada Labs" class="level-logo level-logo-wide" width="110" height="23" />
+                  <span class="mono level-years level-live">2026 — now</span>
+                </div>
+                <p class="mono level-world">world 5 · the builder</p>
+                <h3>Now building the tools.</h3>
+                <p>
+                  AI automation and product management: owning AI products
+                  from requirement to launch and growth.
+                </p>
+                <p class="loot"><span>loot</span> A product taken from 0 → 1</p>
+              </article>
+            </li>
+          </ol>
         </div>
       </section>
-      <section class="work-section wrap" id="building">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">
-              02 / <span class="en" lang="en">Selected work</span
-              ><span class="zh" lang="zh-CN">精选项目</span>
+
+      <!-- ─────────────── INVENTORY ─────────────── -->
+      <section class="loot-sec" id="loot" data-zone="loot">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="mono sec-kicker">inventory · things I shipped</p>
+            <h2>Loot, <em>collected along the way.</em></h2>
+            <p class="sec-sub">
+              Tools people use, processes teams run. Open one to see what’s
+              inside.
             </p>
-            <h2>
-              <span class="en" lang="en"
-                >A few things<br />I’ve put into the world.</span
-              ><span class="zh" lang="zh-CN">做出来，<br />才算数。</span>
-            </h2>
-          </div>
-          <p class="section-intro">
-            <span class="en" lang="en"
-              >Tools people can use. Processes teams can run. A selection of
-              product and operational work.</span
-            ><span class="zh" lang="zh-CN"
-              >让人用得上的工具，让团队跑得通的流程。这里是我的部分产品与运营实践。</span
-            >
-          </p>
-        </div>
-        <article class="project flagship">
-          <div class="project-visual recall-visual">
-            <div class="visual-heading">
-              <span>AgentRecall / War Room</span
-              ><span class="visual-pill"
-                ><span class="en" lang="en">OPEN SOURCE</span
-                ><span class="zh" lang="zh-CN">开源项目</span></span
-              >
-            </div>
-            <div class="recall-letter" aria-hidden="true">
-              a<span>r</span><i>↗</i>
-            </div>
-            <figure>
+          </header>
+
+          <div class="items">
+            <article class="item item-legendary sticker">
+              <p class="rarity mono">★ legendary · open source</p>
               <img
+                class="item-shot"
                 src="assets/agentrecall-dashboard.png"
-                alt="AgentRecall War Room dashboard showing projects, saved memories and activity"
+                alt="AgentRecall dashboard showing projects, saved memories and activity (example data)"
                 width="1400"
                 height="860"
                 loading="lazy"
               />
-              <figcaption>
-                <span class="en" lang="en"
-                  >Repository dashboard preview · example data</span
-                ><span class="zh" lang="zh-CN"
-                  >仓库中的仪表盘预览 · 示例数据</span
-                >
-              </figcaption>
-            </figure>
-            <span class="visual-footer">MEMORY THAT CARRIES FORWARD.</span>
-          </div>
-          <div class="project-copy">
-            <p class="eyebrow">
-              01 / <span class="en" lang="en">Agent infrastructure</span
-              ><span class="zh" lang="zh-CN">智能体基础设施</span>
-            </p>
-            <h3>AgentRecall<span class="project-star">↗</span></h3>
-            <p class="project-deck">
-              <span class="en" lang="en"
-                >Give the next session<br />a better starting point.</span
-              ><span class="zh" lang="zh-CN"
-                >让下一次对话，<br />从已有经验开始。</span
-              >
-            </p>
-            <p>
-              <span class="en" lang="en"
-                >AI agents lose context between sessions. I built a local-first
-                memory system that carries knowledge and corrections forward,
-                with tools to measure whether the same mistakes recur.</span
-              ><span class="zh" lang="zh-CN"
-                >AI
-                智能体常常在会话之间丢失上下文。我构建了本地优先的记忆系统，保留知识与纠正，并提供测量工具，追踪同类错误是否再次发生。</span
-              >
-            </p>
-            <div class="project-facts">
-              <div>
-                <strong>371<span>★</span></strong
-                ><small
-                  ><span class="en" lang="en">GitHub stars · 11 Sep 2026</span
-                  ><span class="zh" lang="zh-CN"
-                    >GitHub 星标 · 2026.09.11</span
-                  ></small
-                >
-              </div>
-              <div>
-                <strong>MCP + SDK</strong
-                ><small
-                  ><span class="en" lang="en"
-                    >Plus a CLI and local dashboard</span
-                  ><span class="zh" lang="zh-CN"
-                    >以及 CLI 与本地仪表盘</span
-                  ></small
-                >
-              </div>
-            </div>
-            <p class="ownership">
-              <span class="en" lang="en"
-                >My role: product direction, implementation, evaluation &amp;
-                releases.</span
-              ><span class="zh" lang="zh-CN"
-                >我的工作：产品方向、工程实现、评测与版本发布。</span
-              >
-            </p>
-            <a
-              class="text-link"
-              href="https://github.com/Goldentrii/AgentRecall-X"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="en" lang="en">Explore the repository</span
-              ><span class="zh" lang="zh-CN">查看开源项目</span
-              ><span aria-hidden="true">↗</span></a
-            >
-            <details>
-              <summary>
-                <span class="en" lang="en">Inside the project</span
-                ><span class="zh" lang="zh-CN">展开项目细节</span
-                ><span aria-hidden="true">+</span>
-              </summary>
-              <div class="detail-body">
-                <div>
-                  <h4>
-                    <span class="en" lang="en">The problem</span
-                    ><span class="zh" lang="zh-CN">问题</span>
-                  </h4>
-                  <p>
-                    <span class="en" lang="en"
-                      >An agent can retrieve an old correction without changing
-                      its behavior. Memory needs both persistence and
-                      measurement.</span
-                    ><span class="zh" lang="zh-CN"
-                      >智能体能检索到过去的纠正，不代表行为真的改变。记忆既需要持久化，也需要度量。</span
-                    >
-                  </p>
-                </div>
-                <div>
-                  <h4>
-                    <span class="en" lang="en">What I built</span
-                    ><span class="zh" lang="zh-CN">实现</span>
-                  </h4>
-                  <p>
-                    <span class="en" lang="en"
-                      >A corrections ledger, session lifecycle, local memory
-                      layers and a dashboard. MCP, SDK and CLI make the system
-                      usable across development tools.</span
-                    ><span class="zh" lang="zh-CN"
-                      >纠正记录、会话生命周期、本地分层记忆与仪表盘。通过
-                      MCP、SDK 和 CLI 接入不同开发工具。</span
-                    >
-                  </p>
-                </div>
-                <div>
-                  <h4>
-                    <span class="en" lang="en">What the evidence says</span
-                    ><span class="zh" lang="zh-CN">证据</span>
-                  </h4>
-                  <p>
-                    <span class="en" lang="en"
-                      >The public repository includes reproducible evaluation
-                      artifacts and their limitations. The measured
-                      behavior-change uplift is still an open research
-                      question.</span
-                    ><span class="zh" lang="zh-CN"
-                      >公开仓库包含可复现的评测材料及其局限。记忆究竟能带来多大行为改善，仍是需要验证的研究问题。</span
-                    >
-                  </p>
-                </div>
-              </div>
-            </details>
-          </div>
-        </article>
-        <div class="project-pair">
-          <article class="project small-project" id="impact">
-            <div class="gateway-visual project-visual">
-              <div class="visual-heading">
-                <span>EU AI Gateway</span><span>02 / PRODUCT DELIVERY</span>
-              </div>
-              <div class="gateway-number" aria-hidden="true">
-                0<span>→</span>1
-              </div>
-              <p>
-                <span class="en" lang="en"
-                  >From idea to a revenue-generating product.</span
-                ><span class="zh" lang="zh-CN">从想法，到产生收入的产品。</span>
+              <h3>AgentRecall</h3>
+              <p class="item-one">Memory for AI agents that carries forward.</p>
+              <details>
+                <summary>Inspect item</summary>
+                <p>
+                  AI agents forget between sessions. AgentRecall is a
+                  local-first memory system — corrections ledger, session
+                  lifecycle, dashboard — usable through MCP, SDK and CLI. I
+                  own product direction, implementation, evaluation and
+                  releases.
+                </p>
+              </details>
+              <p class="item-meta mono">
+                <a href="https://github.com/Goldentrii/AgentRecall-X" target="_blank" rel="noopener">GitHub ↗</a>
+                <span class="stars" data-repo="Goldentrii/AgentRecall-X" hidden>★ <b></b> stars</span>
               </p>
-              <div class="gateway-flow">
-                <span
-                  ><span class="en" lang="en">Build</span
-                  ><span class="zh" lang="zh-CN">构建</span></span
-                ><b>→</b
-                ><span
-                  ><span class="en" lang="en">Acquire</span
-                  ><span class="zh" lang="zh-CN">获客</span></span
-                ><b>→</b
-                ><span
-                  ><span class="en" lang="en">Retain</span
-                  ><span class="zh" lang="zh-CN">留存</span></span
-                >
+            </article>
+
+            <article class="item item-epic sticker">
+              <p class="rarity mono">◆ epic · commercial</p>
+              <div class="item-art art-gateway" aria-hidden="true">
+                <span>0</span><i>→</i><span>1</span>
               </div>
-              <span class="visual-footer"
-                >NOVADA LABS · COMMERCIAL PRODUCT</span
-              >
-            </div>
-            <div class="project-copy">
-              <p class="eyebrow">
-                02 / <span class="en" lang="en">Product × growth</span
-                ><span class="zh" lang="zh-CN">产品 × 增长</span>
-              </p>
               <h3>EU AI Gateway</h3>
-              <p class="project-deck">
-                <span class="en" lang="en">Build it. Launch it. Grow it.</span
-                ><span class="zh" lang="zh-CN">做出来，上线，再推动增长。</span>
-              </p>
-              <p>
-                <span class="en" lang="en"
-                  >Built an AI service from scratch with Next.js, AWS and Claude
-                  API integration. My work connects product delivery with
-                  European acquisition and retention: turning user needs into
-                  priorities, and product usage into business value.</span
-                ><span class="zh" lang="zh-CN"
-                  >用 Next.js、AWS 与 Claude API 集成，从零构建 AI
-                  服务。我的工作连接产品交付与欧洲市场的获客、留存：把用户需求转成产品优先级，把产品使用转成业务价值。</span
-                >
-              </p>
-              <div class="tags">
-                <span class="tag"
-                  ><span class="en" lang="en">0 → 1 delivery</span
-                  ><span class="zh" lang="zh-CN">从零到一交付</span></span
-                ><span class="tag"
-                  ><span class="en" lang="en">Acquisition &amp; retention</span
-                  ><span class="zh" lang="zh-CN">获客与留存</span></span
-                >
-              </div>
-              <p class="ownership">
-                <span class="en" lang="en"
-                  >Commercial product at Novada Labs · implementation is
-                  private.</span
-                ><span class="zh" lang="zh-CN"
-                  >Novada Labs 商业产品 · 工程实现未公开。</span
-                >
-              </p>
-              <a class="text-link" href="#role-novada"
-                ><span class="en" lang="en">My product &amp; growth work</span
-                ><span class="zh" lang="zh-CN">我的产品与增长工作</span
-                ><span aria-hidden="true">↗</span></a
-              >
-            </div>
-          </article>
-          <article class="project small-project">
-            <div class="ops-visual project-visual">
-              <div class="visual-heading">
-                <span
-                  ><span class="en" lang="en">Operations / Process design</span
-                  ><span class="zh" lang="zh-CN">运营 / 流程设计</span></span
-                ><span>03 / BUSINESS SYSTEMS</span>
-              </div>
-              <div class="ops-number">
-                6<span>+ hrs</span
-                ><span class="ops-arrow" aria-hidden="true">↗</span>
-              </div>
-              <p>
-                <span class="en" lang="en"
-                  >saved per week on team reporting</span
-                ><span class="zh" lang="zh-CN">团队每周节省的报表时间</span>
-              </p>
-              <div class="ops-flow">
-                <span
-                  ><span class="en" lang="en">Measure</span
-                  ><span class="zh" lang="zh-CN">度量</span></span
-                ><b>→</b
-                ><span
-                  ><span class="en" lang="en">Find the cause</span
-                  ><span class="zh" lang="zh-CN">定位根因</span></span
-                ><b>→</b
-                ><span
-                  ><span class="en" lang="en">Automate</span
-                  ><span class="zh" lang="zh-CN">自动化</span></span
-                >
-              </div>
-              <span class="visual-footer">AMAZON DHH2 · INTERNAL TOOL</span>
-            </div>
-            <div class="project-copy">
-              <p class="eyebrow">
-                03 / <span class="en" lang="en">Operations × automation</span
-                ><span class="zh" lang="zh-CN">运营 × 自动化</span>
-              </p>
-              <h3>
-                <span class="en" lang="en">Less reporting. More doing.</span
-                ><span class="zh" lang="zh-CN">把时间还给业务。</span>
-              </h3>
-              <p class="project-deck">
-                <span class="en" lang="en"
-                  >Automation inside a real operation.</span
-                ><span class="zh" lang="zh-CN"
-                  >在真实运营中，让自动化落地。</span
-                >
-              </p>
-              <p>
-                <span class="en" lang="en"
-                  >At Amazon, I built an AI-assisted reporting tool using
-                  Claude, VBA and Tampermonkey. Adopted by the team, it saved 6+
-                  hours a week alongside my work on KPIs and process
-                  improvement.</span
-                ><span class="zh" lang="zh-CN"
-                  >在亚马逊，我用 Claude、VBA 与 Tampermonkey 构建 AI
-                  辅助报表工具。团队采用后每周节省 6 小时以上，与我的 KPI
-                  管理和流程改进工作相互配合。</span
-                >
-              </p>
-              <div class="tags">
-                <span class="tag"
-                  ><span class="en" lang="en">Process excellence</span
-                  ><span class="zh" lang="zh-CN">流程卓越</span></span
-                ><span class="tag"
-                  ><span class="en" lang="en">Team adoption</span
-                  ><span class="zh" lang="zh-CN">团队采用</span></span
-                >
-              </div>
-              <a class="text-link" href="Amazon_Caravan_Enhanced_Demo.html"
-                ><span class="en" lang="en">Explore the illustrative demo</span
-                ><span class="zh" lang="zh-CN">查看演示页面</span
-                ><span aria-hidden="true">↗</span></a
-              >
-              <p class="small-note">
-                <span class="en" lang="en"
-                  >Reconstructed demonstration; not a live Amazon system.</span
-                ><span class="zh" lang="zh-CN"
-                  >重建演示页面，并非亚马逊实时系统。</span
-                >
-              </p>
-            </div>
-          </article>
-        </div>
-        <section class="project-catalog" aria-labelledby="more-work-title">
-          <div class="catalog-heading">
-            <p class="eyebrow">
-              <span class="en" lang="en">More things I’ve built</span
-              ><span class="zh" lang="zh-CN">更多我做过的东西</span>
-            </p>
-            <h3 id="more-work-title">
-              <span class="en" lang="en"
-                >Different problems. The same instinct to build.</span
-              ><span class="zh" lang="zh-CN">不同的问题，同样的动手能力。</span>
-            </h3>
-          </div>
-          <div class="catalog-grid">
-            <article class="catalog-item">
-              <p class="eyebrow">
-                <span class="en" lang="en">Agent instructions</span
-                ><span class="zh" lang="zh-CN">智能体指令</span>
-              </p>
-              <h4>
-                <span class="en" lang="en">Plywood</span
-                ><span class="zh" lang="zh-CN">Plywood</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Turns goals into structured task briefs and repeatable SOPs.
-                  I built the compiler, routing logic and validation workflow to
-                  reduce ambiguity in complex agent tasks.</span
-                ><span class="zh" lang="zh-CN"
-                  >把目标转成结构化任务说明与可复用
-                  SOP。我构建了编译器、任务路由和验证流程，减少复杂智能体任务中的指令歧义。</span
-                >
-              </p>
-              <div class="catalog-bottom">
-                <span
-                  ><span class="en" lang="en">Private · experimental</span
-                  ><span class="zh" lang="zh-CN">非公开 · 实验项目</span></span
-                >
-              </div>
-            </article>
-            <article class="catalog-item">
-              <p class="eyebrow">
-                <span class="en" lang="en">Multi-agent orchestration</span
-                ><span class="zh" lang="zh-CN">多智能体编排</span>
-              </p>
-              <h4>
-                <span class="en" lang="en">AAM</span
-                ><span class="zh" lang="zh-CN">AAM</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Coordinates workers, independent review and verification
-                  across multi-step tasks. Budget controls, checkpoints and
-                  escalation make long-running work easier to manage.</span
-                ><span class="zh" lang="zh-CN"
-                  >在多步骤任务中协调执行者、独立审查与验证。通过预算控制、检查点和异常升级，让长时间运行的任务更可管理。</span
-                >
-              </p>
-              <div class="catalog-bottom">
-                <span
-                  ><span class="en" lang="en">Private project</span
-                  ><span class="zh" lang="zh-CN">非公开项目</span></span
-                >
-              </div>
-            </article>
-            <article class="catalog-item">
-              <p class="eyebrow">
-                <span class="en" lang="en">Voice product</span
-                ><span class="zh" lang="zh-CN">语音产品</span>
-              </p>
-              <h4>
-                <span class="en" lang="en">TchinTalk · 栖音</span
-                ><span class="zh" lang="zh-CN">TchinTalk · 栖音</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >A local-first macOS dictation app: on-device speech
-                  recognition, mixed Chinese and English, and system-wide text
-                  input. Built around a real daily workflow.</span
-                ><span class="zh" lang="zh-CN"
-                  >本地优先的 macOS
-                  听写应用：设备端语音识别、中英混合输入、全局文本输入。从真实的日常使用流程出发设计。</span
-                >
-              </p>
-              <div class="catalog-bottom">
-                <span
-                  ><span class="en" lang="en">Personal · early-stage</span
-                  ><span class="zh" lang="zh-CN"
-                    >个人项目 · 早期阶段</span
-                  ></span
-                >
-              </div>
-            </article>
-            <article class="catalog-item">
-              <p class="eyebrow">
-                <span class="en" lang="en">AI integrations</span
-                ><span class="zh" lang="zh-CN">AI 系统集成</span>
-              </p>
-              <h4>
-                <span class="en" lang="en">Novada MCP</span
-                ><span class="zh" lang="zh-CN">Novada MCP</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >An integration layer that brings web data and tools into
-                  agent workflows. Covers the practical work of interfaces, tool
-                  behavior, testing and releases.</span
-                ><span class="zh" lang="zh-CN"
-                  >把网络数据与工具接入智能体工作流的集成层，覆盖接口设计、工具行为、测试与发布等落地工作。</span
-                >
-              </p>
-              <div class="catalog-bottom">
-                <span
-                  ><span class="en" lang="en">Published package</span
-                  ><span class="zh" lang="zh-CN">已发布的软件包</span></span
-                ><a
-                  class="text-link"
-                  href="https://www.npmjs.com/package/novada-mcp"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><span class="en" lang="en">Explore</span
-                  ><span class="zh" lang="zh-CN">了解更多</span
-                  ><span aria-hidden="true">↗</span></a
-                >
-              </div>
-            </article>
-            <article class="catalog-item">
-              <p class="eyebrow">
-                <span class="en" lang="en">Supply-chain operations</span
-                ><span class="zh" lang="zh-CN">供应链交付管理平台</span>
-              </p>
-              <h4>
-                <span class="en" lang="en">Delivery control tower</span
-                ><span class="zh" lang="zh-CN">供应链交付管理平台</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >At Xiaomi, built company-wide KPI tracking and
-                  exception-management workflows: dashboards, delay and damage
-                  alerts, and escalation processes for cross-border
-                  fulfilment.</span
-                ><span class="zh" lang="zh-CN"
-                  >在小米构建公司级 KPI
-                  跟踪与异常管理流程：仪表盘、延误与破损预警、异常升级，服务跨境履约。</span
-                >
-              </p>
-              <div class="catalog-bottom">
-                <span
-                  ><span class="en" lang="en">Xiaomi · internal platform</span
-                  ><span class="zh" lang="zh-CN">小米 · 内部平台</span></span
-                ><a class="text-link" href="#role-xiaomi"
-                  ><span class="en" lang="en">Explore</span
-                  ><span class="zh" lang="zh-CN">了解更多</span
-                  ><span aria-hidden="true">↗</span></a
-                >
-              </div>
-            </article>
-            <article class="catalog-item">
-              <p class="eyebrow">
-                <span class="en" lang="en">Early AI research · 2023</span
-                ><span class="zh" lang="zh-CN">早期 AI 研究 · 2023</span>
-              </p>
-              <h4>
-                <span class="en" lang="en">RAG document assistant</span
-                ><span class="zh" lang="zh-CN">RAG 文档问答助手</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Built document-question-answering experiments with LangChain
-                  and Pinecone during my Freiburg seminar work on the GPT
-                  ecosystem.</span
-                ><span class="zh" lang="zh-CN"
-                  >在弗莱堡研究 GPT 生态期间，用 LangChain 与 Pinecone
-                  构建文档问答实验，将 AI 研究转化为实际应用。</span
-                >
-              </p>
-              <div class="catalog-bottom">
-                <span
-                  ><span class="en" lang="en">Academic prototype</span
-                  ><span class="zh" lang="zh-CN">学术原型</span></span
-                ><a
-                  class="text-link"
-                  href="https://github.com/Goldentrii/website/blob/main/Langchain%2BPinecone.py"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  ><span class="en" lang="en">Explore</span
-                  ><span class="zh" lang="zh-CN">了解更多</span
-                  ><span aria-hidden="true">↗</span></a
-                >
-              </div>
-            </article>
-          </div>
-          <p class="other-tools">
-            <span class="en" lang="en">Earlier utility: </span
-            ><span class="zh" lang="zh-CN">其他早期工具：</span
-            ><a
-              class="text-link"
-              href="https://github.com/Goldentrii/proxy4agent"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="en" lang="en">Proxy4Agent</span
-              ><span class="zh" lang="zh-CN">Proxy4Agent</span
-              ><span aria-hidden="true">↗</span></a
-            ><span
-              ><span class="en" lang="en">
-                — a small MCP proxy integration.</span
-              ><span class="zh" lang="zh-CN">
-                —— 轻量 MCP 代理集成。</span
-              ></span
-            >
-          </p>
-        </section>
-      </section>
-      <section class="about-section" id="about">
-        <div class="wrap about-grid">
-          <div class="about-left">
-            <p class="eyebrow">
-              03 / <span class="en" lang="en">The connecting thread</span
-              ><span class="zh" lang="zh-CN">我的主线</span>
-            </p>
-            <div class="about-symbol" aria-hidden="true">∩</div>
-            <p class="about-caption">
-              <span class="en" lang="en"
-                >Business fluency.<br />Technical curiosity.<br />End-to-end
-                ownership.</span
-              ><span class="zh" lang="zh-CN"
-                >理解业务。<br />探索技术。<br />对交付负责。</span
-              >
-            </p>
-          </div>
-          <div class="about-copy">
-            <h2>
-              <span class="en" lang="en"
-                >I work where<br /><em>worlds meet.</em></span
-              ><span class="zh" lang="zh-CN"
-                >我在不同领域的<br /><em>交汇处做事。</em></span
-              >
-            </h2>
-            <p class="about-lead">
-              <span class="en" lang="en"
-                >The useful part of my background is the combination. I
-                understand the operational problem, translate it into a product,
-                and stay with it through delivery.</span
-              ><span class="zh" lang="zh-CN"
-                >我的优势来自经历的组合：理解运营中的真实问题，把它转化为产品，并推动它走到交付。</span
-              >
-            </p>
-            <p>
-              <span class="en" lang="en"
-                >Economics and finance taught me to question assumptions. Supply
-                chains taught me that a process only works if people can
-                actually run it. Building AI products brings those lessons
-                together.</span
-              ><span class="zh" lang="zh-CN"
-                >经济与金融训练让我习惯检验假设。供应链让我明白，一套流程只有被人真正执行起来才有价值。构建
-                AI 产品，把这两种经验接在了一起。</span
-              >
-            </p>
-            <div class="strength-grid">
-              <div>
-                <span>01</span>
-                <h3>
-                  <span class="en" lang="en">Understand the operation</span
-                  ><span class="zh" lang="zh-CN">读懂业务</span>
-                </h3>
+              <p class="item-one">An AI service, from idea to revenue.</p>
+              <details>
+                <summary>Inspect item</summary>
                 <p>
-                  <span class="en" lang="en"
-                    >Requirements, KPIs, root causes and the people behind the
-                    process.</span
-                  ><span class="zh" lang="zh-CN"
-                    >梳理需求、指标与根因，也理解流程背后的人。</span
-                  >
+                  Built from scratch at Novada Labs with Next.js, AWS and the
+                  Claude API, then grown through European acquisition and
+                  retention. Implementation is private.
                 </p>
+              </details>
+              <p class="item-meta mono">Novada Labs</p>
+            </article>
+
+            <article class="item item-epic sticker">
+              <p class="rarity mono">◆ epic · internal tool</p>
+              <div class="item-art art-hours" aria-hidden="true">
+                <span>6+</span><small>hrs / week</small>
               </div>
-              <div>
-                <span>02</span>
-                <h3>
-                  <span class="en" lang="en">Build the product</span
-                  ><span class="zh" lang="zh-CN">做出产品</span>
-                </h3>
+              <h3>Reporting autopilot</h3>
+              <p class="item-one">Less reporting, more doing — at Amazon.</p>
+              <details>
+                <summary>Inspect item</summary>
                 <p>
-                  <span class="en" lang="en"
-                    >AI workflows, agent memory, integrations and full-stack
-                    implementation.</span
-                  ><span class="zh" lang="zh-CN"
-                    >AI 工作流、智能体记忆、系统集成与全栈实现。</span
-                  >
+                  An AI-assisted reporting tool built with Claude, VBA and
+                  Tampermonkey. The team adopted it and saved 6+ hours a week.
+                  The demo is a reconstruction, not a live Amazon system.
                 </p>
-              </div>
-              <div>
-                <span>03</span>
-                <h3>
-                  <span class="en" lang="en">Make it work in practice</span
-                  ><span class="zh" lang="zh-CN">推动落地</span>
-                </h3>
-                <p>
-                  <span class="en" lang="en"
-                    >Cross-functional delivery, adoption, feedback and
-                    continuous improvement.</span
-                  ><span class="zh" lang="zh-CN"
-                    >跨团队交付、推动采用、收集反馈并持续改进。</span
-                  >
-                </p>
-              </div>
-            </div>
-            <div class="language-strip">
-              <span
-                >中文
-                <b
-                  ><span class="en" lang="en">Native</span
-                  ><span class="zh" lang="zh-CN">母语</span></b
-                ></span
-              ><span>English <b>C2</b></span
-              ><span>Deutsch <b>C1</b></span>
-            </div>
+              </details>
+              <p class="item-meta mono">
+                <a href="Amazon_Caravan_Enhanced_Demo.html">Try the demo ↗</a>
+              </p>
+            </article>
+
+            <article class="item item-rare sticker">
+              <p class="rarity mono">● rare · ops platform</p>
+              <h3>Delivery control tower</h3>
+              <p class="item-one">
+                Company-wide KPI tracking and exception alerts for cross-border
+                fulfilment at Xiaomi.
+              </p>
+              <p class="item-meta mono">Xiaomi · internal</p>
+            </article>
+
+            <article class="item item-rare sticker">
+              <p class="rarity mono">● rare · package</p>
+              <h3>Novada MCP</h3>
+              <p class="item-one">
+                Brings web data and tools into agent workflows. Interfaces,
+                testing, releases.
+              </p>
+              <p class="item-meta mono">
+                <a href="https://www.npmjs.com/package/novada-mcp" target="_blank" rel="noopener">npm ↗</a>
+              </p>
+            </article>
+
+            <article class="item item-rare sticker">
+              <p class="rarity mono">● rare · experimental</p>
+              <h3>Plywood</h3>
+              <p class="item-one">
+                Compiles fuzzy goals into structured briefs agents follow
+                reliably.
+              </p>
+              <p class="item-meta mono">Private</p>
+            </article>
+
+            <article class="item item-rare sticker">
+              <p class="rarity mono">● rare · orchestration</p>
+              <h3>AAM</h3>
+              <p class="item-one">
+                Runs multi-agent work with independent review, budgets and
+                checkpoints.
+              </p>
+              <p class="item-meta mono">Private</p>
+            </article>
+
+            <article class="item item-common sticker">
+              <p class="rarity mono">○ common · voice</p>
+              <h3>TchinTalk</h3>
+              <p class="item-one">
+                Local-first dictation for Windows. Chinese and English, fully
+                on-device.
+              </p>
+              <p class="item-meta mono">Personal · early stage</p>
+            </article>
+
           </div>
         </div>
       </section>
-      <section class="experience-section wrap" id="path">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">
-              04 / <span class="en" lang="en">Experience</span
-              ><span class="zh" lang="zh-CN">完整经历</span>
+
+      <!-- ─────────────── QUEST LOG ─────────────── -->
+      <section class="quests" id="quests" data-zone="quests">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="mono sec-kicker">quest log · full experience</p>
+            <h2>Every quest, <em>at a glance.</em></h2>
+            <p class="sec-sub">
+              Short on purpose. The full story lives on LinkedIn.
             </p>
-            <h2>
-              <span class="en" lang="en"
-                >A career in<br />connecting the dots.</span
-              ><span class="zh" lang="zh-CN">一路连接，<br />一路构建。</span>
-            </h2>
-          </div>
-          <p class="section-intro">
-            <span class="en" lang="en"
-              >AI products, European operations, and a foundation in analytical
-              thinking.</span
-            ><span class="zh" lang="zh-CN"
-              >AI 产品、欧洲运营经验，以及分析与研究的底子。</span
-            >
-          </p>
+          </header>
+
+          <ol class="timeline">
+            <li class="quest sticker">
+              <img class="q-logo" src="assets/logos/novada.svg" alt="" width="88" height="18" />
+              <div class="q-body">
+                <p class="q-org">Novada Labs</p>
+                <p class="q-role">AI Automation &amp; Product Manager</p>
+              </div>
+              <p class="q-date mono"><span class="q-live">active</span>Mar 2026 — Present</p>
+            </li>
+            <li class="quest sticker">
+              <img class="q-logo" src="assets/logos/amazon.png" alt="" width="66" height="22" />
+              <div class="q-body">
+                <p class="q-org">Amazon</p>
+                <p class="q-role">Process Excellence Manager</p>
+              </div>
+              <p class="q-date mono">Sep 2025 — Jan 2026</p>
+            </li>
+            <li class="quest sticker">
+              <img class="q-logo q-logo-sq" src="assets/logos/xiaomi.png" alt="" width="36" height="36" />
+              <div class="q-body">
+                <p class="q-org">Xiaomi</p>
+                <p class="q-role">Supply Chain Delivery Manager</p>
+              </div>
+              <p class="q-date mono">Jun 2024 — Aug 2025</p>
+            </li>
+            <li class="quest sticker">
+              <img class="q-logo" src="assets/logos/adecco.svg" alt="" width="59" height="32" />
+              <div class="q-body">
+                <p class="q-org">Adecco</p>
+                <p class="q-role">Western Europe Certification Specialist</p>
+              </div>
+              <p class="q-date mono">Dec 2023 — Jun 2024</p>
+            </li>
+            <li class="quest sticker">
+              <span class="q-logo logo-uf" aria-hidden="true"><img src="assets/logos/freiburg-university.svg" alt="" width="70" height="14" /><img src="assets/logos/freiburg-name.svg" alt="" width="56" height="14" /></span>
+              <div class="q-body">
+                <p class="q-org">University of Freiburg</p>
+                <p class="q-role">Graduate Teaching &amp; Research Assistant</p>
+              </div>
+              <p class="q-date mono">Oct 2022 — Feb 2024</p>
+            </li>
+            <li class="quest sticker">
+              <span class="q-logo q-mono" style="--c: #2f6fb0" aria-hidden="true">SEG</span>
+              <div class="q-body">
+                <p class="q-org">SEG Automotive</p>
+                <p class="q-role">Business Intern, Procurement</p>
+              </div>
+              <p class="q-date mono">Jul 2021 — Oct 2021</p>
+            </li>
+            <li class="quest sticker">
+              <span class="q-logo q-mono" style="--c: #7a6a4f" aria-hidden="true">文</span>
+              <div class="q-body">
+                <p class="q-org">Self-employed</p>
+                <p class="q-role">Education &amp; Translation Services</p>
+              </div>
+              <p class="q-date mono">Mar 2019 — Sep 2020</p>
+            </li>
+            <li class="quest sticker">
+              <span class="q-logo q-mono" style="--c: #3f8a5b" aria-hidden="true">A</span>
+              <div class="q-body">
+                <p class="q-org">Arshine Pharmaceutical</p>
+                <p class="q-role">Sales &amp; Supply Chain</p>
+              </div>
+              <p class="q-date mono">Oct 2018 — Mar 2019</p>
+            </li>
+            <li class="quest sticker">
+              <span class="q-logo q-mono" style="--c: #b0413e" aria-hidden="true">HT</span>
+              <div class="q-body">
+                <p class="q-org">Harris Teeter</p>
+                <p class="q-role">Retail Intern · United States</p>
+              </div>
+              <p class="q-date mono">Jun 2018 — Sep 2018</p>
+            </li>
+          </ol>
+
+          <a class="btn btn-primary quests-cta" href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">
+            Read the full story on LinkedIn ↗
+          </a>
         </div>
-        <div class="timeline">
-          <article class="timeline-row career-novada" id="role-novada">
-            <div class="timeline-date">
-              <span class="timeline-dot current"></span>2026 —
-              <span class="en" lang="en">NOW</span
-              ><span class="zh" lang="zh-CN">现在</span>
-            </div>
-            <div class="timeline-company">
-              <img
-                class="career-logo career-logo-novada"
-                src="assets/logos/novada.svg"
-                alt=""
-                aria-hidden="true"
-                width="100"
-                height="34"
-                loading="lazy"
-              />
-              <h3>Novada Labs</h3>
-              <span>Frankfurt / Remote</span>
-            </div>
-            <div class="timeline-content">
-              <h4>
-                <span class="en" lang="en"
-                  >AI Automation &amp; Product Manager</span
-                ><span class="zh" lang="zh-CN">AI 自动化与产品经理</span>
-              </h4>
+      </section>
+
+      <!-- ─────────────── SKILL TREE ─────────────── -->
+      <section class="skills" id="skills" data-zone="skills">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="mono sec-kicker">skill tree · education &amp; research</p>
+            <h2>Economics first. <em>Code later.</em></h2>
+            <p class="sec-sub">
+              Turns out it’s a good order: first learn why systems behave the
+              way they do, then build them.
+            </p>
+          </header>
+
+          <div class="edu">
+            <article class="edu-card sticker">
+              <p class="mono edu-years">2020 — 2023</p>
+              <h3>M.Sc. Economics &amp; Finance</h3>
+              <p class="edu-school">University of Freiburg, Germany</p>
               <p>
-                <span class="en" lang="en"
-                  >Own AI products and projects end to end—from requirements and
-                  prototypes to engineering, launch and iteration. Drive
-                  European product-revenue growth through acquisition and
-                  retention, aligning product, engineering and marketing.
-                  Coordinate a China-based product and engineering team and
-                  external stakeholders.</span
-                ><span class="zh" lang="zh-CN"
-                  >端到端负责 AI
-                  产品与项目，从需求、原型到工程、上线与迭代。围绕获客和留存推动欧洲产品收入增长，协调产品、工程与市场，并对接中国的产品技术团队及外部伙伴。</span
-                >
+                Computational economics, machine learning, econometrics and
+                time series. Student representative and commencement speaker.
               </p>
-              <span class="small-note"
-                ><span class="en" lang="en">Mar 2026 — Present</span
-                ><span class="zh" lang="zh-CN">2026.03 — 至今</span></span
-              >
-            </div>
-          </article>
-          <article class="timeline-row career-amazon" id="role-amazon">
-            <div class="timeline-date">
-              <span class="timeline-dot"></span>2025 — 2026
-            </div>
-            <div class="timeline-company">
-              <img
-                class="career-logo career-logo-amazon"
-                src="assets/logos/amazon.png"
-                alt=""
-                aria-hidden="true"
-                width="100"
-                height="34"
-                loading="lazy"
-              />
-              <h3>Amazon</h3>
-              <span>Hamburg · DHH2</span>
-            </div>
-            <div class="timeline-content">
-              <h4>
-                <span class="en" lang="en">Process Excellence Manager</span
-                ><span class="zh" lang="zh-CN">流程卓越经理</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Owned in-station and out-of-station process performance, KPI
-                  analysis and cost control. Worked across 16 carrier accounts
-                  and 100+ metrics; ran root-cause analysis, corrective actions,
-                  training and monthly audits. Built AI-assisted reporting
-                  adopted by the team, saving 6+ hours per week.</span
-                ><span class="zh" lang="zh-CN"
-                  >负责站内与站外流程表现、KPI 分析和成本控制，覆盖 16
-                  个承运商账户与 100+
-                  项指标。推进根因分析、纠正措施、培训及月度审计；团队采用 AI
-                  辅助报表工具后，每周节省 6 小时以上。</span
-                >
+              <p class="edu-links mono">
+                <a href="Master's Thesis _ Tong_Wu_5163957.pdf">Master’s thesis ↗</a>
+                <a href="Big change! Not big enough. The rise of the GPT ecosystem-TongWu, Final.pdf">GPT ecosystem paper (2023) ↗</a>
+                <a href="https://github.com/Goldentrii/website/blob/main/Langchain%2BPinecone.py" target="_blank" rel="noopener">RAG prototype code ↗</a>
               </p>
-              <span class="small-note"
-                ><span class="en" lang="en">Sep 2025 — Jan 2026</span
-                ><span class="zh" lang="zh-CN">2025.09 — 2026.01</span></span
-              >
-            </div>
-          </article>
-          <article class="timeline-row career-xiaomi" id="role-xiaomi">
-            <div class="timeline-date">
-              <span class="timeline-dot"></span>2024 — 2025
-            </div>
-            <div class="timeline-company">
-              <img
-                class="career-logo career-logo-xiaomi"
-                src="assets/logos/xiaomi.png"
-                alt=""
-                aria-hidden="true"
-                width="100"
-                height="34"
-                loading="lazy"
-              />
-              <h3>Xiaomi</h3>
-              <span>Düsseldorf</span>
-            </div>
-            <div class="timeline-content">
-              <h4>
-                <span class="en" lang="en">Supply Chain Delivery Manager</span
-                ><span class="zh" lang="zh-CN">供应链交付经理</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Managed end-to-end fulfilment across Germany and the Benelux.
-                  DE/NL delivery scope included approximately €110M and 320,000
-                  units per year at 99.5% on-time delivery. Built KPI and
-                  exception-management workflows; coordinated key accounts, 3PL
-                  partners, cost reporting, PSI and CPFR planning across 25+
-                  product models.</span
-                ><span class="zh" lang="zh-CN"
-                  >负责德国与比荷卢的端到端履约，其中德国和荷兰交付规模约为每年
-                  1.1 亿欧元、32 万件，准时率 99.5%。构建 KPI
-                  与异常管理流程，协调大客户、第三方物流、成本报告，以及 25+
-                  产品型号的 PSI 与 CPFR 计划。</span
-                >
-              </p>
-              <span class="small-note"
-                ><span class="en" lang="en">Jun 2024 — Aug 2025</span
-                ><span class="zh" lang="zh-CN">2024.06 — 2025.08</span></span
-              >
-            </div>
-          </article>
-          <article class="timeline-row career-huawei" id="role-huawei">
-            <div class="timeline-date">
-              <span class="timeline-dot"></span>2023 — 2024
-            </div>
-            <div class="timeline-company">
-              <img
-                class="career-logo career-logo-huawei"
-                src="assets/logos/huawei.png"
-                alt=""
-                aria-hidden="true"
-                width="100"
-                height="34"
-                loading="lazy"
-              />
-              <h3>Huawei</h3>
-              <span>Düsseldorf</span>
-            </div>
-            <div class="timeline-content">
-              <h4>
-                <span class="en" lang="en"
-                  >Western Europe Certification Specialist</span
-                ><span class="zh" lang="zh-CN">西欧认证专员</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Supported Western European certification, audit readiness and
-                  closed-loop finding management across ISO 9001, 14001 and
-                  45001, with ESG and information-security compliance support.
-                  Coordinated product teams, laboratories and external
-                  stakeholders across languages.</span
-                ><span class="zh" lang="zh-CN"
-                  >支持西欧认证、审计准备及问题闭环管理，涉及 ISO
-                  9001、14001、45001，并协助 ESG
-                  与信息安全合规；跨语言协调产品团队、实验室和外部伙伴。</span
-                >
-              </p>
-              <span class="small-note"
-                ><span class="en" lang="en">Dec 2023 — Jun 2024</span
-                ><span class="zh" lang="zh-CN">2023.12 — 2024.06</span></span
-              >
-            </div>
-          </article>
-          <article class="timeline-row">
-            <div class="timeline-date">
-              <span class="timeline-dot"></span>2022 — 2024
-            </div>
-            <div class="timeline-company">
-              <h3>
-                <span class="en" lang="en">University of Freiburg</span
-                ><span class="zh" lang="zh-CN">弗莱堡大学</span>
-              </h3>
-              <span>Freiburg, Germany</span>
-            </div>
-            <div class="timeline-content">
-              <h4>
-                <span class="en" lang="en"
-                  >Graduate Teaching &amp; Research Assistant</span
-                ><span class="zh" lang="zh-CN">研究生助教与研究助理</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Taught Advanced Macroeconomics I &amp; II, Principles of
-                  Finance, and Economic Policy &amp; Public Choice. Developed
-                  Python coursework, led classes and assessed exams. In
-                  parallel, used R and Z-tree for causal and
-                  behavioral-economics research.</span
-                ><span class="zh" lang="zh-CN"
-                  >承担高级宏观经济学
-                  I/II、金融学原理、经济政策与公共选择等课程教学，编写 Python
-                  作业、带课并参与考试评阅；同时使用 R 与 Z-tree
-                  开展因果与行为经济学研究。</span
-                >
-              </p>
-              <span class="small-note"
-                ><span class="en" lang="en">Oct 2022 — Feb 2024</span
-                ><span class="zh" lang="zh-CN">2022.10 — 2024.02</span></span
-              >
-            </div>
-          </article>
-          <article class="timeline-row">
-            <div class="timeline-date">
-              <span class="timeline-dot"></span>2021
-            </div>
-            <div class="timeline-company">
-              <h3>
-                <span class="en" lang="en">SEG Automotive</span
-                ><span class="zh" lang="zh-CN">SEG Automotive</span>
-              </h3>
-              <span>China</span>
-            </div>
-            <div class="timeline-content">
-              <h4>
-                <span class="en" lang="en">Business Intern · Procurement</span
-                ><span class="zh" lang="zh-CN">商务实习 · 采购支持</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Supported SAP procurement workflows, internal communication
-                  and internal-audit preparation in an automotive supply-chain
-                  environment.</span
-                ><span class="zh" lang="zh-CN"
-                  >在汽车供应链环境中支持 SAP
-                  采购流程、内部沟通及内部审计准备。</span
-                >
-              </p>
-              <span class="small-note"
-                ><span class="en" lang="en">Jul 2021 — Oct 2021</span
-                ><span class="zh" lang="zh-CN">2021.07 — 2021.10</span></span
-              >
-            </div>
-          </article>
-          <article class="timeline-row">
-            <div class="timeline-date">
-              <span class="timeline-dot"></span>2019 — 2020
-            </div>
-            <div class="timeline-company">
-              <h3>
-                <span class="en" lang="en">Self-employed</span
-                ><span class="zh" lang="zh-CN">自主经营</span>
-              </h3>
-              <span>China</span>
-            </div>
-            <div class="timeline-content">
-              <h4>
-                <span class="en" lang="en"
-                  >Education, Training &amp; Translation Services</span
-                ><span class="zh" lang="zh-CN">教育、培训与翻译服务</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Ran an independent service practice: client communication,
-                  curriculum design, teaching, scheduling and delivery. Adapted
-                  learning plans to different students and managed the full
-                  customer relationship.</span
-                ><span class="zh" lang="zh-CN"
-                  >独立经营教育培训与翻译服务，负责客户沟通、课程设计、教学、排期和交付；按不同学生的需要调整学习计划，管理完整客户关系。</span
-                >
-              </p>
-              <span class="small-note"
-                ><span class="en" lang="en">Mar 2019 — Sep 2020</span
-                ><span class="zh" lang="zh-CN">2019.03 — 2020.09</span></span
-              >
-            </div>
-          </article>
-          <article class="timeline-row">
-            <div class="timeline-date">
-              <span class="timeline-dot"></span>2018 — 2019
-            </div>
-            <div class="timeline-company">
-              <h3>
-                <span class="en" lang="en">Arshine Pharmaceutical</span
-                ><span class="zh" lang="zh-CN">艾臣医药</span>
-              </h3>
-              <span>Changsha, China</span>
-            </div>
-            <div class="timeline-content">
-              <h4>
-                <span class="en" lang="en">Sales &amp; Supply Chain</span
-                ><span class="zh" lang="zh-CN">销售与供应链</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Supported overseas B2B business development and export
-                  fulfilment: sea, air and road freight coordination, 3PL
-                  partners, shipping documentation and cross-border customs
-                  clearance.</span
-                ><span class="zh" lang="zh-CN"
-                  >支持海外 B2B
-                  客户开发与出口履约，协调海陆空运输、第三方物流、出货单证及跨境清关。</span
-                >
-              </p>
-              <span class="small-note"
-                ><span class="en" lang="en">Oct 2018 — Mar 2019</span
-                ><span class="zh" lang="zh-CN">2018.10 — 2019.03</span></span
-              >
-            </div>
-          </article>
-          <article class="timeline-row">
-            <div class="timeline-date">
-              <span class="timeline-dot"></span>2018
-            </div>
-            <div class="timeline-company">
-              <h3>
-                <span class="en" lang="en">Harris Teeter</span
-                ><span class="zh" lang="zh-CN">Harris Teeter</span>
-              </h3>
-              <span>United States</span>
-            </div>
-            <div class="timeline-content">
-              <h4>
-                <span class="en" lang="en">Retail Intern</span
-                ><span class="zh" lang="zh-CN">零售实习生</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Supported retail logistics, sales and daily operations in a
-                  high-throughput US retail environment.</span
-                ><span class="zh" lang="zh-CN"
-                  >在美国高吞吐量零售环境中参与物流、销售与日常运营。</span
-                >
-              </p>
-              <span class="small-note"
-                ><span class="en" lang="en">Jun 2018 — Sep 2018</span
-                ><span class="zh" lang="zh-CN">2018.06 — 2018.09</span></span
-              >
-            </div>
-          </article>
-        </div>
-        <section class="education-block" id="education">
-          <p class="eyebrow">
-            <span class="en" lang="en">Education &amp; research</span
-            ><span class="zh" lang="zh-CN">教育与研究</span>
-          </p>
-          <div class="education-grid">
-            <article>
-              <p class="small-note">2020 — 2023</p>
-              <h3>University of Freiburg</h3>
-              <p>
-                <span class="en" lang="en">M.Sc. Economics &amp; Finance</span
-                ><span class="zh" lang="zh-CN">经济与金融学硕士</span>
-              </p>
-              <p class="small-note">
-                <span class="en" lang="en"
-                  >Computational economics, machine learning, econometrics and
-                  time-series analysis. Outstanding student representative and
-                  commencement speaker.</span
-                ><span class="zh" lang="zh-CN"
-                  >计算经济学、机器学习、计量经济学与时间序列分析。优秀学生代表、毕业典礼致辞代表。</span
-                >
-              </p>
-              <a
-                class="text-link"
-                href="Big%20change!%20Not%20big%20enough.%20The%20rise%20of%20the%20GPT%20ecosystem-TongWu,%20Final.pdf"
-                ><span class="en" lang="en">GPT ecosystem paper</span
-                ><span class="zh" lang="zh-CN">GPT 生态论文</span
-                ><span aria-hidden="true">↗</span></a
-              ><a
-                class="text-link"
-                href="Master%27s%20Thesis%20_%20Tong_Wu_5163957.pdf"
-                ><span class="en" lang="en">Master’s thesis</span
-                ><span class="zh" lang="zh-CN">硕士论文</span
-                ><span aria-hidden="true">↗</span></a
-              >
             </article>
-            <article>
-              <p class="small-note">2014 — 2018</p>
-              <h3>
-                <span class="en" lang="en">Jishou University</span
-                ><span class="zh" lang="zh-CN">吉首大学</span>
-              </h3>
+            <article class="edu-card sticker">
+              <p class="mono edu-years">2014 — 2018</p>
+              <h3>B.A. Business English</h3>
+              <p class="edu-school">Jishou University, China · International Trade &amp; Business</p>
               <p>
-                <span class="en" lang="en"
-                  >B.A. Business English · International Trade &amp;
-                  Business</span
-                ><span class="zh" lang="zh-CN"
-                  >商务英语学士 · 国际贸易与商务</span
-                >
-              </p>
-              <p class="small-note">
-                <span class="en" lang="en"
-                  >International trade and finance, economics, management and
-                  languages. Vice president of the 13th Student Union;
-                  outstanding graduate representative.</span
-                ><span class="zh" lang="zh-CN"
-                  >国际贸易与金融、经济学、管理及语言。第十三届学生会副主席、优秀毕业生代表。</span
-                >
+                Trade, finance, economics and languages. Vice president of the
+                student union; outstanding graduate representative.
               </p>
             </article>
           </div>
-        </section>
-        <details>
-          <summary>
-            <span class="en" lang="en">Technical &amp; operational toolkit</span
-            ><span class="zh" lang="zh-CN">技术与运营工具</span
-            ><span aria-hidden="true">+</span>
-          </summary>
-          <div class="detail-body toolkit-grid">
-            <div>
-              <h4>
-                <span class="en" lang="en">Build &amp; analyze</span
-                ><span class="zh" lang="zh-CN">开发与分析</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Python · TypeScript · SQL · R · Power BI · PostgreSQL · MCP ·
-                  RAG · Multi-agent workflows · LLM integration.</span
-                ><span class="zh" lang="zh-CN"
-                  >Python · TypeScript · SQL · R · Power BI · PostgreSQL · MCP ·
-                  RAG · 多智能体工作流 · 大模型集成。</span
-                >
-              </p>
+
+          <div class="tree">
+            <div class="branch">
+              <p class="mono branch-name">build &amp; analyze</p>
+              <ul class="chips">
+                <li>Python</li><li>TypeScript</li><li>SQL</li><li>R</li>
+                <li>Power BI</li><li>PostgreSQL</li><li>MCP</li><li>RAG</li>
+                <li>Multi-agent workflows</li><li>LLM integration</li>
+              </ul>
             </div>
-            <div>
-              <h4>
-                <span class="en" lang="en">Improve &amp; deliver</span
-                ><span class="zh" lang="zh-CN">改进与交付</span>
-              </h4>
-              <p>
-                <span class="en" lang="en"
-                  >Lean / 5S · Six Sigma Green Belt · Root-cause analysis · KPI
-                  design · CPFR · Supply-chain planning · Cross-functional
-                  project management.</span
-                ><span class="zh" lang="zh-CN"
-                  >精益 / 5S · 六西格玛绿带 · 根因分析 · KPI 设计 · CPFR ·
-                  供应链计划 · 跨部门项目管理。</span
-                >
-              </p>
+            <div class="branch">
+              <p class="mono branch-name">improve &amp; deliver</p>
+              <ul class="chips">
+                <li>Lean / 5S</li><li>Six Sigma</li><li>Root-cause analysis</li>
+                <li>KPI design</li><li>CPFR</li><li>Supply-chain planning</li>
+                <li>Cross-functional projects</li>
+              </ul>
             </div>
           </div>
-        </details>
+        </div>
       </section>
-      <section class="credentials-section wrap" id="credentials">
-        <div class="section-heading">
-          <div>
-            <p class="eyebrow">
-              05 / <span class="en" lang="en">Credentials</span
-              ><span class="zh" lang="zh-CN">证书与资质</span>
+
+      <!-- ─────────────── ACHIEVEMENTS ─────────────── -->
+      <section class="achievements" id="achievements" data-zone="achievements">
+        <div class="wrap">
+          <header class="sec-head">
+            <p class="mono sec-kicker">achievements · 7 unlocked</p>
+            <h2>Badges, <em>each one verifiable.</em></h2>
+            <p class="sec-sub">Click a badge to open its certificate record.</p>
+          </header>
+
+          <ul class="badges">
+            <li>
+              <a class="badge badge-gold sticker" href="https://coursera.org/verify/specialization/QJQK8VYELTPG" target="_blank" rel="noopener">
+                <span class="badge-icon" aria-hidden="true">6σ</span>
+                <span class="badge-name">Six Sigma Green Belt</span>
+                <span class="badge-by mono">Kennesaw State · 2026</span>
+              </a>
+            </li>
+            <li>
+              <a class="badge sticker" href="https://coursera.org/verify/professional-cert/GAAH338HGUG5" target="_blank" rel="noopener">
+                <span class="badge-icon" aria-hidden="true">▦</span>
+                <span class="badge-name">Google Data Analytics</span>
+                <span class="badge-by mono">Google · 2023</span>
+              </a>
+            </li>
+            <li>
+              <a class="badge sticker" href="https://coursera.org/verify/professional-cert/QQAPTETGCP4S" target="_blank" rel="noopener">
+                <span class="badge-icon" aria-hidden="true">&gt;_</span>
+                <span class="badge-name">IT Automation with Python</span>
+                <span class="badge-by mono">Google · 2023</span>
+              </a>
+            </li>
+            <li>
+              <a class="badge sticker" href="https://coursera.org/verify/specialization/KNWJNBULCLQP" target="_blank" rel="noopener">
+                <span class="badge-icon" aria-hidden="true">∿</span>
+                <span class="badge-name">Machine Learning</span>
+                <span class="badge-by mono">DeepLearning.AI · Stanford · 2025</span>
+              </a>
+            </li>
+            <li>
+              <a class="badge sticker" href="https://coursera.org/verify/specialization/TEUB5MSCKJXA" target="_blank" rel="noopener">
+                <span class="badge-icon" aria-hidden="true">◧</span>
+                <span class="badge-name">Data Analysis &amp; Presentation</span>
+                <span class="badge-by mono">PwC · 2024</span>
+              </a>
+            </li>
+            <li>
+              <a class="badge sticker" href="https://coursera.org/verify/specialization/I3MUOU9SX4AC" target="_blank" rel="noopener">
+                <span class="badge-icon" aria-hidden="true">⌘</span>
+                <span class="badge-name">Business Analysis (CBAP prep)</span>
+                <span class="badge-by mono">Starweaver · 2024 · course, not IIBA designation</span>
+              </a>
+            </li>
+            <li>
+              <a class="badge sticker" href="https://coursera.org/verify/specialization/QABZ7B25X3NL" target="_blank" rel="noopener">
+                <span class="badge-icon" aria-hidden="true">♧</span>
+                <span class="badge-name">Materiality of ESG Factors</span>
+                <span class="badge-by mono">Wharton · 2024</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ─────────────── SIDE QUESTS ─────────────── -->
+      <section class="side" id="side" data-zone="side">
+        <div class="wrap side-grid">
+          <div class="side-copy">
+            <p class="mono sec-kicker">side quests · away from keyboard</p>
+            <h2>Tea, calligraphy, <em>the I Ching.</em></h2>
+            <p class="sec-sub">
+              A different kind of attention to detail. Slow things balance
+              fast ones.
             </p>
-            <h2>
-              <span class="en" lang="en"
-                >Learning, with<br />something to show for it.</span
-              ><span class="zh" lang="zh-CN"
-                >把学习积累，<br />变成专业底气。</span
-              >
-            </h2>
           </div>
-          <p class="section-intro">
-            <span class="en" lang="en"
-              >Selected completed programs in process improvement, analytics, AI
-              and business analysis. Each links to its certificate record.</span
-            ><span class="zh" lang="zh-CN"
-              >流程改进、数据分析、AI
-              与业务分析领域的课程与专业证书，均附证书核验入口。</span
-            >
+          <ul class="side-list">
+            <li class="side-item sticker"><span class="side-glyph" aria-hidden="true">茶</span><span>Tea</span></li>
+            <li class="side-item sticker"><span class="side-glyph" aria-hidden="true">桐</span><span>Calligraphy</span></li>
+            <li class="side-item sticker"><span class="side-glyph" aria-hidden="true">☯</span><span>I Ching</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ─────────────── SAVE POINT ─────────────── -->
+      <section class="save" id="save" data-zone="save">
+        <div class="wrap save-card">
+          <p class="mono save-kicker">✦ save point ✦</p>
+          <h2>Game complete. <em>One quest left:</em> say hi.</h2>
+          <p class="save-sub">
+            Have a role, a messy process, or a product idea? I’d like to hear
+            about it.
           </p>
-        </div>
-        <article class="credential-feature">
-          <div class="sigma-mark" aria-hidden="true">6<span>σ</span></div>
-          <div>
-            <p class="eyebrow">
-              <span class="en" lang="en">Process improvement</span
-              ><span class="zh" lang="zh-CN">流程改进</span>
-            </p>
-            <h3>Six Sigma Green Belt</h3>
-            <p>
-              <span class="en" lang="en"
-                >Kennesaw State University · Coursera Specialization</span
-              ><span class="zh" lang="zh-CN"
-                >肯尼索州立大学 · Coursera 专项课程结业证书</span
-              >
-            </p>
-            <p class="credential-date">
-              <span class="en" lang="en"
-                >Completed 19 January 2026 · 4 courses</span
-              ><span class="zh" lang="zh-CN"
-                >完成于 2026 年 1 月 19 日 · 4 门课程</span
-              >
-            </p>
-            <p>
-              <span class="en" lang="en"
-                >Define → Measure → Analyze → Improve → Control. A structured
-                approach to variation, quality, root causes and operational
-                cost.</span
-              ><span class="zh" lang="zh-CN"
-                >定义 → 测量 → 分析 → 改进 →
-                控制。用结构化方法处理波动、质量、根因与运营成本。</span
-              >
-            </p>
-          </div>
-          <a
-            class="text-link"
-            href="https://coursera.org/verify/specialization/KNWJNBULCLQP"
-            target="_blank"
-            rel="noopener noreferrer"
-            ><span class="en" lang="en">View certificate</span
-            ><span class="zh" lang="zh-CN">核验证书</span
-            ><span aria-hidden="true">↗</span></a
-          >
-        </article>
-        <div class="credential-grid">
-          <article class="credential-card credential-google">
-            <div class="credential-top">
-              <span>Google</span><span>2023.04</span>
-            </div>
-            <h3>
-              <span class="en" lang="en">Google Data Analytics</span
-              ><span class="zh" lang="zh-CN">Google 数据分析</span>
-            </h3>
-            <p class="credential-type">
-              <span class="en" lang="en"
-                >Professional Certificate · 8 courses</span
-              ><span class="zh" lang="zh-CN">专业证书 · 8 门课程</span>
-            </p>
-            <p>
-              <span class="en" lang="en"
-                >Data preparation, SQL, visualization and R.</span
-              ><span class="zh" lang="zh-CN">数据准备、SQL、可视化与 R。</span>
-            </p>
-            <a
-              class="text-link"
-              href="https://coursera.org/verify/professional-cert/QQAPTETGCP4S"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="en" lang="en">View certificate</span
-              ><span class="zh" lang="zh-CN">核验证书</span
-              ><span aria-hidden="true">↗</span></a
-            >
-          </article>
-          <article class="credential-card credential-google">
-            <div class="credential-top">
-              <span>Google</span><span>2023.06</span>
-            </div>
-            <h3>
-              <span class="en" lang="en">Google IT Automation with Python</span
-              ><span class="zh" lang="zh-CN">Google Python IT 自动化</span>
-            </h3>
-            <p class="credential-type">
-              <span class="en" lang="en"
-                >Professional Certificate · 6 courses</span
-              ><span class="zh" lang="zh-CN">专业证书 · 6 门课程</span>
-            </p>
-            <p>
-              <span class="en" lang="en"
-                >Python, Git, debugging and automation at scale.</span
-              ><span class="zh" lang="zh-CN"
-                >Python、Git、调试与规模化自动化。</span
-              >
-            </p>
-            <a
-              class="text-link"
-              href="https://coursera.org/verify/professional-cert/GAAH338HGUG5"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="en" lang="en">View certificate</span
-              ><span class="zh" lang="zh-CN">核验证书</span
-              ><span aria-hidden="true">↗</span></a
-            >
-          </article>
-          <article class="credential-card credential-ml">
-            <div class="credential-top">
-              <span>DeepLearning.AI / Stanford Online</span><span>2025.04</span>
-            </div>
-            <h3>
-              <span class="en" lang="en">Machine Learning</span
-              ><span class="zh" lang="zh-CN">机器学习</span>
-            </h3>
-            <p class="credential-type">
-              <span class="en" lang="en">Specialization · 3 courses</span
-              ><span class="zh" lang="zh-CN">专项课程 · 3 门课程</span>
-            </p>
-            <p>
-              <span class="en" lang="en"
-                >Supervised learning, neural networks and recommender
-                systems.</span
-              ><span class="zh" lang="zh-CN"
-                >监督学习、神经网络与推荐系统。</span
-              >
-            </p>
-            <a
-              class="text-link"
-              href="https://coursera.org/verify/specialization/I3MUOU9SX4AC"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="en" lang="en">View certificate</span
-              ><span class="zh" lang="zh-CN">核验证书</span
-              ><span aria-hidden="true">↗</span></a
-            >
-          </article>
-          <article class="credential-card credential-pwc">
-            <div class="credential-top">
-              <span>PwC</span><span>2024.02</span>
-            </div>
-            <h3>
-              <span class="en" lang="en">Data Analysis &amp; Presentation</span
-              ><span class="zh" lang="zh-CN">数据分析与呈现</span>
-            </h3>
-            <p class="credential-type">
-              <span class="en" lang="en">Specialization · 5 courses</span
-              ><span class="zh" lang="zh-CN">专项课程 · 5 门课程</span>
-            </p>
-            <p>
-              <span class="en" lang="en"
-                >The PwC Approach: from business data to decisions and
-                communication.</span
-              ><span class="zh" lang="zh-CN"
-                >PwC 方法：从业务数据到决策与沟通。</span
-              >
-            </p>
-            <a
-              class="text-link"
-              href="https://coursera.org/verify/specialization/QJQK8VYELTPG"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="en" lang="en">View certificate</span
-              ><span class="zh" lang="zh-CN">核验证书</span
-              ><span aria-hidden="true">↗</span></a
-            >
-          </article>
-          <article class="credential-card credential-ba">
-            <div class="credential-top">
-              <span>Starweaver</span><span>2024.04</span>
-            </div>
-            <h3>
-              <span class="en" lang="en"
-                >Business Analysis · CBAP exam preparation</span
-              ><span class="zh" lang="zh-CN">业务分析 · CBAP 备考课程</span>
-            </h3>
-            <p class="credential-type">
-              <span class="en" lang="en">Specialization · 4 courses</span
-              ><span class="zh" lang="zh-CN">备考专项课程 · 4 门课程</span>
-            </p>
-            <p>
-              <span class="en" lang="en"
-                >Requirements, stakeholder engagement and solution evaluation.
-                Course completion; not the IIBA CBAP designation.</span
-              ><span class="zh" lang="zh-CN"
-                >需求管理、干系人协作与解决方案评估。课程结业证书，非 IIBA CBAP
-                资格认证。</span
-              >
-            </p>
-            <a
-              class="text-link"
-              href="https://coursera.org/verify/specialization/TEUB5MSCKJXA"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="en" lang="en">View certificate</span
-              ><span class="zh" lang="zh-CN">核验证书</span
-              ><span aria-hidden="true">↗</span></a
-            >
-          </article>
-          <article class="credential-card credential-esg">
-            <div class="credential-top">
-              <span>Wharton / University of Pennsylvania</span
-              ><span>2024.02</span>
-            </div>
-            <h3>
-              <span class="en" lang="en">The Materiality of ESG Factors</span
-              ><span class="zh" lang="zh-CN">ESG 因素的重要性</span>
-            </h3>
-            <p class="credential-type">
-              <span class="en" lang="en">Specialization · 4 courses</span
-              ><span class="zh" lang="zh-CN">专项课程 · 4 门课程</span>
-            </p>
-            <p>
-              <span class="en" lang="en"
-                >ESG risks, investment perspectives, climate and corporate
-                responsibility.</span
-              ><span class="zh" lang="zh-CN"
-                >ESG 风险、投资视角、气候与企业责任。</span
-              >
-            </p>
-            <a
-              class="text-link"
-              href="https://coursera.org/verify/specialization/QABZ7B25X3NL"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="en" lang="en">View certificate</span
-              ><span class="zh" lang="zh-CN">核验证书</span
-              ><span aria-hidden="true">↗</span></a
-            >
-          </article>
-        </div>
-        <div class="mobility-strip">
-          <div>
-            <strong
-              ><span class="en" lang="en">Three working languages</span
-              ><span class="zh" lang="zh-CN">三种工作语言</span></strong
-            >
-            <p>
-              <span class="en" lang="en"
-                >Chinese · native / English · C2 / German · C1</span
-              ><span class="zh" lang="zh-CN"
-                >中文 · 母语 / 英语 · C2 / 德语 · C1</span
-              >
-            </p>
-          </div>
-          <div>
-            <strong
-              ><span class="en" lang="en">EU driving licence</span
-              ><span class="zh" lang="zh-CN">欧盟驾照</span></strong
-            >
-            <p>
-              <span class="en" lang="en"
-                >EU Blue Card · Based in Düsseldorf, Germany</span
-              ><span class="zh" lang="zh-CN"
-                >欧盟蓝卡 · 常驻德国杜塞尔多夫</span
-              >
-            </p>
+          <div class="save-actions">
+            <a class="btn btn-light" href="mailto:tongwu0824@gmail.com">tongwu0824@gmail.com ↗</a>
+            <a class="btn btn-outline" href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a class="btn btn-outline" href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub ↗</a>
           </div>
         </div>
       </section>
-      <aside class="offscreen wrap" id="offscreen">
-        <p class="eyebrow">
-          <span class="en" lang="en">Away from the keyboard</span
-          ><span class="zh" lang="zh-CN">屏幕之外</span>
-        </p>
-        <p>
-          <span class="en" lang="en"
-            >Tea, calligraphy, the I Ching.<br />A different kind of
-            <em>attention to detail.</em></span
-          ><span class="zh" lang="zh-CN"
-            >喝茶、写字、读《易经》。<br />用另一种方式，<em
-              >保持专注与好奇。</em
-            ></span
-          >
-        </p>
-        <span class="offscreen-seal" aria-hidden="true">桐</span>
-      </aside>
     </main>
-    <footer class="contact" id="contact">
-      <div class="wrap">
-        <div class="contact-top">
-          <p class="eyebrow">
-            06 / <span class="en" lang="en">Start a conversation</span
-            ><span class="zh" lang="zh-CN">从交流开始</span>
-          </p>
-          <span class="location">Düsseldorf, Germany</span>
-        </div>
-        <div class="contact-main">
-          <h2>
-            <span class="en" lang="en"
-              >Something complex?<br /><em>Let’s make it work.</em></span
-            ><span class="zh" lang="zh-CN"
-              >有个复杂的问题？<br /><em>我们一起让它运转。</em></span
-            >
-          </h2>
-          <a
-            class="contact-arrow"
-            href="mailto:tongwu0824@gmail.com"
-            aria-label="Email Tong Wu"
-            >↗</a
-          >
-        </div>
-        <p class="contact-intro">
-          <span class="en" lang="en"
-            >Have a role, a product idea, or an operational challenge in mind?
-            I’d love to hear what you’re working on.</span
-          ><span class="zh" lang="zh-CN"
-            >无论是合适的职位、产品想法，还是待解决的运营难题，都欢迎聊聊。</span
-          >
+
+    <footer class="credits">
+      <div class="wrap credits-row">
+        <p class="credits-roll">
+          <svg class="credits-clawd" aria-hidden="true"><use href="#clawd" /></svg>
+          <span>
+            <b>Credits.</b> Life story &amp; direction: Tong Wu. Design &amp;
+            code: Claude (Opus 5.5) in Claude Code. No framework, just HTML,
+            CSS and a little JavaScript.
+          </span>
         </p>
-        <div class="contact-links">
-          <a class="email-link" href="mailto:tongwu0824@gmail.com"
-            ><span class="en" lang="en">tongwu0824@gmail.com</span
-            ><span class="zh" lang="zh-CN">tongwu0824@gmail.com</span
-            ><span aria-hidden="true">↗</span></a
-          >
-          <div>
-            <a
-              class="text-link"
-              href="https://www.linkedin.com/in/tongwu3"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="en" lang="en">LinkedIn</span
-              ><span class="zh" lang="zh-CN">LinkedIn</span
-              ><span aria-hidden="true">↗</span></a
-            ><a
-              class="text-link"
-              href="https://github.com/Goldentrii"
-              target="_blank"
-              rel="noopener noreferrer"
-              ><span class="en" lang="en">GitHub</span
-              ><span class="zh" lang="zh-CN">GitHub</span
-              ><span aria-hidden="true">↗</span></a
-            >
-          </div>
-        </div>
-        <div class="footer-bottom">
-          <span>© 2026 Tong Wu · 吴桐</span
-          ><span
-            ><span class="en" lang="en"
-              >Built with intention. Always in progress.</span
-            ><span class="zh" lang="zh-CN">用心构建，持续生长。</span></span
-          ><a class="text-link" href="#hero"
-            ><span class="en" lang="en">Back to top</span
-            ><span class="zh" lang="zh-CN">回到顶部</span
-            ><span aria-hidden="true">↗</span></a
-          >
-        </div>
+        <p class="mono credits-meta">
+          © 2026 Tong Wu ·
+          <span class="js-only"><button type="button" class="linklike" id="replayIntro">Replay intro</button> ·</span>
+          <a href="#player">Back to top ↑</a>
+        </p>
       </div>
     </footer>
+
+    <!-- Guide: floating Claude with a speech bubble. JS-only. -->
+    <div class="guide" id="guide" hidden>
+      <p class="guide-bubble" id="guideBubble" role="status" aria-live="polite"></p>
+      <button class="guide-btn" id="guideBtn" type="button" aria-label="Talk to Claude, the guide">
+        <svg class="guide-clawd bob"><use href="#clawd" /></svg>
+      </button>
+    </div>
+
+    <div class="toasts" id="toasts" aria-live="polite"></div>
   </body>
 </html>

@@ -64,3 +64,14 @@ Original marks and their colors are preserved. Logos identify employment/educati
 - University of Freiburg: the original two-part SVG wordmark in https://uni-freiburg.de/en/.
 
 The existing portrait is now displayed in its original color, with the grayscale CSS filter removed.
+
+## Redesign — 25 September 2026 (English-only game layout)
+
+- English only; the Chinese copy and language toggle were removed. The bilingual version is kept as `index-2026-09-11-bilingual.html`.
+- Owner-directed wording: Novada Labs "AI Automation & Product Manager"; Arshine Pharmaceutical "Sales & Supply Chain", ending Mar 2019; the former Huawei-project entry is shown under the employer, Adecco. Xiaomi and Amazon entries avoid client names and granular figures.
+- Languages shown prominently: Chinese native, English C2, German C1.
+- Quest log shows logo, organization, title and dates only; detail lives on LinkedIn.
+- The 2023 RAG prototype moved from the project inventory to the M.Sc. education links (code: `Langchain+Pinecone.py` in this repository).
+- Adecco logo: Wikimedia Commons `Adecco_Logo.svg` (red box wordmark) as `assets/logos/adecco.svg`; the "The Adecco Group" mark is kept as `adecco-group.svg` but unused.
+- University of Freiburg: the two-part wordmark (`freiburg-university.svg` + `freiburg-name.svg`) stacked, as on the official site.
+- Credits: design and code by Claude (Claude Code), direction and content by Tong Wu.
