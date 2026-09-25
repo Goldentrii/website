@@ -18,7 +18,7 @@ Open `http://127.0.0.1:41873`. No build step or package installation is required
 - `assets/fonts.css`, `assets/fonts/`: self-hosted DM Sans, IBM Plex Mono and Instrument Serif with their SIL Open Font Licenses.
 - `assets/logos/`: organization logos (see `docs/content-sources.md`).
 - `assets/agentrecall-dashboard.png`: preview from the public AgentRecall repository with example data.
-- `assets/tong-wu.jpg`: portrait. `assets/social-card.png`: social sharing image.
+- `assets/tong-wu.jpg`: portrait. `assets/social-card.png`: social sharing image (1200×630), rendered from `docs/social-card.html` with a headless browser; bump the `?v=` on `og:image` when it changes.
 - `assets/site.css`, `assets/site.js`, `index-*.html`: previous designs, kept for reference and old links.
 - `docs/content-sources.md`: content provenance and editorial decisions.
 

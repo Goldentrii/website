@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<link rel="stylesheet" href="../assets/fonts.css" />
+<style>
+  :root {
+    --paper: #f4f2eb; --paper-2: #ebe8dd; --ink: #272721; --muted: #66665d;
+    --accent: #c74326; --claude: #d97757; --gold: #e8b93a; --green: #3f8a5b; --blue: #2f6fb0;
+    --sans: "DM Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", monospace; --serif: "Instrument Serif", serif;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    background: var(--paper);
+    background-image: radial-gradient(#d7d5cc 1.3px, transparent 1.3px);
+    background-size: 22px 22px;
+    color: var(--ink); font-family: var(--sans);
+    position: relative; padding: 44px 60px;
+  }
+  .hud {
+    display: flex; align-items: center; gap: 18px;
+    font: 600 17px var(--mono);
+  }
+  .logo { font: 700 30px var(--sans); letter-spacing: -0.03em; }
+  .logo b { color: var(--accent); }
+  .xp { flex: 1; height: 18px; border: 2.5px solid var(--ink); border-radius: 99px; background: #fff; overflow: hidden; }
+  .xp i { display: block; height: 100%; width: 72%; background: repeating-linear-gradient(90deg, var(--green) 0 14px, #4fa06d 14px 28px); }
+  .pill { border: 2.5px solid var(--ink); border-radius: 99px; padding: 4px 14px; background: var(--gold); box-shadow: 3px 3px 0 var(--ink); }
+  .pill.t { background: #fff; }
+  .main { display: grid; grid-template-columns: 1fr 330px; gap: 44px; margin-top: 70px; align-items: start; }
+  .eyebrow { font: 600 17px var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: .04em; }
+  .eyebrow span { color: var(--green); }
+  h1 { font: 700 62px/1.04 var(--sans); letter-spacing: -0.035em; margin-top: 18px; }
+  h1 em { font: italic 400 1.1em/1 var(--serif); color: var(--accent); letter-spacing: -0.01em; }
+  .btn {
+    display: inline-block; margin-top: 30px; font: 700 21px var(--sans);
+    background: var(--accent); color: #fff; border: 2.5px solid var(--ink);
+    border-radius: 14px; padding: 12px 22px; box-shadow: 4px 4px 0 var(--ink);
+  }
+  .url { margin-left: 18px; font: 600 19px var(--mono); color: var(--muted); }
+  .sheet {
+    background: #fffdf7; border: 2.5px solid var(--ink); border-radius: 18px;
+    box-shadow: 6px 6px 0 var(--ink); padding: 22px; transform: rotate(1.6deg);
+  }
+  .head { display: flex; gap: 16px; align-items: center; }
+  .head img { width: 96px; height: 96px; border-radius: 14px; border: 2.5px solid var(--ink); object-fit: cover; }
+  .lbl { font: 600 12px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+  .name { font: 700 28px var(--sans); letter-spacing: -0.02em; }
+  .cls { font: 600 15px var(--sans); color: var(--accent); }
+  .langs { margin-top: 18px; display: grid; gap: 9px; }
+  .lang { display: grid; grid-template-columns: 92px 1fr 34px; align-items: center; gap: 10px; font: 600 14px var(--sans); }
+  .bar { height: 12px; border: 2px solid var(--ink); border-radius: 99px; background: var(--paper-2); overflow: hidden; }
+  .bar i { display: block; height: 100%; }
+  .lv { font: 600 13px var(--mono); text-align: right; }
+  .now { margin-top: 16px; padding-top: 12px; border-top: 2px dashed #d7d5cc; font: 600 13px var(--mono); color: var(--muted); }
+  .clawd { position: absolute; right: 44px; bottom: 26px; display: flex; align-items: center; gap: 10px; font: 600 14px var(--mono); color: var(--muted); }
+  .clawd svg { width: 44px; height: 44px; }
+</style>
+</head>
+<body>
+  <div class="hud">
+    <span class="logo">tong wu<b>.</b></span>
+    <span class="xp"><i></i></span>
+    <span class="pill">LV 5</span>
+    <span class="pill t">🏆 8/8</span>
+  </div>
+
+  <div class="main">
+    <div>
+      <p class="eyebrow"><span>●</span> player 1 · career, played as a game</p>
+      <h1>I fix how work flows — <em>then build the tools</em> that keep it fixed.</h1>
+      <span class="btn">▶ Press start</span><span class="url">tongwu.network</span>
+    </div>
+
+    <div class="sheet">
+      <div class="head">
+        <img src="../assets/tong-wu.jpg" alt="" />
+        <div>
+          <p class="lbl">character</p>
+          <p class="name">Tong Wu</p>
+          <p class="cls">Operations × AI Builder</p>
+        </div>
+      </div>
+      <div class="langs">
+        <div class="lang">中文<span class="bar"><i style="width:100%;background:var(--accent)"></i></span><span class="lv">Nat</span></div>
+        <div class="lang">English<span class="bar"><i style="width:94%;background:var(--blue)"></i></span><span class="lv">C2</span></div>
+        <div class="lang">Deutsch<span class="bar"><i style="width:80%;background:var(--gold)"></i></span><span class="lv">C1</span></div>
+      </div>
+      <p class="now">AI Automation &amp; Product Manager<br>@ Novada Labs</p>
+    </div>
+  </div>
+
+  <div class="clawd">built with Claude Code
+    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+      <rect x="3" y="4" width="10" height="7" fill="#d97757"/>
+      <rect x="1" y="7" width="2" height="2" fill="#d97757"/><rect x="13" y="7" width="2" height="2" fill="#d97757"/>
+      <rect x="5" y="6" width="1" height="2" fill="#272721"/><rect x="10" y="6" width="1" height="2" fill="#272721"/>
+      <rect x="4" y="11" width="1" height="2" fill="#d97757"/><rect x="6" y="11" width="1" height="2" fill="#d97757"/>
+      <rect x="9" y="11" width="1" height="2" fill="#d97757"/><rect x="11" y="11" width="1" height="2" fill="#d97757"/>
+    </svg>
+  </div>
+</body>
+</html>
