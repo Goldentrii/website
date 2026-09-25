@@ -67,7 +67,7 @@ The existing portrait is now displayed in its original color, with the grayscale
 
 ## Redesign — 25 September 2026 (English-only game layout)
 
-- English only; the Chinese copy and language toggle were removed. The bilingual version is kept as `index-2026-09-11-bilingual.html`.
+- English only; the Chinese copy and language toggle were removed. The bilingual version is kept locally as `index-2026-09-11-bilingual.html` (untracked; removed from the public site 25 Sep 2026 because it still contained the removed metrics).
 - Owner-directed wording: Novada Labs "AI Automation & Product Manager"; Arshine Pharmaceutical "Sales & Supply Chain", ending Mar 2019; the former Huawei-project entry is shown under the employer, Adecco. Xiaomi and Amazon entries avoid client names and granular figures.
 - Languages shown prominently: Chinese native, English C2, German C1.
 - Quest log shows logo, organization, title and dates only; detail lives on LinkedIn.
