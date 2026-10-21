@@ -62,15 +62,15 @@ from tqdm import tqdm
 
 
 # Check to see if there is an environment variable with you API keys, if not, use what you put below
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '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')
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '<REDACTED>')
 
 
 # In[9]:
 
 
-#PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY', '32d71f85-60fe-4982-adf7-a8e25ce87dbf')
-#PINECONE_API_ENV = os.environ.get('PINECONE_API_ENV', 'us-central1-gcp') # You may need to switch with your env
-embeddings = OpenAIEmbeddings(openai_api_key='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')
+#PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY', '<REDACTED>')
+#PINECONE_API_ENV = os.environ.get('PINECONE_API_ENV', '<REDACTED>') # You may need to switch with your env
+embeddings = OpenAIEmbeddings(openai_api_key='<REDACTED>')
 
 
 # In[16]:
@@ -79,8 +79,8 @@ embeddings = OpenAIEmbeddings(openai_api_key='sk-45yg5n1U0253ntOOLh2KT3BlbkFJCmo
 # initialize pinecone
 
 pinecone.init(
-    api_key='32d71f85-60fe-4982-adf7-a8e25ce87dbf',  # find at app.pinecone.io
-    environment='us-central1-gcp'  # next to api key in console
+    api_key='<REDACTED>',  # find at app.pinecone.io
+    environment='<REDACTED>'  # next to api key in console
 )
 index_name = "langchain-index" # put in the name of your pinecone index here
 
