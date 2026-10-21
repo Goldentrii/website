@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<script>
+  // Set language before first paint to avoid a flash of the wrong language.
+  (function () {
+    try {
+      var saved = localStorage.getItem('tw-lang');
+      if (saved === 'zh' || saved === 'en') {
+        document.documentElement.setAttribute('data-lang', saved);
+        document.documentElement.setAttribute('lang', saved === 'zh' ? 'zh-CN' : 'en');
+      }
+    } catch (e) {}
+  })();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tong Wu 吴桐 — Builder, Novada Labs</title>
+<meta name="description" content="Co-founder at Novada Labs, building AI agent infrastructure. Previously supply-chain and process excellence at Xiaomi, Amazon, and Huawei.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%23a6512e'/%3E%3Ctext%20x='32'%20y='45'%20font-family='Georgia,serif'%20font-size='38'%20fill='%23f8f4ee'%20text-anchor='middle'%3E%E5%90%B4%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=Noto+Serif+SC:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --paper: #f8f4ee;
+    --ink: #262019;
+    --ink-soft: #6b6255;
+    --ink-mute: #756b5a;
+    --accent: #a6512e;
+    --accent-soft: rgba(166, 81, 46, 0.32);
+    --rule: #e8e0d2;
+    --measure: 680px;
+    --gap-section: clamp(4rem, 9vw, 6.5rem);
+    --font-display: 'Fraunces', 'Noto Serif SC', Georgia, serif;
+    --font-body: 'Source Serif 4', 'Noto Serif SC', Georgia, 'Songti SC', serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { margin: 0; padding: 0; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-size: 18px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    opacity: 0;
+    animation: fade-in 0.7s ease-out 0.05s forwards;
+  }
+
+  @keyframes fade-in {
+    to { opacity: 1; }
+  }
+
+  ::selection {
+    background: var(--accent-soft);
+    color: var(--ink);
+  }
+
+  a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-decoration-color: var(--accent-soft);
+    text-underline-offset: 3px;
+    transition: text-decoration-color 0.2s ease;
+  }
+
+  a:hover, a:focus {
+    text-decoration-color: var(--accent);
+  }
+
+  a:focus-visible {
+    outline: 1px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* ---------- language toggle ---------- */
+
+  .lang-switch {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    color: var(--ink-mute);
+    cursor: pointer;
+  }
+
+  .lang-switch .opt {
+    transition: color 0.2s ease;
+  }
+
+  .lang-switch .sep {
+    margin: 0 0.4em;
+    color: var(--rule);
+  }
+
+  html[data-lang="en"] .lang-switch .opt-en,
+  html[data-lang="zh"] .lang-switch .opt-zh {
+    color: var(--ink);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: var(--accent-soft);
+    text-underline-offset: 3px;
+  }
+
+  .lang-bar {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 2rem 1.5rem 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  /* ---------- language visibility ---------- */
+
+  html[data-lang="en"] .zh { display: none; }
+  html[data-lang="zh"] .en { display: none; }
+
+  /* ---------- layout ---------- */
+
+  .letter {
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 6rem;
+  }
+
+  section, .hero, footer.contact {
+    margin-top: var(--gap-section);
+  }
+
+  .hero { margin-top: clamp(2rem, 6vw, 3.5rem); }
+
+  /* ---------- section marker ---------- */
+
+  .marker {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.3rem, 1.05rem + 1vw, 1.7rem);
+    color: var(--accent);
+    margin: 0 0 0.9em;
+    letter-spacing: 0.01em;
+  }
+
+  /* ---------- hero ---------- */
+
+  .name {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(2.6rem, 2rem + 3.4vw, 4.4rem);
+    line-height: 1.05;
+    margin: 0 0 0.5rem;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+
+  .name .cn {
+    font-weight: 400;
+  }
+
+  .role {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.15rem, 1rem + 0.6vw, 1.4rem);
+    color: var(--ink-soft);
+    margin: 0 0 1.6rem;
+    line-height: 1.5;
+  }
+
+  .lede {
+    font-family: var(--font-body);
+    font-size: clamp(1.2rem, 1.1rem + 0.5vw, 1.4rem);
+    line-height: 1.65;
+    color: var(--ink);
+    margin: 0 0 1.4rem;
+    max-width: 34ch;
+  }
+
+  html[data-lang="zh"] .lede { max-width: none; }
+
+  .sub {
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+    margin: 0 0 1.1rem;
+  }
+
+  .meta {
+    font-size: 0.92rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.01em;
+    margin: 0 0 2rem;
+  }
+
+  .cta {
+    font-size: 1.02rem;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ---------- body copy ---------- */
+
+  .hook {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 400;
+    font-size: clamp(1.3rem, 1.15rem + 0.6vw, 1.55rem);
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0 0 1.1rem;
+  }
+
+  p.body {
+    font-family: var(--font-body);
+    font-size: clamp(1.04rem, 1rem + 0.15vw, 1.14rem);
+    line-height: 1.85;
+    color: var(--ink);
+    margin: 0 0 1.5em;
+  }
+
+  p.body:last-child { margin-bottom: 0; }
+
+  p.body strong {
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ---------- path (career) ---------- */
+
+  .path-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .path-row {
+    display: grid;
+    grid-template-columns: 9.5rem 1fr;
+    gap: 0.2rem 1.75rem;
+    padding: 1.35rem 0;
+  }
+
+  .path-row:first-child { padding-top: 0; }
+  .path-row:last-child { padding-bottom: 0; }
+
+  .path-date {
+    font-size: 0.88rem;
+    color: var(--ink-mute);
+    letter-spacing: 0.01em;
+    padding-top: 0.15rem;
+    white-space: nowrap;
+  }
+
+  .path-role {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0 0 0.35rem;
+    line-height: 1.5;
+  }
+
+  .path-where {
+    font-weight: 400;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+
+  .path-ctx {
+    font-size: 0.98rem;
+    color: var(--ink-soft);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  @media (max-width: 600px) {
+    .path-row {
+      grid-template-columns: 1fr;
+      gap: 0.3rem;
+    }
+    .path-date {
+      font-weight: 600;
+      color: var(--accent);
+    }
+  }
+
+  /* ---------- footer / contact ---------- */
+
+  .signoff {
+    font-family: var(--font-display);
+    font-style: italic;
+    color: var(--ink-mute);
+    font-size: 1rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    body { animation: none; opacity: 1; }
+    * { transition: none !important; animation-duration: 0.001ms !important; }
+  }
+</style>
+</head>
+<body>
+
+<div class="lang-bar">
+  <button id="lang-toggle" class="lang-switch" type="button" aria-label="Switch language / 切换语言">
+    <span class="opt opt-en">EN</span><span class="sep">/</span><span class="opt opt-zh">中文</span>
+  </button>
+</div>
+
+<main class="letter">
+
+  <header class="hero">
+    <h1 class="name">Tong Wu <span class="cn">吴桐</span></h1>
+
+    <p class="role">
+      <span class="en">Co-founder &amp; builder, Novada Labs — AI agent infrastructure that ships to production, not demos.</span>
+      <span class="zh">Novada Labs 联合创始人——打造真正跑在生产环境里的 AI Agent 基础设施，而不只是停留在演示阶段。</span>
+    </p>
+
+    <p class="lede">
+      <span class="en">I build the AI systems and process discipline that turn proof-of-concept into production.</span>
+      <span class="zh">我做能真正落地生产的 AI 系统与流程能力——从概念验证到稳定运行。</span>
+    </p>
+
+    <p class="sub">
+      <span class="en">Previously: supply-chain &amp; process excellence at Xiaomi, Amazon, Huawei. Econ/Finance → Supply Chain → AI, in that order.</span>
+      <span class="zh">此前历经小米、亚马逊、华为的供应链与流程管理。从经济金融，到供应链，再到 AI 系统，顺序如此。</span>
+    </p>
+
+    <p class="meta">
+      <span class="en">Düsseldorf, Germany · EU Blue Card holder — open to select conversations, not actively job-hunting.</span>
+      <span class="zh">德国杜塞尔多夫 · 欧盟蓝卡持有者——欢迎有价值的交流，目前并非在积极求职。</span>
+    </p>
+
+    <p class="cta">
+      <span class="en">Reach me by <a href="mailto:tongwu0824@gmail.com">email</a> or on <a href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">LinkedIn</a>. Code lives on <a href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub</a>.</span>
+      <span class="zh">可以通过<a href="mailto:tongwu0824@gmail.com">邮件</a>或 <a href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">LinkedIn</a> 联系我，代码都在 <a href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub</a> 上。</span>
+    </p>
+  </header>
+
+  <section id="about">
+    <p class="marker"><span class="en">About</span><span class="zh">关于</span></p>
+
+    <p class="hook">
+      <span class="en">My path doesn't run in a straight line, and that's the point.</span>
+      <span class="zh">我的路径不是直线，这正是重点。</span>
+    </p>
+
+    <p class="body">
+      <span class="en">I started in Economics &amp; Finance (M.Sc., University of Freiburg), moved into supply-chain and process-excellence roles at Huawei, Xiaomi and Amazon — running KPI systems, root-cause analysis and enterprise account delivery for Deutsche Telekom and Vodafone — and I now co-found and build Novada Labs, where I ship the AI agent infrastructure (RAG memory, multi-agent orchestration, MCP integrations) that companies actually run in production. Every domain shift kept the same instinct: measure it, fix the root cause, then automate it.</span>
+      <span class="zh">我从经济金融出发（弗莱堡大学硕士），做过华为、小米、亚马逊的供应链与流程卓越工作——搭建 KPI 体系、根因分析、服务德国电信和沃达丰这样的企业大客户——现在联合创办 Novada Labs，打造真正跑在生产环境里的 AI Agent 基础设施（RAG 记忆系统、多智能体编排、MCP 集成）。每一次跨界都保留了同一个本能：先量化，再找根因，然后自动化。</span>
+    </p>
+  </section>
+
+  <section id="building">
+    <p class="marker"><span class="en">Building</span><span class="zh">作品</span></p>
+
+    <p class="body">
+      <span class="en">Most of what I build now lives inside Novada Labs. <strong>AgentRecall</strong> — persistent memory for AI agents, so corrections actually stick — is the flagship: 313 stars on GitHub and more than 6,400 installs a month. Alongside it sits <strong>AAM (Agent Autonomous Mode)</strong>, an orchestration framework for autonomous agent teams built around one rule: the reviewer is never the author. <strong>Plywood Protocol</strong> compiles plain-language instructions into executable standard operating procedures — validated through a blinded randomized controlled trial, not just claimed. <strong>Novada MCP</strong> is the integration layer: one MCP server exposing 40+ tools across 13 platforms. And <strong>Novada Proxy MCP</strong> gives agents reliable web access, backed by 464 automated tests. Five products, one thesis: an AI system is only as good as the discipline that keeps it honest in production.</span>
+      <span class="zh">如今我做的大部分东西都在 Novada Labs 里。<strong>AgentRecall</strong>——为 AI Agent 打造的持久记忆系统，让纠正真正被记住——是其中的旗舰产品：GitHub 313 颗星，每月 6,400+ 次安装。与之并列的是 <strong>AAM（Agent Autonomous Mode）</strong>，一个多智能体编排框架，只遵循一条规则：审阅者永远不是执行者本人。<strong>Plywood Protocol</strong> 把自然语言指令编译成可执行的标准作业流程——经过盲测随机对照试验验证，而不只是自吹。<strong>Novada MCP</strong> 是集成层：一个 MCP 服务器，覆盖 13 个平台、40 多个工具。<strong>Novada Proxy MCP</strong> 则为 Agent 提供稳定的网络访问能力，464 个自动化测试兜底。五个产品，一个信念：AI 系统的好坏，取决于让它在生产环境里保持诚实的那套纪律。</span>
+    </p>
+  </section>
+
+  <section id="path">
+    <p class="marker"><span class="en">Path</span><span class="zh">履历</span></p>
+
+    <ol class="path-list">
+      <li class="path-row">
+        <span class="path-date">Mar 2026 – Present</span>
+        <div>
+          <p class="path-role">Co-founder &amp; AI Automation/Infrastructure Engineer <span class="path-where">— Novada Labs, Frankfurt/Remote</span></p>
+          <p class="path-ctx">Built &amp; ships AgentRecall, AAM, Plywood, Novada MCP, Novada Proxy MCP; owns the technology function end-to-end.</p>
+        </div>
+      </li>
+      <li class="path-row">
+        <span class="path-date">Sep 2025 – Jan 2026</span>
+        <div>
+          <p class="path-role">Process Excellence Manager <span class="path-where">— Amazon, Hamburg (DHH2)</span></p>
+          <p class="path-ctx">Ran KPI analysis (100+ metrics) and root-cause analysis across 16 delivery-carrier accounts; 99.5% quality, 100% safety compliance.</p>
+        </div>
+      </li>
+      <li class="path-row">
+        <span class="path-date">Jun 2024 – Aug 2025</span>
+        <div>
+          <p class="path-role">Supply Chain Delivery Manager <span class="path-where">— Xiaomi Technology, Düsseldorf</span></p>
+          <p class="path-ctx">Main point of contact for Deutsche Telekom &amp; Vodafone; built a company-wide KPI/exception-management platform; ~€110M/yr fulfilment at 99.5% on-time.</p>
+        </div>
+      </li>
+      <li class="path-row">
+        <span class="path-date">Dec 2023 – Jun 2024</span>
+        <div>
+          <p class="path-role">EU Certification / Quality Specialist <span class="path-where">— Huawei, Düsseldorf</span></p>
+          <p class="path-ctx">Managed ISO 9001/14001/45001 compliance across labs, notified bodies and product teams, in three languages.</p>
+        </div>
+      </li>
+      <li class="path-row">
+        <span class="path-date">Oct 2022 – Feb 2024</span>
+        <div>
+          <p class="path-role">Graduate Teaching &amp; Research Assistant <span class="path-where">— University of Freiburg</span></p>
+          <p class="path-ctx">Taught Finance/Macroeconomics; ran behavioral/game-theoretic experiments at FRIBIS.</p>
+        </div>
+      </li>
+      <li class="path-row">
+        <span class="path-date">Oct 2020 – Nov 2023</span>
+        <div>
+          <p class="path-role">M.Sc. Economics and Finance <span class="path-where">— University of Freiburg</span></p>
+          <p class="path-ctx">Computational Economics, Econometrics, Time-Series Analysis. Seminar: a LangChain + Pinecone RAG assistant (2023) — his first retrieval build. Outstanding Student Representative, commencement speaker.</p>
+        </div>
+      </li>
+      <li class="path-row">
+        <span class="path-date">2018 – 2020</span>
+        <div>
+          <p class="path-role">Project Management / Business Intern <span class="path-where">— Arshine Pharmaceutical, Changsha &amp; SEG Automotive, China</span></p>
+          <p class="path-ctx">Overseas B2B client development, cross-border logistics, SAP procurement.</p>
+        </div>
+      </li>
+      <li class="path-row">
+        <span class="path-date">Sep 2014 – Jun 2018</span>
+        <div>
+          <p class="path-role">B.A. Business English (International Trade &amp; Business) <span class="path-where">— Jishou University, China</span></p>
+          <p class="path-ctx">Foundation in international trade &amp; economics.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="skills">
+    <p class="marker"><span class="en">Skills</span><span class="zh">技能</span></p>
+
+    <p class="body">
+      <span class="en">On the engineering side, that means RAG — embeddings, vector retrieval, reciprocal rank fusion — multi-agent orchestration, MCP servers and clients, LLM integration with the Claude and OpenAI APIs, evals and guardrails, written mostly in Python and TypeScript against PostgreSQL, with Docker and CI/CD underneath. On the process side, it means Lean and Six Sigma (Green Belt), root-cause analysis, KPI design and monitoring, requirements engineering, enterprise account management, and ISO 9001/14001/45001 compliance. I hold a Six Sigma Green Belt, the Certified Business Analysis Professional (CBAP) credential, and Google's Data Analytics and IT Automation with Python certificates — and I work comfortably in Chinese, English, and German.</span>
+      <span class="zh">工程这一侧，意味着 RAG（向量嵌入、检索、RRF 融合）、多智能体编排、MCP 服务端与客户端、Claude 与 OpenAI 的 LLM 集成、评测与护栏机制——主要用 Python 和 TypeScript 完成，跑在 PostgreSQL 上，配合 Docker 与 CI/CD。流程这一侧，意味着精益与六西格玛（绿带）、根因分析、KPI 设计与监控、需求工程、企业大客户管理，以及 ISO 9001/14001/45001 合规管理。我持有六西格玛绿带、CBAP（注册业务分析专业人士）认证，以及谷歌数据分析与 IT 自动化（Python）证书——中文、英语、德语都能自如使用。</span>
+    </p>
+  </section>
+
+  <section id="offscreen">
+    <p class="marker"><span class="en">Off-screen</span><span class="zh">屏幕之外</span></p>
+
+    <p class="hook">
+      <span class="en">What I read, brew, and practice when I'm not shipping.</span>
+      <span class="zh">不写代码的时候，我在读、在泡茶、在写字。</span>
+    </p>
+
+    <p class="body">
+      <span class="en">I Ching, tea ceremony, calligraphy, hiking, and — slowly — Japanese. On the side, I've also been building TchinTalk (栖音), a personal experiment in local-first, privacy-respecting dictation — no Novada affiliation, just curiosity about how much AI can do while staying entirely on your own machine.</span>
+      <span class="zh">易经、茶道、书法、徒步，还有正在慢慢学的日语。业余时间我也在做一个个人项目——栖音（TchinTalk），一个探索本地优先、隐私友好听写体验的小实验——与 Novada 无关，纯粹出于好奇：AI 完全留在自己设备上时，能做到什么程度。</span>
+    </p>
+  </section>
+
+  <footer class="contact" id="contact">
+    <p class="marker"><span class="en">Contact</span><span class="zh">联系</span></p>
+
+    <p class="body">
+      <span class="en">Email — <a href="mailto:tongwu0824@gmail.com">tongwu0824@gmail.com</a>. LinkedIn — <a href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">linkedin.com/in/tongwu3</a>. GitHub — <a href="https://github.com/Goldentrii" target="_blank" rel="noopener">github.com/Goldentrii</a>. Based in Düsseldorf, NRW, Germany · EU Blue Card holder — open to interesting conversations, not actively job-hunting.</span>
+      <span class="zh">邮箱 — <a href="mailto:tongwu0824@gmail.com">tongwu0824@gmail.com</a>。LinkedIn — <a href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">linkedin.com/in/tongwu3</a>。GitHub — <a href="https://github.com/Goldentrii" target="_blank" rel="noopener">github.com/Goldentrii</a>。常居德国杜塞尔多夫 · 欧盟蓝卡持有者——欢迎有价值的交流，目前并非在积极求职。</span>
+    </p>
+
+    <p class="signoff">
+      <span class="en">— Tong</span>
+      <span class="zh">—— 吴桐</span>
+    </p>
+  </footer>
+
+</main>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var toggle = document.getElementById('lang-toggle');
+    if (!toggle) return;
+
+    function currentLang() {
+      return root.getAttribute('data-lang') === 'zh' ? 'zh' : 'en';
+    }
+
+    toggle.setAttribute('aria-pressed', currentLang() === 'zh' ? 'true' : 'false');
+
+    toggle.addEventListener('click', function () {
+      var next = currentLang() === 'zh' ? 'en' : 'zh';
+      root.setAttribute('data-lang', next);
+      root.setAttribute('lang', next === 'zh' ? 'zh-CN' : 'en');
+      toggle.setAttribute('aria-pressed', next === 'zh' ? 'true' : 'false');
+      try { localStorage.setItem('tw-lang', next); } catch (e) {}
+    });
+  })();
+</script>
+
+</body>
+</html>
