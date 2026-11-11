@@ -19,7 +19,7 @@ Open `http://127.0.0.1:41873`. Serving the site needs no build step. (On Windows
 - `assets/fonts/`: self-hosted Barlow and Barlow Condensed (`barlow-OFL.txt`), plus the fonts of earlier designs.
 - `assets/logos/`: organization logos (see `docs/content-sources.md`).
 - `assets/agentrecall-dashboard.png`: preview from the public AgentRecall repository with example data.
-- `assets/tong-wu.jpg`: portrait. `assets/social-card.png`: social sharing image (1200×630), rendered from `docs/social-card.html`. It still shows the September 2026 design and needs regenerating; bump the `?v=` on `og:image` when it changes.
+- `assets/tong-wu.jpg`: portrait. `assets/social-card.png`: social sharing image (1200×630), rendered from `docs/social-card.html` with headless Edge or Chrome (`--headless=new --force-device-scale-factor=1 --window-size=1200,630 --screenshot=<out.png> <file URL>`); bump the `?v=` on `og:image` when it changes.
 - `draft-3d/`: source and build tooling for the background (`scene-b.src.js`, `package.json`). Draft A, an alternative animation-led layout, also lives there on the author's machine but is gitignored and not published.
 - `assets/game.css`, `assets/game.js`: styles and script of the September 2026 game design; its page is kept as a local, gitignored copy (`index-2026-09-25-game.html`), like the other archived homepages. `assets/site.css`, `assets/site.js`, the tracked `index-*.html`: older designs, kept for old links.
 - `docs/content-sources.md`: content provenance and editorial decisions.

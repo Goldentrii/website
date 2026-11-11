@@ -2,103 +2,169 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<link rel="stylesheet" href="../assets/fonts.css" />
+<!-- Source of assets/social-card.png (1200x630). Render it with a headless
+     browser at a 1200x630 viewport; see readme.md. -->
 <style>
+  @font-face { font-family: "Barlow"; font-weight: 400; src: url(../assets/fonts/barlow-latin-400-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Barlow"; font-weight: 500; src: url(../assets/fonts/barlow-latin-500-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Barlow"; font-weight: 600; src: url(../assets/fonts/barlow-latin-600-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Barlow Condensed"; font-weight: 500; src: url(../assets/fonts/barlow-condensed-latin-500-normal.woff2) format("woff2"); }
+  @font-face { font-family: "Barlow Condensed"; font-weight: 600; src: url(../assets/fonts/barlow-condensed-latin-600-normal.woff2) format("woff2"); }
   :root {
-    --paper: #f4f2eb; --paper-2: #ebe8dd; --ink: #272721; --muted: #66665d;
-    --accent: #c74326; --claude: #d97757; --gold: #e8b93a; --green: #3f8a5b; --blue: #2f6fb0;
-    --sans: "DM Sans", system-ui, sans-serif; --mono: "IBM Plex Mono", monospace; --serif: "Instrument Serif", serif;
+    --space: #070f3a; --cobalt: #1c3fd0; --ink: #0c1a4a; --chalk: #f5f7fa;
+    --yellow: #ffcc33; --slate: #515d85; --rule: rgba(12, 26, 74, 0.16);
+    --body: "Barlow", sans-serif; --display: "Barlow Condensed", sans-serif;
   }
   * { box-sizing: border-box; margin: 0; }
   html, body { width: 1200px; height: 630px; overflow: hidden; }
   body {
-    background: var(--paper);
-    background-image: radial-gradient(#d7d5cc 1.3px, transparent 1.3px);
-    background-size: 22px 22px;
-    color: var(--ink); font-family: var(--sans);
-    position: relative; padding: 44px 60px;
+    position: relative;
+    color: #fff;
+    font-family: var(--body);
+    background:
+      radial-gradient(620px 420px at 12% 8%, rgba(60, 100, 255, 0.55), transparent 70%),
+      radial-gradient(560px 420px at 78% 0%, rgba(122, 77, 255, 0.5), transparent 70%),
+      radial-gradient(520px 380px at 96% 100%, rgba(20, 170, 190, 0.3), transparent 70%),
+      radial-gradient(520px 360px at 30% 110%, rgba(200, 60, 150, 0.22), transparent 70%),
+      var(--space);
   }
-  .hud {
-    display: flex; align-items: center; gap: 18px;
-    font: 600 17px var(--mono);
+  #sky { position: absolute; inset: 0; }
+
+  /* A lit planet with rings, low on the right, partly behind the card. */
+  .planet { position: absolute; left: 648px; top: 446px; width: 230px; height: 230px; }
+  .planet .ring {
+    position: absolute; left: -92px; top: 78px; width: 414px; height: 74px;
+    border-radius: 50%;
+    border: 13px solid rgba(214, 196, 166, 0.55);
+    box-shadow: 0 0 0 5px rgba(214, 196, 166, 0.2), inset 0 0 0 4px rgba(214, 196, 166, 0.22);
+    transform: rotate(-16deg);
   }
-  .logo { font: 700 30px var(--sans); letter-spacing: -0.03em; }
-  .logo b { color: var(--accent); }
-  .xp { flex: 1; height: 18px; border: 2.5px solid var(--ink); border-radius: 99px; background: #fff; overflow: hidden; }
-  .xp i { display: block; height: 100%; width: 72%; background: repeating-linear-gradient(90deg, var(--green) 0 14px, #4fa06d 14px 28px); }
-  .pill { border: 2.5px solid var(--ink); border-radius: 99px; padding: 4px 14px; background: var(--gold); box-shadow: 3px 3px 0 var(--ink); }
-  .pill.t { background: #fff; }
-  .main { display: grid; grid-template-columns: 1fr 330px; gap: 44px; margin-top: 70px; align-items: start; }
-  .eyebrow { font: 600 17px var(--mono); color: var(--accent); text-transform: uppercase; letter-spacing: .04em; }
-  .eyebrow span { color: var(--green); }
-  h1 { font: 700 62px/1.04 var(--sans); letter-spacing: -0.035em; margin-top: 18px; }
-  h1 em { font: italic 400 1.1em/1 var(--serif); color: var(--accent); letter-spacing: -0.01em; }
-  .btn {
-    display: inline-block; margin-top: 30px; font: 700 21px var(--sans);
-    background: var(--accent); color: #fff; border: 2.5px solid var(--ink);
-    border-radius: 14px; padding: 12px 22px; box-shadow: 4px 4px 0 var(--ink);
+  .planet .ring.back { clip-path: inset(0 0 50% 0); }
+  .planet .ring.front { clip-path: inset(50% 0 0 0); }
+  .planet .globe {
+    position: absolute; inset: 0; border-radius: 50%;
+    background:
+      radial-gradient(circle at 30% 28%, rgba(255, 255, 255, 0.28), transparent 46%),
+      repeating-linear-gradient(172deg, #c9a577 0 16px, #a8805a 16px 27px, #dcc39f 27px 39px, #8f6a48 39px 47px);
+    box-shadow: inset -62px -34px 70px 6px rgba(2, 5, 24, 0.94), 0 0 34px rgba(200, 160, 110, 0.22);
   }
-  .url { margin-left: 18px; font: 600 19px var(--mono); color: var(--muted); }
+
+  .copy { position: absolute; left: 64px; top: 58px; width: 640px; }
+  .where { font: 500 25px var(--body); color: var(--yellow); }
+  h1 { margin-top: 10px; font: 600 104px/0.95 var(--display); letter-spacing: -0.01em; }
+  .line { margin-top: 18px; max-width: 640px; font: 500 48px/1.08 var(--display); color: var(--yellow); }
+  .now { margin-top: 26px; max-width: 590px; font: 400 25px/1.4 var(--body); }
+  .now b { font-weight: 600; }
+  .url {
+    position: absolute; left: 64px; bottom: 44px;
+    padding: 9px 20px; border-radius: 3px;
+    background: var(--yellow); color: var(--ink); font: 600 25px var(--body);
+  }
+
   .sheet {
-    background: #fffdf7; border: 2.5px solid var(--ink); border-radius: 18px;
-    box-shadow: 6px 6px 0 var(--ink); padding: 22px; transform: rotate(1.6deg);
+    position: absolute; right: 60px; top: 92px; width: 372px;
+    padding: 24px; border-radius: 8px;
+    background: var(--chalk); color: var(--ink);
+    box-shadow: 8px 8px 0 var(--cobalt);
   }
   .head { display: flex; gap: 16px; align-items: center; }
-  .head img { width: 96px; height: 96px; border-radius: 14px; border: 2.5px solid var(--ink); object-fit: cover; }
-  .lbl { font: 600 12px var(--mono); color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
-  .name { font: 700 28px var(--sans); letter-spacing: -0.02em; }
-  .cls { font: 600 15px var(--sans); color: var(--accent); }
-  .langs { margin-top: 18px; display: grid; gap: 9px; }
-  .lang { display: grid; grid-template-columns: 92px 1fr 34px; align-items: center; gap: 10px; font: 600 14px var(--sans); }
-  .bar { height: 12px; border: 2px solid var(--ink); border-radius: 99px; background: var(--paper-2); overflow: hidden; }
-  .bar i { display: block; height: 100%; }
-  .lv { font: 600 13px var(--mono); text-align: right; }
-  .now { margin-top: 16px; padding-top: 12px; border-top: 2px dashed #d7d5cc; font: 600 13px var(--mono); color: var(--muted); }
-  .clawd { position: absolute; right: 44px; bottom: 26px; display: flex; align-items: center; gap: 10px; font: 600 14px var(--mono); color: var(--muted); }
-  .clawd svg { width: 44px; height: 44px; }
+  .head img { width: 104px; height: 104px; border-radius: 8px; object-fit: cover; }
+  .name { font: 600 40px/1 var(--display); }
+  .role { margin-top: 5px; font: 600 19px/1.2 var(--body); color: var(--cobalt); }
+  .org { margin-top: 2px; font: 400 17px var(--body); color: var(--slate); }
+  .block { margin-top: 18px; padding-top: 15px; border-top: 1px solid var(--rule); }
+  .label { margin-bottom: 11px; font: 600 15px var(--body); color: var(--slate); }
+  .logos { display: flex; align-items: center; gap: 20px; }
+  .langs { display: grid; gap: 7px; }
+  .lang { display: grid; grid-template-columns: 112px 1fr 56px; align-items: center; gap: 12px; font: 500 18px var(--body); }
+  .bar { height: 9px; border-radius: 99px; background: rgba(12, 26, 74, 0.12); overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 99px; background: var(--cobalt); }
+  .lv { font: 600 15px var(--body); text-align: right; }
 </style>
 </head>
 <body>
-  <div class="hud">
-    <span class="logo">tong wu<b>.</b></span>
-    <span class="xp"><i></i></span>
-    <span class="pill">LV 5</span>
-    <span class="pill t">🏆 8/8</span>
+  <svg id="sky" width="1200" height="630" viewBox="0 0 1200 630" aria-hidden="true"></svg>
+
+  <div class="planet" aria-hidden="true">
+    <div class="ring back"></div>
+    <div class="globe"></div>
+    <div class="ring front"></div>
   </div>
 
-  <div class="main">
-    <div>
-      <p class="eyebrow"><span>●</span> player 1 · data · supply chain · automation</p>
-      <h1>Hi, I’m Tong Wu. <em>Chill, but very curious.</em></h1>
-      <span class="btn">▶ Press start</span><span class="url">tongwu.network</span>
-    </div>
+  <div class="copy">
+    <p class="where">Düsseldorf, Germany</p>
+    <h1>Hi, I’m Tong Wu.</h1>
+    <p class="line">I untangle how work moves, then build the tools that keep it moving.</p>
+    <p class="now">European tech and product at <b>Novada Labs</b>. Maker of <b>AgentRecall</b>, open-source memory for AI agents.</p>
+  </div>
+  <p class="url">tongwu.network</p>
 
-    <div class="sheet">
-      <div class="head">
-        <img src="../assets/tong-wu.jpg" alt="" />
-        <div>
-          <p class="lbl">character</p>
-          <p class="name">Tong Wu</p>
-          <p class="cls">Data Analysis × Supply Chain</p>
-        </div>
+  <div class="sheet">
+    <div class="head">
+      <img src="../assets/tong-wu.jpg" alt="" />
+      <div>
+        <p class="name">Tong Wu</p>
+        <p class="role">AI Automation &amp; GTM Manager</p>
+        <p class="org">Novada Labs</p>
       </div>
+    </div>
+    <div class="block">
+      <p class="label">Worked at</p>
+      <div class="logos">
+        <img src="../assets/logos/novada.svg" alt="" width="92" height="19" />
+        <img src="../assets/logos/amazon.png" alt="" width="69" height="23" />
+        <img src="../assets/logos/xiaomi.png" alt="" width="31" height="31" />
+        <img src="../assets/logos/adecco.svg" alt="" width="57" height="31" />
+      </div>
+    </div>
+    <div class="block">
+      <p class="label">Languages</p>
       <div class="langs">
-        <div class="lang">中文<span class="bar"><i style="width:100%;background:var(--accent)"></i></span><span class="lv">Nat</span></div>
-        <div class="lang">English<span class="bar"><i style="width:94%;background:var(--blue)"></i></span><span class="lv">C2</span></div>
-        <div class="lang">Deutsch<span class="bar"><i style="width:80%;background:var(--gold)"></i></span><span class="lv">C1</span></div>
+        <div class="lang"><span>中文 Chinese</span><span class="bar"><i style="width: 100%"></i></span><span class="lv">Native</span></div>
+        <div class="lang"><span>English</span><span class="bar"><i style="width: 95%"></i></span><span class="lv">C2</span></div>
+        <div class="lang"><span>Deutsch</span><span class="bar"><i style="width: 80%"></i></span><span class="lv">C1</span></div>
       </div>
-      <p class="now">AI Automation &amp; GTM Manager<br>@ Novada Labs</p>
     </div>
   </div>
 
-  <div class="clawd">built with Claude Code
-    <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
-      <rect x="3" y="4" width="10" height="7" fill="#d97757"/>
-      <rect x="1" y="7" width="2" height="2" fill="#d97757"/><rect x="13" y="7" width="2" height="2" fill="#d97757"/>
-      <rect x="5" y="6" width="1" height="2" fill="#272721"/><rect x="10" y="6" width="1" height="2" fill="#272721"/>
-      <rect x="4" y="11" width="1" height="2" fill="#d97757"/><rect x="6" y="11" width="1" height="2" fill="#d97757"/>
-      <rect x="9" y="11" width="1" height="2" fill="#d97757"/><rect x="11" y="11" width="1" height="2" fill="#d97757"/>
-    </svg>
-  </div>
+  <script>
+    // Stars: fixed seed, so every render of the card is identical.
+    (function () {
+      var seed = 20261111;
+      function rand() {
+        seed = (seed + 0x6d2b79f5) | 0;
+        var t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+      }
+      var tints = ["#ffffff", "#ffffff", "#ffffff", "#b8d1ff", "#ffdb73", "#ffad80", "#ff9ed1", "#8cf2f2"];
+      var ns = "http://www.w3.org/2000/svg";
+      var sky = document.getElementById("sky");
+      for (var i = 0; i < 230; i++) {
+        var x = rand() * 1200, y = rand() * 630, r = rand();
+        var size = 0.5 + r * r * r * 2.6;
+        // Keep the sky quiet behind the text: small stars only, no flares.
+        if (x < 700 && y > 40 && y < 500 && size > 1.3) size = 1.3;
+        var tint = tints[Math.floor(rand() * tints.length)];
+        var dot = document.createElementNS(ns, "circle");
+        dot.setAttribute("cx", x.toFixed(1));
+        dot.setAttribute("cy", y.toFixed(1));
+        dot.setAttribute("r", size.toFixed(2));
+        dot.setAttribute("fill", tint);
+        dot.setAttribute("opacity", (0.45 + rand() * 0.55).toFixed(2));
+        sky.appendChild(dot);
+        if (size > 2.2) {
+          // The brightest stars get a cross-shaped flare.
+          var flare = document.createElementNS(ns, "path");
+          var len = size * 5;
+          flare.setAttribute("d", "M" + (x - len) + " " + y + "H" + (x + len) + "M" + x + " " + (y - len) + "V" + (y + len));
+          flare.setAttribute("stroke", tint);
+          flare.setAttribute("stroke-width", "0.9");
+          flare.setAttribute("opacity", "0.7");
+          sky.appendChild(flare);
+        }
+      }
+    })();
+  </script>
 </body>
 </html>
