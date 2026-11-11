@@ -15,7 +15,6 @@ Open `http://127.0.0.1:41873`. Serving the site needs no build step. (On Windows
 - `index.html`: all content and metadata. Semantic HTML; fully readable without JavaScript or WebGL.
 - `assets/main.css`: palette (deep-space navy, cobalt, chalk, yellow), cards, layout, responsive breakpoints (900 / 860 / 560 px) and print styles.
 - `assets/backdrop.js`: built bundle of the background scene plus three.js. Do not edit; rebuild it (see below).
-- `assets/stars.js`: live GitHub star count. The number in the HTML is the fallback when the request fails.
 - `assets/fonts/`: self-hosted Barlow and Barlow Condensed (`barlow-OFL.txt`), plus the fonts of earlier designs.
 - `assets/logos/`: organization logos (see `docs/content-sources.md`).
 - `assets/agentrecall-dashboard.png`: preview from the public AgentRecall repository with example data.
@@ -39,7 +38,8 @@ npm run build:site
 - Scroll progress (0 at the top, 1 at the bottom) moves the camera forward through the star field. Stars twinkle, nebulae drift, planets orbit and spin, and a shooting star crosses every few seconds, drawn at about 30 frames a second. Suns, planets and rings use procedural shaders (noise surfaces, lighting from each system's own sun), so there are no texture files. The canvas is `position: fixed`, behind everything, and ignores pointer input.
 - `prefers-reduced-motion`: nothing animates on its own; the background redraws only on scroll and resize.
 - WebGL missing, context lost for more than 3 seconds, or a frame error: the `no-gl` class hides the canvas and the page falls back to a static navy gradient.
-- Nothing is stored in the browser and there are no analytics. The only network request besides the page itself is the public GitHub API star count.
+- Nothing is stored in the browser, there are no analytics, and the page makes no third-party requests.
+- Editorial rules (owner, 25 Sep 2026): position Tong as data analysis and supply chain, not as an AI builder, and show no performance metrics or star counts.
 
 ## Deployment
 
