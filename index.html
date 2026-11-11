@@ -3,20 +3,20 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="color-scheme" content="light" />
-    <meta name="theme-color" content="#f4f2eb" />
-    <title>Tong Wu — Data Analysis × Supply Chain</title>
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#070f3a" />
+    <title>Tong Wu, AI automation built on supply-chain experience</title>
     <meta
       name="description"
-      content="Tong Wu — data analysis, supply chain, process excellence and AI. Currently AI Automation &amp; GTM Manager at Novada Labs. Chill, very curious, and fond of building small tools. Played as a small game, built by Claude Code."
+      content="Tong Wu runs European tech and product at Novada Labs and maintains AgentRecall, open-source memory for AI agents. Before that: delivery for Xiaomi in Germany and the Benelux, and process excellence at Amazon."
     />
     <link rel="canonical" href="https://tongwu.network/" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://tongwu.network/" />
-    <meta property="og:title" content="Tong Wu — Data Analysis × Supply Chain" />
+    <meta property="og:title" content="Tong Wu, AI automation built on supply-chain experience" />
     <meta
       property="og:description"
-      content="Data analysis, supply chain, process excellence and AI. Currently AI Automation &amp; GTM Manager at Novada Labs. A career, played as a game."
+      content="European tech, product and AI automation at Novada Labs, and AgentRecall, open-source memory for AI agents. Before that: delivery for Xiaomi and process excellence at Amazon."
     />
     <meta
       property="og:image"
@@ -24,15 +24,19 @@
     />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Hi, I’m Tong Wu. Chill, but very curious. AI Automation &amp; GTM Manager at Novada Labs." />
+    <meta property="og:image:alt" content="Tong Wu, AI Automation &amp; GTM Manager at Novada Labs." />
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="stylesheet" href="assets/fonts.css" />
-    <link rel="stylesheet" href="assets/game.css" />
-    <script>
-      document.documentElement.classList.add("js");
-    </script>
-    <script src="assets/game.js" defer onerror="document.documentElement.classList.remove('js')"></script>
+    <link
+      rel="preload"
+      href="assets/fonts/barlow-condensed-latin-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="assets/main.css" />
+    <script type="module" src="assets/backdrop.js"></script>
+    <script src="assets/stars.js" defer></script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -56,544 +60,367 @@
     </script>
   </head>
   <body>
-    <!-- Sprite: the guide character, reused everywhere via <use>. -->
-    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
-      <symbol id="clawd" viewBox="0 0 26 22" shape-rendering="crispEdges">
-        <rect class="c-body" x="4" y="3" width="18" height="11" />
-        <rect class="c-body c-arm-l" x="0" y="7" width="4" height="4" />
-        <rect class="c-body c-arm-r" x="22" y="7" width="4" height="4" />
-        <g class="c-eyes">
-          <rect x="8" y="6" width="2" height="4" />
-          <rect x="16" y="6" width="2" height="4" />
-        </g>
-        <g class="c-legs">
-          <rect class="c-body" x="5" y="14" width="2" height="5" />
-          <rect class="c-body" x="9" y="14" width="2" height="5" />
-          <rect class="c-body" x="15" y="14" width="2" height="5" />
-          <rect class="c-body" x="19" y="14" width="2" height="5" />
-        </g>
-      </symbol>
-    </svg>
+    <!-- Background only: lanes that untangle as the page scrolls. -->
+    <canvas id="backdrop" class="backdrop" aria-hidden="true"></canvas>
 
-    <a class="skip-link" href="#main">Skip to content</a>
+    <a class="skip" href="#main">Skip to content</a>
 
-    <!-- Intro dialog. Opened by JS only; without JS the page is a plain CV. -->
-    <dialog class="boot" id="boot" aria-labelledby="bootTitle">
-      <div class="boot-card">
-        <div class="boot-top">
-          <span class="pill">tongwu.network</span>
-          <span class="pill pill-ghost">v2026.09 · single player</span>
-        </div>
-        <svg class="boot-clawd bob" aria-hidden="true"><use href="#clawd" /></svg>
-        <p class="boot-hello mono">&gt; hello, visitor_</p>
-        <h2 id="bootTitle" class="boot-title">
-          Hi, I’m Claude. Tong asked me to build this website, so I made it
-          <em>a game.</em>
-        </h2>
-        <p class="boot-copy">
-          It’s about someone pretty chill and very curious, who likes to
-          figure out how things work and build small tools for them. Five
-          levels, some loot, a few hobbies. About two minutes.
-        </p>
-        <div class="boot-actions">
-          <button class="btn btn-primary" id="startGame" type="button" autofocus>
-            ▶ Start the game
-          </button>
-          <button class="btn btn-ghost" id="skipGame" type="button">
-            Skip — just the CV
-          </button>
-        </div>
-        <p class="boot-hint mono">press <kbd>Enter</kbd> to start · <kbd>Esc</kbd> to skip</p>
-      </div>
-    </dialog>
-
-    <!-- HUD -->
-    <header class="hud">
-      <a href="#player" class="wordmark" aria-label="Tong Wu, back to start"
-        >tong wu<span class="dot">.</span></a
+    <header class="top">
+      <a class="name" href="#profile"
+        >Tong Wu <span class="name-zh" lang="zh-Hans">吴桐</span></a
       >
-      <div class="hud-xp" aria-hidden="true">
-        <span class="mono hud-lv" id="hudLevel">LV 0</span>
-        <span class="xp-track"><span class="xp-fill" id="xpFill"></span></span>
-        <span class="mono hud-trophy">★ <span id="trophyCount">0</span>/<span id="trophyTotal">8</span></span>
-      </div>
-      <nav class="hud-nav" aria-label="Main navigation">
-        <a href="#map">Levels</a>
-        <a href="#loot">Work</a>
-        <a href="#quests">Experience</a>
-        <a href="#achievements">Credentials</a>
-        <a href="#save" class="hud-cta">Say hi ↗</a>
+      <nav aria-label="Main">
+        <a href="#route">Route</a>
+        <a href="#work">Work</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#certificates">Certificates</a>
+        <a class="nav-cta" href="#contact">Say hi</a>
       </nav>
     </header>
 
-    <main id="main">
-      <!-- ─────────────── PLAYER ─────────────── -->
-      <section class="player" id="player" data-zone="player">
-        <div class="wrap player-grid">
-          <div class="player-copy">
-            <p class="eyebrow mono">
-              <span class="blink">●</span> player 1 · Düsseldorf, DE
-            </p>
-            <h1 class="hero-title">
-              Hi, I’m Tong Wu. <em>Chill, but very curious.</em>
+    <main id="main" tabindex="-1">
+      <!-- ───────── Profile: everything at a glance ───────── -->
+      <section class="profile" id="profile">
+        <div class="wrap profile-grid">
+          <div class="profile-copy">
+            <p class="where">Düsseldorf, Germany</p>
+            <h1>
+              Hi, I’m Tong Wu.
+              <span>I untangle how work moves, then build the tools that keep it moving.</span>
             </h1>
             <p class="lede">
-              I have a deep understanding of data analysis, supply chain,
-              process excellence and AI. Currently working as AI Automation &amp; GTM Manager at
-              Novada Labs — and building small tools on the side, mostly out
-              of curiosity.
+              I ran delivery for Xiaomi across Germany and the Benelux and
+              fixed processes at an Amazon delivery station. Now I run European
+              tech and product at Novada Labs, from setting up to AI
+              automation, and maintain
+              <a href="https://github.com/Goldentrii/AgentRecall-X" target="_blank" rel="noopener">AgentRecall</a>,
+              open-source memory for AI agents with
+              <span class="stars" data-repo="Goldentrii/AgentRecall-X">375</span>
+              stars on GitHub.
             </p>
-            <ul class="hero-links mono" aria-label="Contact">
-              <li><a href="mailto:tongwu0824@gmail.com"><span aria-hidden="true">✉</span> tongwu0824@gmail.com</a></li>
-              <li><a href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">LinkedIn <span aria-hidden="true">↗</span></a></li>
-              <li><a href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a></li>
+            <ul class="links" role="list">
+              <li><a href="mailto:tongwu0824@gmail.com">tongwu0824@gmail.com</a></li>
+              <li><a href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><a href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub</a></li>
             </ul>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#map">Press start ↓</a>
-              <a class="btn btn-ghost" href="#quests">Skip to experience</a>
-            </div>
+            <p class="actions">
+              <a class="button" href="#work">See what I built</a>
+              <a class="button button-line" href="#experience">Go to experience</a>
+            </p>
           </div>
 
-          <aside class="sheet sticker" aria-label="Character sheet">
+          <aside class="card sheet" aria-label="Profile summary">
             <div class="sheet-head">
-              <img
-                class="sheet-photo"
-                src="assets/tong-wu.jpg"
-                alt="Tong Wu"
-                width="120"
-                height="120"
-              />
+              <img src="assets/tong-wu.jpg" alt="Tong Wu" width="120" height="120" />
               <div>
-                <p class="mono sheet-label">character</p>
                 <p class="sheet-name">Tong Wu</p>
-                <p class="sheet-class">Data Analysis × Supply Chain</p>
-                <p class="mono sheet-now">
-                  AI Automation &amp; GTM Manager · Novada Labs
-                </p>
+                <p class="sheet-role">AI Automation &amp; GTM Manager</p>
+                <p class="sheet-org">Novada Labs, since March 2026</p>
               </div>
             </div>
 
             <div class="sheet-block">
-              <p class="mono sheet-label">languages</p>
-              <ul class="langs">
-                <li>
-                  <span class="lang-name">中文 Chinese</span>
-                  <span class="bar"><span style="--v: 100%"></span></span>
-                  <span class="mono lang-lv">Native</span>
-                </li>
-                <li>
-                  <span class="lang-name">English</span>
-                  <span class="bar"><span style="--v: 95%"></span></span>
-                  <span class="mono lang-lv">C2</span>
-                </li>
-                <li>
-                  <span class="lang-name">Deutsch</span>
-                  <span class="bar"><span style="--v: 80%"></span></span>
-                  <span class="mono lang-lv">C1</span>
-                </li>
+              <p class="sheet-label">Worked at</p>
+              <ul class="logos" role="list">
+                <li><img src="assets/logos/novada.svg" alt="Novada Labs" width="88" height="18" /></li>
+                <li><img src="assets/logos/amazon.png" alt="Amazon" width="66" height="22" /></li>
+                <li><img src="assets/logos/xiaomi.png" alt="Xiaomi" width="30" height="30" /></li>
+                <li><img src="assets/logos/adecco.svg" alt="Adecco" width="55" height="30" /></li>
               </ul>
             </div>
 
             <div class="sheet-block">
-              <p class="mono sheet-label">special moves</p>
-              <ul class="chips">
+              <p class="sheet-label">Languages</p>
+              <ul class="langs" role="list">
+                <li><span>中文 Chinese</span><span class="bar"><i style="width: 100%"></i></span><b>Native</b></li>
+                <li><span>English</span><span class="bar"><i style="width: 95%"></i></span><b>C2</b></li>
+                <li><span>Deutsch</span><span class="bar"><i style="width: 80%"></i></span><b>C1</b></li>
+              </ul>
+            </div>
+
+            <div class="sheet-block">
+              <p class="sheet-label">Does</p>
+              <ul class="chips" role="list">
+                <li>AI automation</li>
+                <li>Agent tooling, MCP</li>
                 <li>Data analysis</li>
-                <li>SQL · Python · Power BI</li>
+                <li>SQL, Python, Power BI</li>
                 <li>Supply-chain planning</li>
                 <li>KPI design</li>
                 <li>Root-cause analysis</li>
               </ul>
             </div>
 
-            <p class="mono sheet-foot">EU Blue Card · EU driving licence</p>
+            <p class="sheet-foot">EU Blue Card, EU driving licence</p>
           </aside>
         </div>
       </section>
 
-      <!-- ─────────────── WORLD MAP ─────────────── -->
-      <section class="map" id="map" data-zone="map">
+      <!-- ───────── Route ───────── -->
+      <section class="band" id="route">
         <div class="wrap">
-          <header class="sec-head">
-            <p class="mono sec-kicker">world map · 5 levels</p>
-            <h2>Each level taught <em>one thing.</em></h2>
-            <p class="sec-sub">
+          <header class="band-head">
+            <h2>Five stops, one move</h2>
+            <p>
               Economics, compliance, supply chains, process excellence, AI.
               Different jobs, same move: understand the system, then make it
               run better.
             </p>
           </header>
 
-          <ol class="levels">
-            <li class="level" data-level="1">
-              <div class="level-node" aria-hidden="true"><span>1</span></div>
-              <article class="level-card sticker">
-                <div class="level-top">
-                  <span class="logo-uf level-logo-uf" role="img" aria-label="University of Freiburg"><img src="assets/logos/freiburg-university.svg" alt="" width="70" height="14" /><img src="assets/logos/freiburg-name.svg" alt="" width="56" height="14" /></span>
-                  <span class="mono level-years">2020 — 2024</span>
-                </div>
-                <p class="mono level-world">world 1 · the economist</p>
+          <ol class="stops" role="list">
+            <li class="card stop">
+              <span class="stop-n" aria-hidden="true">1</span>
+              <div class="stop-body">
+                <p class="stop-meta">
+                  <span class="logo-uf" role="img" aria-label="University of Freiburg"><img src="assets/logos/freiburg-university.svg" alt="" width="70" height="14" /><img src="assets/logos/freiburg-name.svg" alt="" width="56" height="14" /></span>
+                  <span>2020 to 2024</span>
+                </p>
                 <h3>Learned to question assumptions.</h3>
-                <p>
-                  M.Sc. Economics &amp; Finance at the University of Freiburg,
-                  then taught macroeconomics and finance as a graduate
-                  assistant.
-                </p>
-                <p class="loot"><span>loot</span> Commencement speaker</p>
-              </article>
+                <p>M.Sc. Economics &amp; Finance at the University of Freiburg, then taught macroeconomics and finance as a graduate assistant.</p>
+                <p class="made"><b>Wrote there</b> <a href="Master's Thesis _ Tong_Wu_5163957.pdf">Master’s thesis</a> and a <a href="Big change! Not big enough. The rise of the GPT ecosystem-TongWu, Final.pdf">2023 paper on the GPT ecosystem</a>. Commencement speaker.</p>
+              </div>
             </li>
-
-            <li class="level" data-level="2">
-              <div class="level-node" aria-hidden="true"><span>2</span></div>
-              <article class="level-card sticker">
-                <div class="level-top">
-                  <img src="assets/logos/adecco.svg" alt="Adecco" class="level-logo level-logo-adecco" width="63" height="34" />
-                  <span class="mono level-years">2023 — 2024</span>
-                </div>
-                <p class="mono level-world">world 2 · the certifier</p>
+            <li class="card stop">
+              <span class="stop-n" aria-hidden="true">2</span>
+              <div class="stop-body">
+                <p class="stop-meta">
+                  <img src="assets/logos/adecco.svg" alt="Adecco" width="55" height="30" />
+                  <span>2023 to 2024</span>
+                </p>
                 <h3>Learned how rules become processes.</h3>
-                <p>
-                  Certification and audit readiness across Western Europe —
-                  ISO 9001, 14001 and 45001.
-                </p>
-                <p class="loot"><span>loot</span> Audit-ready, in three languages</p>
-              </article>
+                <p>Certification and audit readiness across Western Europe for ISO 9001, 14001 and 45001.</p>
+                <p class="made"><b>Left there</b> Sites audit-ready, in three languages.</p>
+              </div>
             </li>
-
-            <li class="level" data-level="3">
-              <div class="level-node" aria-hidden="true"><span>3</span></div>
-              <article class="level-card sticker">
-                <div class="level-top">
-                  <img src="assets/logos/xiaomi.png" alt="Xiaomi" class="level-logo" width="44" height="44" />
-                  <span class="mono level-years">2024 — 2025</span>
-                </div>
-                <p class="mono level-world">world 3 · the supply chain</p>
+            <li class="card stop">
+              <span class="stop-n" aria-hidden="true">3</span>
+              <div class="stop-body">
+                <p class="stop-meta">
+                  <img src="assets/logos/xiaomi.png" alt="Xiaomi" width="32" height="32" />
+                  <span>2024 to 2025</span>
+                </p>
                 <h3>Learned how products actually reach people.</h3>
-                <p>
-                  Ran end-to-end delivery for Germany and the Benelux, and
-                  built the company-wide KPI and exception platform.
-                </p>
-                <p class="loot"><span>loot</span> A KPI &amp; exception platform</p>
-              </article>
+                <p>Ran end-to-end delivery for Germany and the Benelux as Supply Chain Delivery Manager.</p>
+                <p class="made"><b>Built there</b> The company-wide KPI and exception platform.</p>
+              </div>
             </li>
-
-            <li class="level" data-level="4">
-              <div class="level-node" aria-hidden="true"><span>4</span></div>
-              <article class="level-card sticker">
-                <div class="level-top">
-                  <img src="assets/logos/amazon.png" alt="Amazon" class="level-logo level-logo-wide" width="88" height="30" />
-                  <span class="mono level-years">2025 — 2026</span>
-                </div>
-                <p class="mono level-world">world 4 · the process fixer</p>
+            <li class="card stop">
+              <span class="stop-n" aria-hidden="true">4</span>
+              <div class="stop-body">
+                <p class="stop-meta">
+                  <img src="assets/logos/amazon.png" alt="Amazon" width="72" height="24" />
+                  <span>2025 to 2026</span>
+                </p>
                 <h3>Learned to measure everything, then automate it.</h3>
-                <p>
-                  Process excellence at a last-mile delivery station: KPIs,
-                  root causes, fixes that stick.
-                </p>
-                <p class="loot"><span>loot</span> A reporting tool the team adopted</p>
-              </article>
+                <p>Process excellence at a last-mile delivery station: KPIs, root causes, fixes that stick.</p>
+                <p class="made"><b>Built there</b> A reporting tool the team adopted. <a href="Amazon_Caravan_Enhanced_Demo.html">Open the demo</a></p>
+              </div>
             </li>
-
-            <li class="level level-now" data-level="5">
-              <div class="level-node" aria-hidden="true"><span>5</span></div>
-              <article class="level-card sticker">
-                <div class="level-top">
-                  <img src="assets/logos/novada.svg" alt="Novada Labs" class="level-logo level-logo-wide" width="110" height="23" />
-                  <span class="mono level-years level-live">2026 — now</span>
-                </div>
-                <p class="mono level-world">world 5 · the builder</p>
-                <h3>Now building the tools.</h3>
-                <p>
-                  AI automation and go-to-market: building AI products and
-                  helping them find the people who need them.
+            <li class="card stop stop-now">
+              <span class="stop-n" aria-hidden="true">5</span>
+              <div class="stop-body">
+                <p class="stop-meta">
+                  <img src="assets/logos/novada.svg" alt="Novada Labs" width="96" height="20" />
+                  <span>2026 to now</span>
                 </p>
-                <p class="loot"><span>loot</span> An AI product, built from scratch</p>
-              </article>
+                <h3>Now building the tools.</h3>
+                <p>In charge of European tech, the new European company and product, along with AI automation and AI transformation.</p>
+                <p class="made"><b>Built there</b> An AI gateway for Europe and <a href="https://www.npmjs.com/package/novada-mcp" target="_blank" rel="noopener">Novada MCP</a>.</p>
+              </div>
             </li>
           </ol>
         </div>
       </section>
 
-      <!-- ─────────────── INVENTORY ─────────────── -->
-      <section class="loot-sec" id="loot" data-zone="loot">
+      <!-- ───────── Work ───────── -->
+      <section class="band" id="work">
         <div class="wrap">
-          <header class="sec-head">
-            <p class="mono sec-kicker">inventory · things I shipped</p>
-            <h2>Loot, <em>collected along the way.</em></h2>
-            <p class="sec-sub">
-              Small things I built, mostly because I was curious. Open one to
-              see what’s inside.
-            </p>
+          <header class="band-head">
+            <h2>Things I built</h2>
+            <p>Shipped at work and on the side. Open one to see more.</p>
           </header>
 
-          <div class="items">
-            <article class="item item-legendary sticker">
-              <p class="rarity mono">★ legendary · open source</p>
+          <article class="card feature">
+            <a class="feature-shot" href="https://github.com/Goldentrii/AgentRecall-X" target="_blank" rel="noopener">
               <img
-                class="item-shot"
                 src="assets/agentrecall-dashboard.png"
                 alt="AgentRecall dashboard showing projects, saved memories and activity (example data)"
                 width="1400"
                 height="860"
                 loading="lazy"
               />
+            </a>
+            <div class="feature-text">
+              <p class="tag">Open source</p>
               <h3>AgentRecall</h3>
-              <p class="item-one">Memory for AI agents that carries forward.</p>
-              <details>
-                <summary>Inspect item</summary>
-                <p>
-                  AI agents forget between sessions. AgentRecall is a
-                  local-first memory system — corrections ledger, session
-                  lifecycle, dashboard — usable through MCP, SDK and CLI. I
-                  own product direction, implementation, evaluation and
-                  releases.
-                </p>
-              </details>
-              <p class="item-meta mono">
-                <a href="https://github.com/Goldentrii/AgentRecall-X" target="_blank" rel="noopener">GitHub ↗</a>
-                <span class="stars" data-repo="Goldentrii/AgentRecall-X" hidden>★ <b></b> stars</span>
+              <p class="feature-count">
+                <span class="stars" data-repo="Goldentrii/AgentRecall-X">375</span>
+                <span>GitHub stars</span>
               </p>
-            </article>
+              <p>
+                AI agents forget everything between sessions. AgentRecall is
+                a local-first memory system that carries corrections and
+                context forward, usable through MCP, an SDK and a CLI. I own
+                product direction, implementation, evaluation and releases.
+              </p>
+              <p><a class="button button-ink" href="https://github.com/Goldentrii/AgentRecall-X" target="_blank" rel="noopener">Open AgentRecall on GitHub</a></p>
+            </div>
+          </article>
 
-            <article class="item item-epic sticker">
-              <p class="rarity mono">◆ epic · commercial</p>
-              <div class="item-art art-gateway" aria-hidden="true">
-                <span>0</span><i>→</i><span>1</span>
-              </div>
+          <div class="items">
+            <article class="card item">
+              <p class="tag">Commercial</p>
               <h3>EU AI Gateway</h3>
-              <p class="item-one">An AI service for Europe, built from scratch.</p>
-              <details>
-                <summary>Inspect item</summary>
-                <p>
-                  Built at Novada Labs with Next.js, AWS and the Claude API,
-                  then taken to European customers. Implementation is
-                  private.
-                </p>
-              </details>
-              <p class="item-meta mono">Novada Labs</p>
+              <p>An AI service for European customers, built from scratch with Next.js, AWS and the Claude API.</p>
+              <p class="item-where">Novada Labs, private</p>
             </article>
-
-            <article class="item item-epic sticker">
-              <p class="rarity mono">◆ epic · internal tool</p>
-              <div class="item-art art-hours" aria-hidden="true">
-                <span>⟳</span><small>auto-report</small>
-              </div>
+            <article class="card item">
+              <p class="tag">Internal tool</p>
               <h3>Reporting autopilot</h3>
-              <p class="item-one">Less reporting, more doing.</p>
-              <details>
-                <summary>Inspect item</summary>
-                <p>
-                  An AI-assisted reporting tool built with Claude, VBA and
-                  Tampermonkey, so daily reports mostly write themselves. The
-                  demo is a reconstruction, not a live Amazon system.
-                </p>
-              </details>
-              <p class="item-meta mono">
-                <a href="Amazon_Caravan_Enhanced_Demo.html">Try the demo ↗</a>
-              </p>
+              <p>Daily station reports that mostly write themselves, built with Claude, VBA and Tampermonkey.</p>
+              <p class="item-where"><a href="Amazon_Caravan_Enhanced_Demo.html">Open the demo</a>, a reconstruction</p>
             </article>
-
-            <article class="item item-rare sticker">
-              <p class="rarity mono">● rare · ops platform</p>
+            <article class="card item">
+              <p class="tag">Ops platform</p>
               <h3>Delivery control tower</h3>
-              <p class="item-one">
-                Company-wide KPI tracking and exception alerts for cross-border
-                fulfilment at Xiaomi.
-              </p>
-              <p class="item-meta mono">Xiaomi · internal</p>
+              <p>Company-wide KPI tracking and exception alerts for cross-border fulfilment.</p>
+              <p class="item-where">Xiaomi, internal</p>
             </article>
-
-            <article class="item item-rare sticker">
-              <p class="rarity mono">● rare · package</p>
+            <article class="card item">
+              <p class="tag">Package</p>
               <h3>Novada MCP</h3>
-              <p class="item-one">
-                Brings web data and tools into agent workflows. Interfaces,
-                testing, releases.
-              </p>
-              <p class="item-meta mono">
-                <a href="https://www.npmjs.com/package/novada-mcp" target="_blank" rel="noopener">npm ↗</a>
-              </p>
+              <p>Brings web data and tools into agent workflows. Interfaces, testing, releases.</p>
+              <p class="item-where"><a href="https://www.npmjs.com/package/novada-mcp" target="_blank" rel="noopener">View on npm</a></p>
             </article>
-
-            <article class="item item-rare sticker">
-              <p class="rarity mono">● rare · experimental</p>
+            <article class="card item">
+              <p class="tag">Experimental</p>
               <h3>Plywood</h3>
-              <p class="item-one">
-                Compiles fuzzy goals into structured briefs agents follow
-                reliably.
-              </p>
-              <p class="item-meta mono">Private</p>
+              <p>Compiles fuzzy goals into structured briefs that agents follow reliably.</p>
+              <p class="item-where">Private</p>
             </article>
-
-            <article class="item item-rare sticker">
-              <p class="rarity mono">● rare · orchestration</p>
+            <article class="card item">
+              <p class="tag">Orchestration</p>
               <h3>AAM</h3>
-              <p class="item-one">
-                Runs multi-agent work with independent review, budgets and
-                checkpoints.
-              </p>
-              <p class="item-meta mono">Private</p>
+              <p>Runs multi-agent work with independent review, budgets and checkpoints.</p>
+              <p class="item-where">Private</p>
             </article>
-
-            <article class="item item-common sticker">
-              <p class="rarity mono">○ common · voice</p>
+            <article class="card item">
+              <p class="tag">Voice</p>
               <h3>TchinTalk</h3>
-              <p class="item-one">
-                Local-first dictation for Windows. Chinese and English, fully
-                on-device.
-              </p>
-              <p class="item-meta mono">Personal · early stage</p>
+              <p>Local-first dictation for Windows in Chinese and English, fully on-device.</p>
+              <p class="item-where">Personal, early stage</p>
             </article>
-
           </div>
         </div>
       </section>
 
-      <!-- ─────────────── QUEST LOG ─────────────── -->
-      <section class="quests" id="quests" data-zone="quests">
+      <!-- ───────── Experience ───────── -->
+      <section class="band" id="experience">
         <div class="wrap">
-          <header class="sec-head">
-            <p class="mono sec-kicker">quest log · full experience</p>
-            <h2>Every quest, <em>at a glance.</em></h2>
-            <p class="sec-sub">
-              Short on purpose. The full story lives on LinkedIn.
-            </p>
+          <header class="band-head">
+            <h2>Every role, at a glance</h2>
+            <p>Short on purpose. The full story lives on LinkedIn.</p>
           </header>
 
-          <h3 class="q-group mono">jobs · full-time &amp; part-time</h3>
-          <ol class="timeline timeline-jobs">
-            <li class="quest sticker">
-              <img class="q-logo" src="assets/logos/novada.svg" alt="" width="88" height="18" />
-              <div class="q-body">
-                <p class="q-org">Novada Labs</p>
-                <p class="q-role">AI Automation &amp; GTM Manager</p>
-              </div>
-              <p class="q-date mono"><span class="q-live">active</span>Mar 2026 — Present</p>
-            </li>
-            <li class="quest sticker">
-              <img class="q-logo" src="assets/logos/amazon.png" alt="" width="66" height="22" />
-              <div class="q-body">
-                <p class="q-org">Amazon</p>
-                <p class="q-role">Process Excellence Manager</p>
-              </div>
-              <p class="q-date mono">Sep 2025 — Jan 2026</p>
-            </li>
-            <li class="quest sticker">
-              <img class="q-logo q-logo-sq" src="assets/logos/xiaomi.png" alt="" width="36" height="36" />
-              <div class="q-body">
-                <p class="q-org">Xiaomi</p>
-                <p class="q-role">Supply Chain Delivery Manager</p>
-              </div>
-              <p class="q-date mono">Jun 2024 — Aug 2025</p>
-            </li>
-            <li class="quest sticker">
-              <img class="q-logo" src="assets/logos/adecco.svg" alt="" width="59" height="32" />
-              <div class="q-body">
-                <p class="q-org">Adecco</p>
-                <p class="q-role">Western Europe Certification Specialist</p>
-              </div>
-              <p class="q-date mono">Dec 2023 — Jun 2024</p>
-            </li>
-            <li class="quest sticker">
-              <span class="q-logo logo-uf" aria-hidden="true"><img src="assets/logos/freiburg-university.svg" alt="" width="70" height="14" /><img src="assets/logos/freiburg-name.svg" alt="" width="56" height="14" /></span>
-              <div class="q-body">
-                <p class="q-org">University of Freiburg</p>
-                <p class="q-role">Graduate Teaching &amp; Research Assistant · part-time</p>
-              </div>
-              <p class="q-date mono">Oct 2022 — Feb 2024</p>
-            </li>
-            <li class="quest sticker">
-              <span class="q-logo q-mono" style="--c: #7a6a4f" aria-hidden="true">文</span>
-              <div class="q-body">
-                <p class="q-org">Self-employed</p>
-                <p class="q-role">Education &amp; Translation Services · freelance</p>
-              </div>
-              <p class="q-date mono">Mar 2019 — Sep 2020</p>
-            </li>
-            <li class="quest sticker">
-              <span class="q-logo q-mono" style="--c: #3f8a5b" aria-hidden="true">A</span>
-              <div class="q-body">
-                <p class="q-org">Arshine Pharmaceutical</p>
-                <p class="q-role">Sales &amp; Supply Chain</p>
-              </div>
-              <p class="q-date mono">Oct 2018 — Mar 2019</p>
-            </li>
-          </ol>
-          <h3 class="q-group mono">internships</h3>
-          <ol class="timeline">
-            <li class="quest sticker">
-              <span class="q-logo q-mono" style="--c: #2f6fb0" aria-hidden="true">SEG</span>
-              <div class="q-body">
-                <p class="q-org">SEG Automotive</p>
-                <p class="q-role">Business Intern, Procurement</p>
-              </div>
-              <p class="q-date mono">Jul 2021 — Oct 2021</p>
-            </li>
-            <li class="quest sticker">
-              <span class="q-logo q-mono" style="--c: #b0413e" aria-hidden="true">HT</span>
-              <div class="q-body">
-                <p class="q-org">Harris Teeter</p>
-                <p class="q-role">Retail Intern · United States</p>
-              </div>
-              <p class="q-date mono">Jun 2018 — Sep 2018</p>
-            </li>
-          </ol>
-
-          <a class="btn btn-primary quests-cta" href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">
-            Read the full story on LinkedIn ↗
-          </a>
+          <div class="card roles">
+            <h3>Jobs, full-time and part-time</h3>
+            <ol role="list">
+              <li>
+                <span class="role-logo"><img src="assets/logos/novada.svg" alt="" width="88" height="18" /></span>
+                <span class="role-what"><b>Novada Labs</b> AI Automation &amp; GTM Manager</span>
+                <span class="role-when"><em>Current</em> Mar 2026 to present</span>
+              </li>
+              <li>
+                <span class="role-logo"><img src="assets/logos/amazon.png" alt="" width="66" height="22" /></span>
+                <span class="role-what"><b>Amazon</b> Process Excellence Manager</span>
+                <span class="role-when">Sep 2025 to Jan 2026</span>
+              </li>
+              <li>
+                <span class="role-logo"><img src="assets/logos/xiaomi.png" alt="" width="30" height="30" /></span>
+                <span class="role-what"><b>Xiaomi</b> Supply Chain Delivery Manager</span>
+                <span class="role-when">Jun 2024 to Aug 2025</span>
+              </li>
+              <li>
+                <span class="role-logo"><img src="assets/logos/adecco.svg" alt="" width="55" height="30" /></span>
+                <span class="role-what"><b>Adecco</b> Western Europe Certification Specialist</span>
+                <span class="role-when">Dec 2023 to Jun 2024</span>
+              </li>
+              <li>
+                <span class="role-logo logo-uf"><img src="assets/logos/freiburg-university.svg" alt="" width="70" height="14" /><img src="assets/logos/freiburg-name.svg" alt="" width="56" height="14" /></span>
+                <span class="role-what"><b>University of Freiburg</b> Graduate Teaching &amp; Research Assistant, part-time</span>
+                <span class="role-when">Oct 2022 to Feb 2024</span>
+              </li>
+              <li>
+                <span class="role-logo role-mark" aria-hidden="true">文</span>
+                <span class="role-what"><b>Self-employed</b> Education &amp; Translation Services, freelance</span>
+                <span class="role-when">Mar 2019 to Sep 2020</span>
+              </li>
+              <li>
+                <span class="role-logo role-mark" aria-hidden="true">A</span>
+                <span class="role-what"><b>Arshine Pharmaceutical</b> Sales &amp; Supply Chain</span>
+                <span class="role-when">Oct 2018 to Mar 2019</span>
+              </li>
+            </ol>
+            <h3>Internships</h3>
+            <ol role="list">
+              <li>
+                <span class="role-logo role-mark" aria-hidden="true">SEG</span>
+                <span class="role-what"><b>SEG Automotive</b> Business Intern, Procurement</span>
+                <span class="role-when">Jul 2021 to Oct 2021</span>
+              </li>
+              <li>
+                <span class="role-logo role-mark" aria-hidden="true">HT</span>
+                <span class="role-what"><b>Harris Teeter</b> Retail Intern, United States</span>
+                <span class="role-when">Jun 2018 to Sep 2018</span>
+              </li>
+            </ol>
+          </div>
+          <p class="after"><a class="button" href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">Read the full story on LinkedIn</a></p>
         </div>
       </section>
 
-      <!-- ─────────────── SKILL TREE ─────────────── -->
-      <section class="skills" id="skills" data-zone="skills">
+      <!-- ───────── Education and skills ───────── -->
+      <section class="band" id="education">
         <div class="wrap">
-          <header class="sec-head">
-            <p class="mono sec-kicker">skill tree · education &amp; research</p>
-            <h2>Economics first. <em>Code later.</em></h2>
-            <p class="sec-sub">
-              Turns out it’s a good order: first learn why systems behave the
-              way they do, then build them.
-            </p>
+          <header class="band-head">
+            <h2>Economics first, code later</h2>
+            <p>A good order, as it turns out: first learn why systems behave the way they do, then build them.</p>
           </header>
 
-          <div class="edu">
-            <article class="edu-card sticker">
-              <p class="mono edu-years">2020 — 2023</p>
+          <div class="pair">
+            <article class="card edu">
+              <p class="tag">2020 to 2023</p>
               <h3>M.Sc. Economics &amp; Finance</h3>
               <p class="edu-school">University of Freiburg, Germany</p>
-              <p>
-                Computational economics, machine learning, econometrics and
-                time series. Student representative and commencement speaker.
-              </p>
-              <p class="edu-links mono">
-                <a href="Master's Thesis _ Tong_Wu_5163957.pdf">Master’s thesis ↗</a>
-                <a href="Big change! Not big enough. The rise of the GPT ecosystem-TongWu, Final.pdf">GPT ecosystem paper (2023) ↗</a>
-                <a href="https://github.com/Goldentrii/website/blob/main/Langchain%2BPinecone.py" target="_blank" rel="noopener">RAG prototype code ↗</a>
+              <p>Computational economics, machine learning, econometrics and time series. Student representative and commencement speaker.</p>
+              <p class="edu-links">
+                <a href="Master's Thesis _ Tong_Wu_5163957.pdf">Master’s thesis</a>
+                <a href="Big change! Not big enough. The rise of the GPT ecosystem-TongWu, Final.pdf">GPT ecosystem paper (2023)</a>
+                <a href="https://github.com/Goldentrii/website/blob/main/Langchain%2BPinecone.py" target="_blank" rel="noopener">RAG prototype code</a>
               </p>
             </article>
-            <article class="edu-card sticker">
-              <p class="mono edu-years">2014 — 2018</p>
+            <article class="card edu">
+              <p class="tag">2014 to 2018</p>
               <h3>B.A. Business English</h3>
-              <p class="edu-school">Jishou University, China · International Trade &amp; Business</p>
-              <p>
-                Trade, finance, economics and languages. Vice president of the
-                student union; outstanding graduate representative.
-              </p>
+              <p class="edu-school">Jishou University, China. International Trade &amp; Business</p>
+              <p>Trade, finance, economics and languages. Vice president of the student union; outstanding graduate representative.</p>
             </article>
           </div>
 
-          <div class="tree">
-            <div class="branch">
-              <p class="mono branch-name">build &amp; analyze</p>
-              <ul class="chips">
+          <div class="pair">
+            <div class="card skills">
+              <h3>Build and analyze</h3>
+              <ul class="chips" role="list">
                 <li>Python</li><li>TypeScript</li><li>SQL</li><li>R</li>
                 <li>Power BI</li><li>PostgreSQL</li><li>MCP</li><li>RAG</li>
                 <li>Multi-agent workflows</li><li>LLM integration</li>
               </ul>
             </div>
-            <div class="branch">
-              <p class="mono branch-name">improve &amp; deliver</p>
-              <ul class="chips">
+            <div class="card skills">
+              <h3>Improve and deliver</h3>
+              <ul class="chips" role="list">
                 <li>Lean / 5S</li><li>Six Sigma</li><li>Root-cause analysis</li>
                 <li>KPI design</li><li>CPFR</li><li>Supply-chain planning</li>
                 <li>Cross-functional projects</li>
@@ -603,132 +430,58 @@
         </div>
       </section>
 
-      <!-- ─────────────── ACHIEVEMENTS ─────────────── -->
-      <section class="achievements" id="achievements" data-zone="achievements">
+      <!-- ───────── Certificates ───────── -->
+      <section class="band" id="certificates">
         <div class="wrap">
-          <header class="sec-head">
-            <p class="mono sec-kicker">achievements · 7 unlocked</p>
-            <h2>Badges, <em>each one verifiable.</em></h2>
-            <p class="sec-sub">Click a badge to open its certificate record.</p>
+          <header class="band-head">
+            <h2>Certificates, each one verifiable</h2>
+            <p>Select one to open its certificate record.</p>
           </header>
-
-          <ul class="badges">
-            <li>
-              <a class="badge badge-gold sticker" href="https://coursera.org/verify/specialization/QJQK8VYELTPG" target="_blank" rel="noopener">
-                <span class="badge-icon" aria-hidden="true">6σ</span>
-                <span class="badge-name">Six Sigma Green Belt</span>
-                <span class="badge-by mono">Kennesaw State · 2026</span>
-              </a>
-            </li>
-            <li>
-              <a class="badge sticker" href="https://coursera.org/verify/professional-cert/GAAH338HGUG5" target="_blank" rel="noopener">
-                <span class="badge-icon" aria-hidden="true">▦</span>
-                <span class="badge-name">Google Data Analytics</span>
-                <span class="badge-by mono">Google · 2023</span>
-              </a>
-            </li>
-            <li>
-              <a class="badge sticker" href="https://coursera.org/verify/professional-cert/QQAPTETGCP4S" target="_blank" rel="noopener">
-                <span class="badge-icon" aria-hidden="true">&gt;_</span>
-                <span class="badge-name">IT Automation with Python</span>
-                <span class="badge-by mono">Google · 2023</span>
-              </a>
-            </li>
-            <li>
-              <a class="badge sticker" href="https://coursera.org/verify/specialization/KNWJNBULCLQP" target="_blank" rel="noopener">
-                <span class="badge-icon" aria-hidden="true">∿</span>
-                <span class="badge-name">Machine Learning</span>
-                <span class="badge-by mono">DeepLearning.AI · Stanford · 2025</span>
-              </a>
-            </li>
-            <li>
-              <a class="badge sticker" href="https://coursera.org/verify/specialization/TEUB5MSCKJXA" target="_blank" rel="noopener">
-                <span class="badge-icon" aria-hidden="true">◧</span>
-                <span class="badge-name">Data Analysis &amp; Presentation</span>
-                <span class="badge-by mono">PwC · 2024</span>
-              </a>
-            </li>
-            <li>
-              <a class="badge sticker" href="https://coursera.org/verify/specialization/I3MUOU9SX4AC" target="_blank" rel="noopener">
-                <span class="badge-icon" aria-hidden="true">⌘</span>
-                <span class="badge-name">Business Analysis (CBAP prep)</span>
-                <span class="badge-by mono">Starweaver · 2024 · course, not IIBA designation</span>
-              </a>
-            </li>
-            <li>
-              <a class="badge sticker" href="https://coursera.org/verify/specialization/QABZ7B25X3NL" target="_blank" rel="noopener">
-                <span class="badge-icon" aria-hidden="true">♧</span>
-                <span class="badge-name">Materiality of ESG Factors</span>
-                <span class="badge-by mono">Wharton · 2024</span>
-              </a>
-            </li>
+          <ul class="certs" role="list">
+            <li><a class="card cert cert-lead" href="https://coursera.org/verify/specialization/QJQK8VYELTPG" target="_blank" rel="noopener"><b>Six Sigma Green Belt</b><span>Kennesaw State, 2026</span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/specialization/KNWJNBULCLQP" target="_blank" rel="noopener"><b>Machine Learning</b><span>DeepLearning.AI and Stanford, 2025</span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/professional-cert/GAAH338HGUG5" target="_blank" rel="noopener"><b>Google Data Analytics</b><span>Google, 2023</span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/professional-cert/QQAPTETGCP4S" target="_blank" rel="noopener"><b>IT Automation with Python</b><span>Google, 2023</span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/specialization/TEUB5MSCKJXA" target="_blank" rel="noopener"><b>Data Analysis &amp; Presentation</b><span>PwC, 2024</span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/specialization/I3MUOU9SX4AC" target="_blank" rel="noopener"><b>Business Analysis (CBAP prep)</b><span>Starweaver, 2024. Course, not the IIBA designation</span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/specialization/QABZ7B25X3NL" target="_blank" rel="noopener"><b>Materiality of ESG Factors</b><span>Wharton, 2024</span></a></li>
           </ul>
         </div>
       </section>
 
-      <!-- ─────────────── SIDE QUESTS ─────────────── -->
-      <section class="side" id="side" data-zone="side">
-        <div class="wrap side-grid">
-          <div class="side-copy">
-            <p class="mono sec-kicker">side quests · away from keyboard</p>
-            <h2>Calligraphy, <em>the I Ching,</em> BaZi.</h2>
-            <p class="sec-sub">
-              Old systems for reading patterns. Slow, quiet, and endlessly
-              interesting.
-            </p>
-          </div>
-          <ul class="side-list">
-            <li class="side-item sticker"><span class="side-glyph" aria-hidden="true">桐</span><span>Calligraphy</span></li>
-            <li class="side-item sticker"><span class="side-glyph" aria-hidden="true">易经</span><span>I Ching</span></li>
-            <li class="side-item sticker"><span class="side-glyph" aria-hidden="true">八字</span><span>BaZi</span></li>
+      <!-- ───────── Away from the keyboard ───────── -->
+      <section class="band" id="away">
+        <div class="wrap away">
+          <header class="band-head">
+            <h2>Away from the keyboard</h2>
+            <p>Old systems for reading patterns. Slow, quiet and endlessly interesting.</p>
+          </header>
+          <ul class="glyphs" role="list">
+            <li class="card"><span lang="zh-Hans" aria-hidden="true">桐</span>Calligraphy</li>
+            <li class="card"><span lang="zh-Hans" aria-hidden="true">易经</span>I Ching</li>
+            <li class="card"><span lang="zh-Hans" aria-hidden="true">八字</span>BaZi</li>
           </ul>
         </div>
       </section>
 
-      <!-- ─────────────── SAVE POINT ─────────────── -->
-      <section class="save" id="save" data-zone="save">
-        <div class="wrap save-card">
-          <p class="mono save-kicker">✦ save point ✦</p>
-          <h2>One quest left: <em>say hi.</em></h2>
-          <p class="save-sub">
-            Curious about something here? Get in touch — happy to tell you
-            more.
+      <!-- ───────── Contact ───────── -->
+      <section class="band contact" id="contact">
+        <div class="wrap">
+          <h2>Curious about something here? Say hi.</h2>
+          <p class="contact-mail"><a href="mailto:tongwu0824@gmail.com">tongwu0824@gmail.com</a></p>
+          <p class="contact-links">
+            <a href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">LinkedIn</a>
+            <a href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub</a>
           </p>
-          <div class="save-actions">
-            <a class="btn btn-light" href="mailto:tongwu0824@gmail.com">tongwu0824@gmail.com ↗</a>
-            <a class="btn btn-outline" href="https://www.linkedin.com/in/tongwu3" target="_blank" rel="noopener">LinkedIn ↗</a>
-            <a class="btn btn-outline" href="https://github.com/Goldentrii" target="_blank" rel="noopener">GitHub ↗</a>
-          </div>
         </div>
       </section>
     </main>
 
-    <footer class="credits">
-      <div class="wrap credits-row">
-        <p class="credits-roll">
-          <svg class="credits-clawd" aria-hidden="true"><use href="#clawd" /></svg>
-          <span>
-            <b>Credits.</b> Life story &amp; direction: Tong Wu. Design &amp;
-            code: Claude (Opus 5.5) in Claude Code. No framework, just HTML,
-            CSS and a little JavaScript.
-          </span>
-        </p>
-        <p class="mono credits-meta">
-          © 2026 Tong Wu ·
-          <span class="js-only"><button type="button" class="linklike" id="replayIntro">Replay intro</button> ·</span>
-          <a href="#player">Back to top ↑</a>
-        </p>
+    <footer class="foot">
+      <div class="wrap">
+        <p>© 2026 Tong Wu</p>
+        <p>Life story and direction: Tong Wu. Design and code: Claude in Claude Code. Background drawn with three.js.</p>
       </div>
     </footer>
-
-    <!-- Guide: floating Claude with a speech bubble. JS-only. -->
-    <div class="guide" id="guide" hidden>
-      <p class="guide-bubble" id="guideBubble" role="status" aria-live="polite"></p>
-      <button class="guide-btn" id="guideBtn" type="button" aria-label="Talk to Claude, the guide">
-        <svg class="guide-clawd bob"><use href="#clawd" /></svg>
-      </button>
-    </div>
-
-    <div class="toasts" id="toasts" aria-live="polite"></div>
   </body>
 </html>

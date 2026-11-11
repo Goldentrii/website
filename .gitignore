@@ -2,3 +2,13 @@
 .playwright-mcp/
 index-old.html
 index-2026-09-11-bilingual.html
+node_modules/
+index-2026-09-25-game.html
+# Draft A of the November 2026 redesign: local only. The backdrop source and
+# build tooling in draft-3d/ (scene-b.src.js, package*.json) are tracked.
+draft-3d/index.html
+draft-3d/style.css
+draft-3d/page.js
+draft-3d/scene.src.js
+draft-3d/scene.js
+draft-3d/fonts/

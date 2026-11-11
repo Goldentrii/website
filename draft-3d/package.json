@@ -1,0 +1,14 @@
+{
+  "name": "tongwu-network-backdrop",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "npm run build:site",
+    "build:site": "esbuild scene-b.src.js --bundle --minify --format=esm --target=es2020 --outfile=../assets/backdrop.js",
+    "build:draft-a": "esbuild scene.src.js --bundle --minify --format=esm --target=es2020 --outfile=scene.js"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "three": "0.187.0"
+  }
+}
