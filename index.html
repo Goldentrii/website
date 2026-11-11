@@ -60,6 +60,14 @@
     </script>
   </head>
   <body>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <symbol id="seal" viewBox="0 0 48 60">
+        <path d="M13 38 8 59l8-5 5 6 3-17zM35 38l5 21-8-5-5 6-3-17z" fill="currentColor" opacity="0.7" />
+        <polygon points="24.0,2.0 27.7,5.2 32.4,3.7 34.7,8.0 39.6,8.4 40.0,13.3 44.3,15.6 42.8,20.3 46.0,24.0 42.8,27.7 44.3,32.4 40.0,34.7 39.6,39.6 34.7,40.0 32.4,44.3 27.7,42.8 24.0,46.0 20.3,42.8 15.6,44.3 13.3,40.0 8.4,39.6 8.0,34.7 3.7,32.4 5.2,27.7 2.0,24.0 5.2,20.3 3.7,15.6 8.0,13.3 8.4,8.4 13.3,8.0 15.6,3.7 20.3,5.2" fill="currentColor" />
+        <circle cx="24" cy="24" r="15.5" fill="none" stroke="#fff" stroke-opacity="0.55" stroke-width="1" />
+      </symbol>
+    </svg>
+
     <!-- Background only: lanes that untangle as the page scrolls. -->
     <canvas id="backdrop" class="backdrop" aria-hidden="true"></canvas>
 
@@ -358,7 +366,7 @@
                 <span class="role-when">Mar 2019 to Sep 2020</span>
               </li>
               <li>
-                <span class="role-logo role-mark" aria-hidden="true">A</span>
+                <span class="role-logo"><img src="assets/logos/arshine.png" alt="" width="67" height="28" /></span>
                 <span class="role-what"><b>Arshine Pharmaceutical</b> Sales &amp; Supply Chain</span>
                 <span class="role-when">Oct 2018 to Mar 2019</span>
               </li>
@@ -366,12 +374,12 @@
             <h3>Internships</h3>
             <ol role="list">
               <li>
-                <span class="role-logo role-mark" aria-hidden="true">SEG</span>
+                <span class="role-logo"><img src="assets/logos/seg-automotive.svg" alt="" width="77" height="24" /></span>
                 <span class="role-what"><b>SEG Automotive</b> Business Intern, Procurement</span>
                 <span class="role-when">Jul 2021 to Oct 2021</span>
               </li>
               <li>
-                <span class="role-logo role-mark" aria-hidden="true">HT</span>
+                <span class="role-logo"><img src="assets/logos/harris-teeter.png" alt="" width="96" height="16" /></span>
                 <span class="role-what"><b>Harris Teeter</b> Retail Intern, United States</span>
                 <span class="role-when">Jun 2018 to Sep 2018</span>
               </li>
@@ -391,7 +399,10 @@
 
           <div class="pair">
             <article class="card edu">
-              <p class="tag">2020 to 2023</p>
+              <div class="edu-top">
+                <p class="tag">2020 to 2023</p>
+                <span class="logo-uf" role="img" aria-label="University of Freiburg"><img src="assets/logos/freiburg-university.svg" alt="" width="90" height="18" /><img src="assets/logos/freiburg-name.svg" alt="" width="72" height="18" /></span>
+              </div>
               <h3>M.Sc. Economics &amp; Finance</h3>
               <p class="edu-school">University of Freiburg, Germany</p>
               <p>Computational economics, machine learning, econometrics and time series. Student representative and commencement speaker.</p>
@@ -402,7 +413,10 @@
               </p>
             </article>
             <article class="card edu">
-              <p class="tag">2014 to 2018</p>
+              <div class="edu-top">
+                <p class="tag">2014 to 2018</p>
+                <img src="assets/logos/jishou-university.png" alt="Jishou University" width="52" height="51" />
+              </div>
               <h3>B.A. Business English</h3>
               <p class="edu-school">Jishou University, China. International Trade &amp; Business</p>
               <p>Trade, finance, economics and languages. Vice president of the student union; outstanding graduate representative.</p>
@@ -438,13 +452,13 @@
             <p>Select one to open its certificate record.</p>
           </header>
           <ul class="certs" role="list">
-            <li><a class="card cert cert-lead" href="https://coursera.org/verify/specialization/QJQK8VYELTPG" target="_blank" rel="noopener"><b>Six Sigma Green Belt</b><span>Kennesaw State, 2026</span></a></li>
-            <li><a class="card cert" href="https://coursera.org/verify/specialization/KNWJNBULCLQP" target="_blank" rel="noopener"><b>Machine Learning</b><span>DeepLearning.AI and Stanford, 2025</span></a></li>
-            <li><a class="card cert" href="https://coursera.org/verify/professional-cert/GAAH338HGUG5" target="_blank" rel="noopener"><b>Google Data Analytics</b><span>Google, 2023</span></a></li>
-            <li><a class="card cert" href="https://coursera.org/verify/professional-cert/QQAPTETGCP4S" target="_blank" rel="noopener"><b>IT Automation with Python</b><span>Google, 2023</span></a></li>
-            <li><a class="card cert" href="https://coursera.org/verify/specialization/TEUB5MSCKJXA" target="_blank" rel="noopener"><b>Data Analysis &amp; Presentation</b><span>PwC, 2024</span></a></li>
-            <li><a class="card cert" href="https://coursera.org/verify/specialization/I3MUOU9SX4AC" target="_blank" rel="noopener"><b>Business Analysis (CBAP prep)</b><span>Starweaver, 2024. Course, not the IIBA designation</span></a></li>
-            <li><a class="card cert" href="https://coursera.org/verify/specialization/QABZ7B25X3NL" target="_blank" rel="noopener"><b>Materiality of ESG Factors</b><span>Wharton, 2024</span></a></li>
+            <li><a class="card cert cert-lead" href="https://coursera.org/verify/specialization/QJQK8VYELTPG" target="_blank" rel="noopener"><span class="seal" aria-hidden="true"><svg viewBox="0 0 48 60"><use href="#seal" /></svg><em>6σ</em></span><span class="cert-text"><b>Six Sigma Green Belt</b><span>Kennesaw State, 2026</span></span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/specialization/KNWJNBULCLQP" target="_blank" rel="noopener"><span class="seal" aria-hidden="true"><svg viewBox="0 0 48 60"><use href="#seal" /></svg><em>ML</em></span><span class="cert-text"><b>Machine Learning</b><span>DeepLearning.AI and Stanford, 2025</span></span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/professional-cert/GAAH338HGUG5" target="_blank" rel="noopener"><span class="seal" aria-hidden="true"><svg viewBox="0 0 48 60"><use href="#seal" /></svg><em>DA</em></span><span class="cert-text"><b>Google Data Analytics</b><span>Google, 2023</span></span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/professional-cert/QQAPTETGCP4S" target="_blank" rel="noopener"><span class="seal" aria-hidden="true"><svg viewBox="0 0 48 60"><use href="#seal" /></svg><em>Py</em></span><span class="cert-text"><b>IT Automation with Python</b><span>Google, 2023</span></span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/specialization/TEUB5MSCKJXA" target="_blank" rel="noopener"><span class="seal" aria-hidden="true"><svg viewBox="0 0 48 60"><use href="#seal" /></svg><em>∑</em></span><span class="cert-text"><b>Data Analysis &amp; Presentation</b><span>PwC, 2024</span></span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/specialization/I3MUOU9SX4AC" target="_blank" rel="noopener"><span class="seal" aria-hidden="true"><svg viewBox="0 0 48 60"><use href="#seal" /></svg><em>BA</em></span><span class="cert-text"><b>Business Analysis (CBAP prep)</b><span>Starweaver, 2024. Course, not the IIBA designation</span></span></a></li>
+            <li><a class="card cert" href="https://coursera.org/verify/specialization/QABZ7B25X3NL" target="_blank" rel="noopener"><span class="seal" aria-hidden="true"><svg viewBox="0 0 48 60"><use href="#seal" /></svg><em>ESG</em></span><span class="cert-text"><b>Materiality of ESG Factors</b><span>Wharton, 2024</span></span></a></li>
           </ul>
         </div>
       </section>

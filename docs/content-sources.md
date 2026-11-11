@@ -62,6 +62,10 @@ Original marks and their colors are preserved. Logos identify employment/educati
 - Xiaomi: https://i01.appmifile.com/webfile/globalimg/logo/pwa-mi/72x72.png
 - Huawei: https://www.huawei.com/-/media/hcomponent-header/1.0.1.20260908162100/component/img/huawei_logo.png
 - University of Freiburg: the original two-part SVG wordmark in https://uni-freiburg.de/en/.
+- SEG Automotive (added 11 Nov 2026): https://www.seg-automotive.com/image/sync/images/logo.svg, unmodified.
+- Arshine Pharmaceutical (added 11 Nov 2026): https://www.arshinepharma.com/static/site/images/logo2.png, unmodified.
+- Harris Teeter (added 11 Nov 2026): https://commons.wikimedia.org/wiki/File:Harris-Teeter.png. Margins trimmed and the white background made transparent; the mark and its colors are unchanged.
+- Jishou University (added 11 Nov 2026): https://www.jsu.edu.cn/images/logo1.png. Only the round emblem is used, because the wordmark in that file is white and made for dark backgrounds.
 
 The existing portrait is now displayed in its original color, with the grayscale CSS filter removed.
 
