@@ -14,7 +14,7 @@ import os
 
 
 #Load the data
-loader = PyPDFLoader("C:/Users/tong/OneDrive/GPT SEMINAR\Big change! Not big enough. The rise of the GPT ecosystem-TongWu, 5163957.pdf")
+loader = PyPDFLoader("gpt-ecosystem-paper.pdf")
 
 
 # In[17]:
@@ -62,7 +62,7 @@ from tqdm import tqdm
 
 
 # Check to see if there is an environment variable with  API keys, if not, use what put below
-OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', 'sk-45yg5n1U0253ntOOLh///////FJCmo3w1x7BT10fCirlEur')
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '<REDACTED>')
 
 
 # In[22]:
@@ -70,7 +70,7 @@ OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', 'sk-45yg5n1U0253ntOOLh///////F
 
 #PINECONE_API_KEY = os.environ.get('PINECONE_API_KEY', '<REDACTED>')
 #PINECONE_API_ENV = os.environ.get('PINECONE_API_ENV', '<REDACTED>') # May need to switch with env
-embeddings = OpenAIEmbeddings(openai_api_key='sk-45yg5n1U0253ntOOLh2///////3w1x7BT10fCirlEur')
+embeddings = OpenAIEmbeddings(openai_api_key='<REDACTED>')
 
 
 # In[23]:

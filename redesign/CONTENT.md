@@ -24,13 +24,13 @@ Person: **Tong Wu 吴桐**. Pronouns: he/him.
 
 ## 0c. Round-5 corrections (2026-08-02) — real credential links found, off-screen fixed
 
-- **Certificates now have real, verified links.** `Zertifizierungen .pdf` in the site repo contains all 5 Coursera certificates with live verification URLs — use these, not plain text:
+- **Certificates now have real, verified links.** `Zertifizierungen.pdf` in the site repo contains all 5 Coursera certificates with live verification URLs — use these, not plain text:
   - Six Sigma Green Belt → `https://coursera.org/verify/specialization/KNWJNBULCLQP` (Jan 2026, Kennesaw State via Coursera)
   - CBAP → `https://coursera.org/verify/specialization/TEUB5MSCKJXA` (Apr 2024, IIBA/Starweaver via Coursera)
   - Machine Learning → `https://coursera.org/verify/specialization/I3MUOU9SX4AC` (Apr 2025, DeepLearning.AI/Stanford/Andrew Ng via Coursera)
   - Google Data Analytics → `https://coursera.org/verify/professional-cert/QQAPTETGCP4S` (Apr 2023)
   - Google IT Automation with Python → `https://coursera.org/verify/professional-cert/GAAH338HGUG5` (Jun 2023)
-- **Master's Thesis and Seminar Paper are real files, already in the site repo** — renamed for clean URLs and linked: `masters-thesis-tongwu.pdf` (was `Master's Thesis _ Tong_Wu_5163957.pdf`) and `seminar-paper-gpt-ecosystem.pdf` — "The Rise of the GPT Ecosystem" (was `Big change! Not big enough. The rise of the GPT ecosystem-TongWu, Final.pdf`). Both served directly from the site's own domain once deployed.
+- **Master's Thesis and Seminar Paper are real files, already in the site repo** — renamed for clean URLs and linked: `masters-thesis-tongwu.pdf` (old filename contained the student ID; renamed 2026-11-18) and `seminar-paper-gpt-ecosystem.pdf` — "The Rise of the GPT Ecosystem" (was `Big change! Not big enough. The rise of the GPT ecosystem-TongWu, Final.pdf`). Both served directly from the site's own domain once deployed.
 - **Certifications + Academic Work presented as small square cards** (`.cred-card`) in the Skills section specifically — by explicit request, this is one deliberate exception to the "no big cards" rule elsewhere on the page.
 - **Off-screen list correction:** remove "Tea ceremony" (never did it — was a fabrication carried over from an earlier site version, now fixed). Add Surfing and Skiing. Keep I Ching, Calligraphy, Hiking, Learning Japanese.
 
